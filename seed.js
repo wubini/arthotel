@@ -22,7 +22,7 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
-var Job = Promise.promisifyAll(mongoose.model('Job'));
+var Post = Promise.promisifyAll(mongoose.model('Post'));
 
 var seedUsers = function () {
 

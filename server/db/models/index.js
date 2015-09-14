@@ -3,5 +3,5 @@
 // anywhere the User model needs to be used.
 module.exports = {
   User: require('./user.js'),
-  Job: require('./job-posting.js')
+  Post: require('./job-posting.js')
 }
