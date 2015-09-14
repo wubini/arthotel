@@ -16,7 +16,7 @@ body {
 
 #main {
   padding-top: 60px;
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -25,3 +25,4 @@ body {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+@import 'userPage/main';

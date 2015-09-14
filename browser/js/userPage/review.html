@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Reviews
+	</div>
+	<div class="panel-body" ng-repeat="review in user.reviews" ng-class-even="'add-background'">
+		<div >
+			<img src="{{review.photo}}"/>
+			{{review.rating}}
+			{{review.message}}
+		</div>
+	</div>
+	<div class="panel-body" ng-hide="user.reviews">
+		This user has no reviews.
+	</div>
+	
+</div>
