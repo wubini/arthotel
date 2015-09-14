@@ -22,23 +22,56 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Job = Promise.promisifyAll(mongoose.model('Job'));
 
 var seedUsers = function () {
 
     var users = [
         {
-            email: 'testing@fsa.com',
-            password: 'password'
+          email: 'kathy',
+          password: '123'
         },
         {
-            email: 'obama@gmail.com',
-            password: 'potus'
+          email: 'beckylee',
+          password: '123'
+        },
+        {
+          email: 'austin',
+          password: '123'
         }
     ];
 
     return User.createAsync(users);
-
 };
+
+var seedJobs = function() {
+  var users;
+  var jobs;
+  return User.find()
+  .then(function(allUsers)
+  {
+    users = allUsers;
+    jobs = [{},{},{}];
+    counter = 1;
+    console.log("Users", users)
+    jobs.forEach(function(job)
+    {
+      job.client = users[Math.floor(Math.random()*users.length)]._id;
+      job.location = "New York";
+      job.title = "Project "+counter++;
+      job.description ="TBD";
+      console.log("adding job", job)
+    })
+
+    return Job.createAsync(jobs);
+  });
+  // client:
+  // location: String,
+  // title: {type: String, required: true},
+  // description: String,
+  // photos: [String],
+  // status: {type: String, default: "private", match: /(private|public)/}
+}
 
 connectToDb.then(function () {
     User.findAsync({}).then(function (users) {
@@ -49,9 +82,21 @@ connectToDb.then(function () {
             process.kill(0);
         }
     }).then(function () {
-        console.log(chalk.green('Seed successful!'));
-        process.kill(0);
-    }).catch(function (err) {
+        console.log(chalk.green('Seeding users successful!'));
+        return Job.findAsync({}).then(function(jobs)
+        {
+          if (jobs.length === 0) {
+              return seedJobs();
+          } else {
+              console.log(chalk.magenta('Seems to already be jobs data, exiting!'));
+              process.kill(0);
+          }
+        })
+    }).then(function()
+    {
+      console.log(chalk.green("Seeding jobs successful!"));
+    })
+    .catch(function (err) {
         console.error(err);
         process.kill(1);
     });
