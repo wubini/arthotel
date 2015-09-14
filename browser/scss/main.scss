@@ -20,9 +20,14 @@ body {
   margin: 0 auto;
 }
 
+.bold{
+  font-weight:bold;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
 @import 'userPage/main';
+@import 'allPosts/main';

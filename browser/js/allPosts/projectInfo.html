@@ -1,0 +1,9 @@
+<div class="col-lg-6 col-md-6 col-sm-12">
+	<h2>{{project.title}}</h2>
+	<p><span class="bold">Location:</span> {{project.location}}</p>
+	<p><span class="bold">Budget:</span> {{project.priceMin}} - {{project.priceMax}}</p>
+	<p ng-show="project.startDate"><span class="bold">Start date:</span> {{project.startDate}}</p>
+	<p><span class="bold">Size:</span> {{project.size}}</p>
+	<p><span class="bold">Tags:</span> <span ng-repeat="tag in project.tags">{{tag}} </span></p>
+
+</div>
