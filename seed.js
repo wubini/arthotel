@@ -65,12 +65,6 @@ var seedJobs = function() {
 
     return Job.createAsync(jobs);
   });
-  // client:
-  // location: String,
-  // title: {type: String, required: true},
-  // description: String,
-  // photos: [String],
-  // status: {type: String, default: "private", match: /(private|public)/}
 }
 
 connectToDb.then(function () {
