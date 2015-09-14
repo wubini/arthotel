@@ -1,6 +1,6 @@
 app.directive('clientInfo', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/allPosts/clientInfo.html'
+        templateUrl: 'js/post/clientInfo.html'
     };
 });

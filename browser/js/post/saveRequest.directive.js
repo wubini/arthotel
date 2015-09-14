@@ -1,6 +1,6 @@
 app.directive('saveRequest', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/allPosts/saverequest.html'
+        templateUrl: 'js/post/saverequest.html'
     };
 });

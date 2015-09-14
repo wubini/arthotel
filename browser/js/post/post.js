@@ -1,12 +1,12 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('allPosts', {
-        url: '/posts',
-        templateUrl: 'js/allPosts/allposts.html',
-        controller: 'allPostsCtrl'
+    $stateProvider.state('post', {
+        url: '/posts/:postId',
+        templateUrl: 'js/post/post.html',
+        controller: 'postCtrl'
     });
 });
 
-app.controller('allPostsCtrl', function ($scope, AuthService, $state) {
+app.controller('postCtrl', function ($scope, AuthService, $state) {
         $scope.project={
             title: 'Awesome Project',
             location: 'New York, NY',
