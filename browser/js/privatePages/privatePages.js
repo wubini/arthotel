@@ -2,12 +2,18 @@ app.config(function ($stateProvider) {
     $stateProvider.state('privatePage', {
         url: '/me',
         templateUrl: 'js/privatePages/privatePage.html',
-        controller: 'privatePageCtrl'
+        controller: 'privatePageCtrl',
+        resolve: {
+            allUsers: function(UserFactory){
+                return UserFactory.getAllUsers();
+            }
+        }
     });
 });
 
 
-app.controller('privatePageCtrl', function ($scope, AuthService, $state) {
+app.controller('privatePageCtrl', function ($scope, AuthService, $state, allUsers) {
+    console.log(allUsers);
     $scope.client = false;
     $scope.activeJobs = [{
         name: 'Project1',
