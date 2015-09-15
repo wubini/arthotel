@@ -8,7 +8,7 @@ var schema = new mongoose.Schema({
   artist: {type: Schema.Types.ObjectId, ref: 'User', required: true},
   posting: {type: Schema.Types.ObjectId, ref: 'Posting', required: true},
   photos: [String],
-  status: {type: String, default: "in-progress", match: /(in-progress|complete|abandoned)/},
+  status: {type: String, match: /(artist-int|artist-req|client-req|in-progress|complete|abandoned)/},
   startDate: { type: Date, default: Date.now },
   completeDate: Date,
   paymentAmount: Number,
