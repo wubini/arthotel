@@ -33,6 +33,8 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state,
     });
   }
 
-  // PostingFactory.getArtistsByPostId()
+  $scope.client = false;
+  $scope.activeJobs = [];
+
 
 });
