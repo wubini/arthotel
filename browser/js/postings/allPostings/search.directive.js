@@ -1,6 +1,6 @@
 app.directive('search', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/posts/allPosts/search.html'
+        templateUrl: 'js/postings/allPostings/search.html'
     };
 });

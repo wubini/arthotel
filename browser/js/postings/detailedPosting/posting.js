@@ -1,18 +1,18 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('posting', {
+    $stateProvider.state('detailedPosting', {
         url: '/postings/:postingId',
-        templateUrl: 'js/posts/detailedPost/post.html',
-        controller: 'postCtrl',
+        templateUrl: 'js/postings/detailedPosting/posting.html',
+        controller: 'postingCtrl',
         resolve: {
-          post: function(PostFactory, $stateParams)
+          posting: function(PostingFactory, $stateParams)
           {
-            return PostFactory.getPostById($stateParams.postingId);
+            return PostingFactory.getPostingById($stateParams.postingId);
           }
         }
     });
 });
 
-app.controller('postCtrl', function ($scope, AuthService, $state, $stateParams, post) {
+app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParams, posting) {
         // $scope.project={
         //     title: 'Awesome Project',
         //     location: 'New York, NY',
@@ -27,5 +27,5 @@ app.controller('postCtrl', function ($scope, AuthService, $state, $stateParams, 
         //         rating: 5
         //     }
         // };
-        $scope.post = post;
+        $scope.posting = posting;
 });
