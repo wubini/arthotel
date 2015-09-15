@@ -2,6 +2,7 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var Posting = mongoose.model('Posting');
+mongoose.Promise = require('bluebird');
 
 router.get('/', function(req, res, next)
 {
@@ -9,6 +10,32 @@ router.get('/', function(req, res, next)
   .then(function(postings)
   {
     res.send(postings);
+  });
+});
+
+router.put('/', function(req, res, next)
+{
+  var savePromises = [];
+  Posting.find()
+  .where({_id: {$in: req.session.cart}})
+  .then(function(postings)
+  {
+    postings.forEach(function(posting)
+    {
+      if(posting.artistsWhoSaved.indexOf(req.user._id)<0)
+      {
+        posting.artistsWhoSaved.push(req.user._id);
+        savePromises.push(posting.save());
+      }
+    })
+  });
+
+  Promise.all(savePromises)
+  .then(function(savedPostings)
+  {
+    console.log("savedPostings to user", savedPostings)
+    req.session.cart = [];
+    res.send(savedPostings);
   });
 });
 
