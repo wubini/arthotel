@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParams, posting) {
+app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParams, posting, PostingFactory) {
         // $scope.project={
         //     title: 'Awesome Project',
         //     location: 'New York, NY',
@@ -28,4 +28,5 @@ app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParam
         //     }
         // };
         $scope.posting = posting;
+        $scope.savePostingToCart = PostingFactory.savePostingToCart;
 });

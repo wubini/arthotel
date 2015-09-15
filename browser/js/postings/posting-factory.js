@@ -16,6 +16,14 @@ app.factory("PostingFactory", function($http)
       {
         return response.data;
       });
+    },
+    savePostingToCart: function(id)
+    {
+      return $http.post('/api/postings/'+id)
+      .then(function(response)
+      {
+        return response.data;
+      })
     }
   };
 });
