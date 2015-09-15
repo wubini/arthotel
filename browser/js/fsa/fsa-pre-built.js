@@ -48,9 +48,11 @@
         ]);
     });
 
-    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q) {
+    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, PostingFactory) {
 
         function onSuccessfulLogin(response) {
+          console.log("successful login")
+          PostingFactory.saveCartPostingsToUser();
             var data = response.data;
             Session.create(data.user._id, data.user);
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);

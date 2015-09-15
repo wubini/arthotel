@@ -29,4 +29,5 @@ app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParam
         // };
         $scope.posting = posting;
         $scope.savePostingToCart = PostingFactory.savePostingToCart;
+        $scope.requestPosting = PostingFactory.requestPosting;
 });
