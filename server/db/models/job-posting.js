@@ -9,9 +9,9 @@ var schema = new mongoose.Schema({
   title: {type: String, required: true},
   description: String,
   photos: [String],
-  status: {type: String, default: "private", match: /(private|public)/}
+  status: {type: String, default: "private", match: /(private|public)/},
+  date: { type: Date, default: Date.now }
 });
-
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
 var generateSalt = function () {
