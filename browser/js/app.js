@@ -1,9 +1,17 @@
 'use strict';
 window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt']);
 
-app.config(function ($urlRouterProvider, $locationProvider) {
+app.config(function ($urlRouterProvider, $locationProvider, $httpProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
+
     $locationProvider.html5Mode(true);
+    
+    if (window.location.hash && window.location.hash == '#_=_') {
+        window.location.hash = '';
+        window.location.href=window.location.href.slice(0, -1);
+    }
+
+
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     //$urlRouterProvider.otherwise('/');
 });
@@ -49,3 +57,4 @@ app.run(function ($rootScope, AuthService, $state) {
     });
 
 });
+
