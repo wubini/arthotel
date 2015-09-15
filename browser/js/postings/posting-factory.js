@@ -19,11 +19,19 @@ app.factory("PostingFactory", function($http)
     },
     savePostingToCart: function(id)
     {
-      return $http.post('/api/postings/'+id)
+      return $http.post('/api/postings/'+id, {action: "save"})
       .then(function(response)
       {
         return response.data;
-      })
+      });
+    },
+    requestPosting: function(id)
+    {
+      return $http.post('/api/postings/'+id, {action: "request"})
+      .then(function(response)
+      {
+        return response.data;
+      });
     }
   };
 });

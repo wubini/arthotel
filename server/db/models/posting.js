@@ -7,7 +7,7 @@ var schema = new mongoose.Schema({
   client: {type: Schema.Types.ObjectId, ref: 'User', required: true},
   artistsWhoSaved: {type: [{type: Schema.Types.ObjectId, ref: 'User'}], default: []},
   artistsWhoRequested: {type: [{type: Schema.Types.ObjectId, ref: 'User'}], default: []},
-  artist: {type: Schema.Types.ObjectId, ref: 'User', required: true},
+  artist: {type: Schema.Types.ObjectId, ref: 'User'},
   location: String,
   title: {type: String, required: true},
   description: String,

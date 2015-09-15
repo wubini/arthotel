@@ -38,11 +38,17 @@ router.post('/:postingId', function(req, res, next)
     console.log("user logged in", req.user);
     if(action==="save")
     {
-      req.posting.artistsWhoSaved.push(req.user);
+      if(req.posting.artistsWhoSaved.indexOf(req.user._id)<0)
+      {
+        req.posting.artistsWhoSaved.push(req.user);
+      }
     }
     else if(action==="request")
     {
-      req.posting.artistsWhoRequested.push(req.user);
+      if(req.posting.artistsWhoRequested.indexOf(req.user._id)<0)
+      {
+        req.posting.artistsWhoRequested.push(req.user);
+      }
     }
   }
   else
@@ -60,6 +66,10 @@ router.post('/:postingId', function(req, res, next)
     {
       req.session.cart = [req.posting._id.toString()];
     }
-    res.send(req.posting);
-  }
+  };
+  req.posting.save()
+  .then(function(posting)
+  {
+    res.send(posting);
+  });
 });
