@@ -5,19 +5,36 @@ app.config(function($stateProvider) {
     controller: 'privatePageCtrl',
     resolve: {
       allPostings: function(PostingFactory) {
+        console.log("getting all postings");
         return PostingFactory.getAllPostings();
+      },
+      savedPostings: function(AuthService, UserFactory)
+      {
+        return AuthService.getLoggedInUser()
+        .then(function(user)
+        {
+          return UserFactory.getSavedPostingsForUser(user._id);
+        })
+      },
+      requestedPostings: function(AuthService, UserFactory)
+      {
+        return AuthService.getLoggedInUser()
+        .then(function(user)
+        {
+          return UserFactory.getRequestedPostingsForUser(user._id);
+        })
       }
     }
   });
 });
 
-
 app.controller('privatePageCtrl', function($scope, AuthService, $state,
-  allPostings, Session, PostingFactory) {
-
+  allPostings, savedPostings, requestedPostings, Session, PostingFactory) {
   //this will be dynamically changed
   $scope.client = true;
   $scope.activeJobs = [];
+  $scope.savedPostings = savedPostings;
+  $scope.requestedPostings = requestedPostings;
 
   if ($scope.client) {
     allPostings.forEach(function(post) {

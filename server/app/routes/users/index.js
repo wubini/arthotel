@@ -2,6 +2,7 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Posting = mongoose.model('Posting');
 
 router.get('/', function(req, res, next)
 {
@@ -30,7 +31,7 @@ router.get('/:userId', function(req, res, next)
 
 router.get('/:userId/saved', function(req, res, next)
 {
-  Postings.find().where({artistsWhoSaved: req.foundUser._id})
+  Posting.find().where({artistsWhoSaved: req.foundUser._id})
   .then(function(postings)
   {
     res.send(postings);
@@ -39,7 +40,7 @@ router.get('/:userId/saved', function(req, res, next)
 
 router.get('/:userId/requested', function(req, res, next)
 {
-  Postings.find().where({artistsWhoRequested: req.foundUser._id})
+  Posting.find().where({artistsWhoRequested: req.foundUser._id})
   .then(function(postings)
   {
     res.send(postings);
