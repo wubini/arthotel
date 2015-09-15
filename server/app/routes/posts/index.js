@@ -15,7 +15,7 @@ router.get('/', function(req, res, next)
 router.use('/:postId', function(req, res, next)
 {
   Post.findById(req.params.postId)
-  .populate()
+  .populate('client')
   .then(function(post)
   {
     req.post = post;
