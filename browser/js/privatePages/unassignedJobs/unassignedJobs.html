@@ -1,0 +1,16 @@
+<row class='col-md-12' ng-click='show = !show'>
+  <img class='col-md-6' src="{{project.photos}}">
+  <div clas='col-md-6 col-md-offset-6'>
+    <h1>{{project.title}}</h1>
+    <p>{{project.description}}</p>
+    <p>{{project.location}}</p>
+    <p>{{project.date | date: 'medium'}}</p>
+    <div ng-show='show' ng-repeat='artist in artistsRequested'>
+      <img class='col-md-4' src="{{artist.photo}}">
+      <div clas='col-md-8 col-md-offset-6'>
+        <h1>{{artist.displayName}}</h1>
+        <p>{{artist.email}}</p>
+      </div>
+    </div>
+  </div>
+</row>
