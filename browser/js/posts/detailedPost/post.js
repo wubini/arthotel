@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('post', {
         url: '/posts/:postId',
-        templateUrl: 'js/post/post.html',
+        templateUrl: 'js/posts/detailedPost/post.html',
         controller: 'postCtrl'
     });
 });
