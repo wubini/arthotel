@@ -1,0 +1,11 @@
+<div class='panel-body' ng-repeat="job in activeJobs" ng-class-even="'add-background'">
+	<img src="{{job.photo}}" class="img-thumbnail pull-left"/>
+	<div class="info pull-left">
+		<h4>{{job.name}}</h4>
+		<p><span class="bold">Due: </span>{{job.endDate}}</p>
+		<p ng-show="client">{{job.client.name}}</p>
+		<p ng-hide="client">{{job.artist.name}}</p>
+
+	</div>
+
+</div>
