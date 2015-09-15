@@ -1,8 +1,10 @@
 var router = require('express').Router();
 module.exports = router;
-var Post = require('../../../db/models').Post;
+var mongoose = require('mongoose');
+var Post = mongoose.model('Post');
+console.log("Posts model in router", Post);
 
-router.use('/', function(req, res, next)
+router.get('/', function(req, res, next)
 {
   console.log("requesting all posts");
   Post.find()

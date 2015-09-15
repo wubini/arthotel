@@ -4,8 +4,9 @@ module.exports = router;
 
 router.use('/members', require('./members'));
 
-router.use('/api/posts', require('./api/posts.js'));
-router.use('/api/users', require('./api/users.js'));
+router.use('/posts', require('./posts'));
+//router.use('/users', require('./users/users.js'));
+
 
 // Make sure this is after all of
 // the registered routes!

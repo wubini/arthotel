@@ -44,7 +44,7 @@ var seedUsers = function () {
     return User.createAsync(users);
 };
 
-var seedJobs = function() {
+var seedPosts = function() {
   var users;
   var jobs;
   return User.find()
@@ -63,7 +63,7 @@ var seedJobs = function() {
       console.log("adding job", job)
     })
 
-    return Job.createAsync(jobs);
+    return Post.createAsync(jobs);
   });
 }
 
@@ -77,10 +77,10 @@ connectToDb.then(function () {
         }
     }).then(function () {
         console.log(chalk.green('Seeding users successful!'));
-        return Job.findAsync({}).then(function(jobs)
+        return Post.findAsync({}).then(function(jobs)
         {
           if (jobs.length === 0) {
-              return seedJobs();
+              return seedPosts();
           } else {
               console.log(chalk.magenta('Seems to already be jobs data, exiting!'));
               process.kill(0);
