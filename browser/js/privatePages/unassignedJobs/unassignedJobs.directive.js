@@ -3,7 +3,7 @@ app.directive('unassignedJobs', function() {
     restrict: 'E',
     templateUrl: 'js/privatePages/unassignedJobs/unassignedJobs.html',
     scope: {
-      project: '=project'
+      project: '=project',
     },
     link: function(scope, elem, attr) {
       scope.show = false;
