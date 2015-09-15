@@ -43,4 +43,4 @@ schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
-mongoose.model('Job', schema);
+mongoose.model('Post', schema);

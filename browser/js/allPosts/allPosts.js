@@ -3,7 +3,7 @@ app.config(function ($stateProvider) {
         url: '/post',
         templateUrl: 'js/allPosts/allPosts.html',
         controller: 'allPostCtrl'
-        
+
     });
 });
 
