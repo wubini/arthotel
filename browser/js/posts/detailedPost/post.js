@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('postCtrl', function ($scope, AuthService, $state) {
+app.controller('postCtrl', function ($scope, AuthService, $state, $stateParams) {
         $scope.project={
             title: 'Awesome Project',
             location: 'New York, NY',
