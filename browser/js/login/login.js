@@ -25,4 +25,9 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
     };
 
+    $scope.facebookLogin = function(){
+        
+        AuthService.facebookLogin();
+    };
+
 });
