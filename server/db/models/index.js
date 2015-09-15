@@ -3,3 +3,4 @@
 // anywhere the User model needs to be used.
 require('./user.js'),
 require('./posting.js')
+require('./partnership.js')
