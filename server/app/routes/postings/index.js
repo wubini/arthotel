@@ -5,7 +5,6 @@ var Posting = mongoose.model('Posting');
 
 router.get('/', function(req, res, next)
 {
-  console.log("getting all postings for user", req.user)
   Posting.find()
   .then(function(postings)
   {
@@ -32,19 +31,35 @@ router.get('/:postingId', function(req, res, next)
 
 router.post('/:postingId', function(req, res, next)
 {
-  console.log("req.session.cart", req.session.cart)
-  //add to cart
-  if(req.session.cart)
+  //add to cart and/or add partnership
+  var action = req.body.action;
+  if(req.user)
   {
-    console.log("index",req.session.cart.indexOf(req.posting._id), "req.posting._id", req.posting._id);
-    if(req.session.cart.indexOf(req.posting._id.toString())<0)
+    console.log("user logged in", req.user);
+    if(action==="save")
     {
-      req.session.cart.push(req.posting._id.toString());
+      req.posting.artistsWhoSaved.push(req.user);
+    }
+    else if(action==="request")
+    {
+      req.posting.artistsWhoRequested.push(req.user);
     }
   }
   else
   {
-    req.session.cart = [req.posting._id.toString()];
+    console.log("req.session.cart", req.session.cart)
+    if(req.session.cart)
+    {
+      console.log("index",req.session.cart.indexOf(req.posting._id), "req.posting._id", req.posting._id);
+      if(req.session.cart.indexOf(req.posting._id.toString())<0)
+      {
+        req.session.cart.push(req.posting._id.toString());
+      }
+    }
+    else
+    {
+      req.session.cart = [req.posting._id.toString()];
+    }
+    res.send(req.posting);
   }
-  res.send(req.posting);
 });
