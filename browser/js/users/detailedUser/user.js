@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('userPage', {
         url: '/user/:userId',
-        templateUrl: 'js/userPage/user.html',
+        templateUrl: 'js/users/detailedUser/user.html',
         controller: 'userPageCtrl',
         resolve: {
           getUser: function(){

@@ -1,6 +1,6 @@
 app.directive('userInfo', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/userPage/userInfo.html'
+        templateUrl: 'js/users/detailedUser/userInfo.html'
     };
 });
