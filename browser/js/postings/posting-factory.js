@@ -1,17 +1,17 @@
-app.factory("PostFactory", function($http)
+app.factory("PostingFactory", function($http)
 {
   return {
-    getAllPosts: function()
+    getAllPostings: function()
     {
-      return $http.get('/api/posts')
+      return $http.get('/api/postings')
       .then(function(response)
       {
         return response.data;
       });
     },
-    getPostById: function(id)
+    getPostingById: function(id)
     {
-      return $http.get('/api/posts/'+id)
+      return $http.get('/api/postings/'+id)
       .then(function(response)
       {
         return response.data;

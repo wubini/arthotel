@@ -22,7 +22,7 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
-var Post = Promise.promisifyAll(mongoose.model('Post'));
+var Posting = Promise.promisifyAll(mongoose.model('Posting'));
 
 var seedUsers = function () {
 
@@ -44,7 +44,7 @@ var seedUsers = function () {
     return User.createAsync(users);
 };
 
-var seedPosts = function() {
+var seedPostings = function() {
   var users;
   var jobs;
   return User.find()
@@ -63,7 +63,7 @@ var seedPosts = function() {
       console.log("adding job", job)
     })
 
-    return Post.createAsync(jobs);
+    return Posting.createAsync(jobs);
   });
 }
 
@@ -77,10 +77,10 @@ connectToDb.then(function () {
         }
     }).then(function () {
         console.log(chalk.green('Seeding users successful!'));
-        return Post.findAsync({}).then(function(jobs)
+        return Posting.findAsync({}).then(function(jobs)
         {
           if (jobs.length === 0) {
-              return seedPosts();
+              return seedPostings();
           } else {
               console.log(chalk.magenta('Seems to already be jobs data, exiting!'));
               process.kill(0);

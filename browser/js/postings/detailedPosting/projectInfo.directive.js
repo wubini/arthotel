@@ -1,6 +1,6 @@
 app.directive('projectInfo', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/posts/detailedPost/projectInfo.html'
+        templateUrl: 'js/postings/detailedPosting/projectInfo.html'
     };
 });

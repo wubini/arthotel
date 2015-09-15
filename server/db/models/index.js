@@ -2,4 +2,4 @@
 // so the rest of the application can simply call mongoose.model('User')
 // anywhere the User model needs to be used.
 require('./user.js'),
-require('./job-posting.js')
+require('./posting.js')
