@@ -15,7 +15,7 @@ app.config(function ($stateProvider) {
 app.controller('privatePageCtrl', function ($scope, AuthService, $state, allPostings, Session) {
 
     //this will be dynamically changed
-    $scope.client = true;
+    $scope.client = false;
     $scope.activeJobs = [];
 
     if($scope.client){
