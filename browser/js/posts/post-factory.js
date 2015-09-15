@@ -7,7 +7,15 @@ app.factory("PostFactory", function($http)
       .then(function(response)
       {
         return response.data;
-      })
+      });
+    },
+    getPostById: function(id)
+    {
+      return $http.get('/api/posts/'+id)
+      .then(function(response)
+      {
+        return response.data;
+      });
     }
-  }
-})
+  };
+});

@@ -2,10 +2,10 @@
 	<img src="http://i.telegraph.co.uk/multimedia/archive/01456/ppet1_1456179c.jpg" class="img-rounded pull-left photo-thumbnail" />
 
 	<div class="project_info">
-		<p>{{project.title}}</p>
-		<p>{{project.client}}</p>
-		<p>{{project.description}}</p>
-		<p>{{project.date}}</p>
+		<p><a ui-sref="posting({postingId: post._id})">{{post.title}}</a></p>
+		<p>{{post.client}}</p>
+		<p>{{post.description}}</p>
+		<p>{{post.date}}</p>
 	</div>
 
 </div>
