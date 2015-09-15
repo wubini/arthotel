@@ -5,7 +5,7 @@ module.exports = router;
 router.use('/members', require('./members'));
 
 router.use('/posts', require('./posts'));
-//router.use('/users', require('./users/users.js'));
+router.use('/users', require('./users'));
 
 
 // Make sure this is after all of
