@@ -1,7 +1,7 @@
 app.directive('unassignedJobs', function() {
   return {
     restrict: 'E',
-    templateUrl: 'js/privatePages/unassignedJobs/unassignedJobs.html',
+    templateUrl: 'js/privatePages/directives/unassignedJobs/unassignedJobs.html',
     scope: {
       project: '=project',
       artists: '=artists'

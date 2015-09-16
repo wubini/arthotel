@@ -1,0 +1,11 @@
+<row ng-click='show = !show'>
+  <img class='col-md-6' src="{{doneProject.photos}}">
+  <div class='col-md-6 col-md-offset-6'>
+    <h1>{{doneProject.title}}</h1>
+    <p>{{doneProject.description}}</p>
+    <p>{{doneProject.location}}</p>
+    <p>{{doneProject.date | date: 'medium'}}</p>
+  </div>
+    <div ng-show='show'>
+    </div>
+</row>

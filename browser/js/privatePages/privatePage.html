@@ -3,10 +3,14 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<active-jobs></active-jobs>
-			<div ng-show='client'>
-				<h1>Unassigned Jobs</h1>
+		</div>
+		<div class='col-lg-6' ng-show='client'>
+				<h2>Unassigned Jobs</h2>
 				<unassigned-jobs ng-repeat='project in projects' project='project'</unassigned-jobs>
-			</div>
+		</div>
+		<div class='col-lg-6' ng-show='client'>
+			<h2>Completed Jobs</h2>
+			<completed-jobs ng-repeat='doneProject in doneProjects' doneProject='doneProject'></completed-jobs>
 		</div>
 		<div class="col-lg-6" ng-show="!client">
 			<h1>Potential Jobs</h1>
