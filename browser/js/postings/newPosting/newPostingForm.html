@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
 	<form name="newPostForm" ng-submit="newPostForm.$valid && sendPost(newPost)" class="form-horizontal" novalidate>
 		<div class="form-group" ng-class="{'has-error':newPostForm.$submitted && newPostForm.title.$invalid}">
 			<label class="col-sm-2 control-label">Title: </label>
@@ -58,14 +58,10 @@
 			</div>
 		</div>
 
-		<div class="form-group col-sm-10 pull-right">
-			<div class="center-block" style="text-align:center">
-				<button type="submit" class="btn btn-success">Save</button>
-				<button type="submit" ng-click="preview()" class="btn btn-info">Preview</button>
-				<button ng-click="cancel()" class="btn btn-danger">Cancel</button>
-			</div>
-		</div>
-
+		
+		<form-buttons></form-buttons>
 
 	</form>
 </div>
+
+

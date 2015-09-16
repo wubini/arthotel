@@ -14,6 +14,7 @@ app.config(function ($stateProvider) {
 
 app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $state, PostingFactory) {
     $scope.range = [0, 100, 200, 300];
+    $scope.writing = true; 
 
     $scope.newPost = {
       client: currentUser._id
@@ -22,14 +23,21 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
 
     $scope.sendPost = function(postInfo){
       if(!currentUser) return;
-      console.log('hi', postInfo);
 
       PostingFactory.createNewPosting(postInfo)
       .then(function(newPost){
-        console.log('here');
         $state.go('detailedPosting', {postingId:newPost._id});
       });
 
+    };
+
+    $scope.cancel = function(){
+      $state.go('home');
+    };
+
+    $scope.preview = function(postInfo){
+      $scope.writing = !$scope.writing;
+      $scope.posting = $scope.newPost;
     };
 
 });
