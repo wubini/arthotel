@@ -37,7 +37,14 @@ router.put('/', function(req, res, next) {
 });
 
 router.post('/add/newPost', function(req, res, next){
-  next();
+  console.log('adding new post', req.body);
+
+  Posting.create(req.body.postInfo)
+  .then(function(newPost){
+    console.log('successfully created');
+    res.send(newPost);
+  })
+  .then(null, next);
 });
 
 router.use('/:postingId', function(req, res, next) {
