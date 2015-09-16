@@ -32,6 +32,7 @@ router.get('/:userId', function(req, res, next)
 router.get('/:userId/saved', function(req, res, next)
 {
   Posting.find().where({artistsWhoSaved: req.foundUser._id})
+  .populate('client')
   .then(function(postings)
   {
     res.send(postings);
@@ -41,6 +42,7 @@ router.get('/:userId/saved', function(req, res, next)
 router.get('/:userId/requested', function(req, res, next)
 {
   Posting.find().where({artistsWhoRequested: req.foundUser._id})
+  .populate('client')
   .then(function(postings)
   {
     res.send(postings);
