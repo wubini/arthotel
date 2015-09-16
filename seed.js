@@ -72,12 +72,12 @@ var seedPostings = function() {
           users[Math.floor(Math.random() * users.length)]._id,
           users[Math.floor(Math.random() * users.length)]._id
         ];
-        console.log("adding job", job)
-      })
+        console.log("adding job", job);
+      });
 
       return Posting.createAsync(jobs);
     });
-}
+};
 
 connectToDb.then(function() {
   User.findAsync({}).then(function(users) {

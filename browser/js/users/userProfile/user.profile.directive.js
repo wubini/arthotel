@@ -12,8 +12,8 @@ app.directive("userProfile", function()
       $scope.toggleEditing = function()
       {
         $scope.editing = !$scope.editing;
-      }
+      };
     },
     templateUrl: 'js/users/userProfile/user.profile.html'
-  }
-})
+  };
+});
