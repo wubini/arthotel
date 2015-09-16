@@ -13,7 +13,9 @@ var schema = new mongoose.Schema({
   description: String,
   photos: [String],
   status: {type: String, default: "unstarted", match: /(unstarted|started|complete)/},
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  size: String,
+  tags: [String]
 });
 
 mongoose.model('Posting', schema);

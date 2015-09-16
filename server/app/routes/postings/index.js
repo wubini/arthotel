@@ -36,6 +36,10 @@ router.put('/', function(req, res, next) {
     });
 });
 
+router.post('/add/newPost', function(req, res, next){
+  next();
+});
+
 router.use('/:postingId', function(req, res, next) {
   Posting.findById(req.params.postingId)
     .populate('client')
