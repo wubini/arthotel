@@ -1,4 +1,5 @@
 <private-nav></private-nav>
+<user-profile user="user"></user-profile>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-6">
@@ -10,13 +11,15 @@
 		</div>
 		<div class='col-lg-6' ng-show='client'>
 			<h2>Completed Jobs</h2>
-			<completed-jobs ng-repeat='doneProject in doneProjects' doneProject='doneProject'></completed-jobs>
+			<completed-jobs ng-repeat='done in doneProjects' done='done'></completed-jobs>
 		</div>
 		<div class="col-lg-6" ng-show="!client">
 			<h1>Potential Jobs</h1>
 			<potential-jobs></potential-jobs>
 		</div>
+		<div class="col-lg-6" ng-show="!client">
+			<h1>Completed Jobs</h1>
+			<artist-complete ng-repeat='done in doneProjects' done='done'></artist-complete>
+		</div>
 	</div>
 </div>
-
-<user-profile user="user"></user-profile>

@@ -1,4 +1,4 @@
-<row ng-click='show = !show'>
+<row>
   <img class='col-md-6' src={{done.photos[0]}}>
   <div class='col-md-6 '>
     <h1>{{done.title}}</h1>
@@ -6,7 +6,4 @@
     <p>{{done.location}}</p>
     <p>{{done.date | date: 'medium'}}</p>
   </div>
-    <div ng-show='show'>
-      <complete-artist ng-repeat="artist in done.artist" artist='artist'></complete-artist>
-    </div>
 </row>

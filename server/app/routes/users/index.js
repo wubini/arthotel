@@ -6,7 +6,7 @@ var Posting = mongoose.model('Posting');
 
 router.get('/', (req, res, next) => {
   User.find()
-    .then(posts => res.send(posts))
+    .then(posts => res.send(posts));
 });
 
 router.use('/:userId', (req, res, next) => {
