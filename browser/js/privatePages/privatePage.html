@@ -17,5 +17,9 @@
 			<h1>Potential Jobs</h1>
 			<potential-jobs></potential-jobs>
 		</div>
+		<div class="col-lg-6" ng-show="!client">
+			<h1>Completed Jobs</h1>
+			<artist-complete ng-repeat='done in doneProjects' done='done'></artist-complete>
+		</div>
 	</div>
 </div>
