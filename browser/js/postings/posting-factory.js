@@ -2,8 +2,7 @@ app.factory("PostingFactory", $http => {
   return {
     getAllPostings: () => {
       return $http.get(`/api/postings`)
-        .then(response => response.data;
-        });
+        .then(response => response.data);
     },
     getPostsForUser: userId => {
       return $http.get(`/api/users/${userId}/postings`)
@@ -32,5 +31,6 @@ app.factory("PostingFactory", $http => {
     saveCartPostingsToUser: () => {
       return $http.put(`/api/postings`)
         .then(response => response.data);
-  };
+  }
+}
 });

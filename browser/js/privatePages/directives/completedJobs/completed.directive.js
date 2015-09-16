@@ -3,7 +3,7 @@ app.directive('completedJobs', function() {
     restrict: 'E',
     templateUrl: 'js/privatePages/directives/completedJobs/completed.html',
     scope: {
-      project: '=project',
+      doneProject: '=doneProject',
       artist: '=artist'
     },
     link: function(scope, elem, attr) {

@@ -52,16 +52,16 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state,
   //replace with true userId;
   var tempUserId = '55f8793c3ca6f90e2fd65bc2';
   PostingFactory.getPostsForUser(tempUserId)
-    .then(function(projects) {
+    .then(projects => {
       $scope.projects = projects;
+      $scope.doneProjects = $scope.projects;
+      console.log($scope.doneProjects);
     })
     .then(null, console.error);
 
-PostingFactory.getDonePostsForUser(tempUserId)
-
-
-
-
+  // PostingFactory.getDonePostsForUser(tempUserId)
+  //   .then(doneProjects => $scope.doneProjects = doneProjects)
+  //   .then(null, console.error);
 
   $scope.client = false;
   $scope.activeJobs = [];

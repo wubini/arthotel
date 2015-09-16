@@ -8,8 +8,10 @@
 				<h2>Unassigned Jobs</h2>
 				<unassigned-jobs ng-repeat='project in projects' project='project'</unassigned-jobs>
 		</div>
-		<!-- <h2>Completed Jobs</h2>
-		<completed-jobs></completed-jobs> -->
+		<div class='col-lg-6' ng-show='client'>
+			<h2>Completed Jobs</h2>
+			<completed-jobs ng-repeat='doneProject in doneProjects' doneProject='doneProject'></completed-jobs>
+		</div>
 		<div class="col-lg-6" ng-show="!client">
 			<h1>Potential Jobs</h1>
 			<potential-jobs></potential-jobs>
