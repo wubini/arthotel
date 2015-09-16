@@ -10,7 +10,7 @@ app.config(function($stateProvider) {
         .then(function(user)
         {
           return user;
-        })
+        });
       },
       allPostings: function(PostingFactory) {
         console.log("getting all postings");
@@ -22,7 +22,7 @@ app.config(function($stateProvider) {
         .then(function(user)
         {
           return UserFactory.getSavedPostingsForUser(user._id);
-        })
+        });
       },
       requestedPostings: function(AuthService, UserFactory)
       {
@@ -30,21 +30,21 @@ app.config(function($stateProvider) {
         .then(function(user)
         {
           return UserFactory.getRequestedPostingsForUser(user._id);
-        })
+        });
       },
       activeArtistPostings: function(AuthService, UserFactory)
       {
         return AuthService.getLoggedInUser()
         .then(function(user){
           return UserFactory.getActivePostingsForArtist(user._id);
-        })
+        });
       },
       activeClientPostings: function(AuthService, UserFactory)
       {
         return AuthService.getLoggedInUser()
         .then(function(user){
           return UserFactory.getActivePostingsForClient(user._id);
-        })
+        });
       }
     }
   });
@@ -59,26 +59,25 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   $scope.requestedPostings = requestedPostings;
   $scope.user = user;
 
-  console.log(activeArtistPostings);
+  //console.log(activeArtistPostings);
 
   if ($scope.client) {
     $scope.activeJobs = activeClientPostings;
   } else {
     $scope.activeJobs = activeArtistPostings;
   }
-  //replace with true userId;
-  var tempUserId = '55f8793c3ca6f90e2fd65bc2';
-  PostingFactory.getPostsForUser(tempUserId)
-    .then(projects => {
+  //replace with user._id;
+  // var tempUserId = '55f9cd8aacbf8b0749637dcb';
+  PostingFactory.getPostsForUser(user._id)
+    .then(function(projects) {
       $scope.projects = projects;
       $scope.doneProjects = $scope.projects;
-      console.log($scope.doneProjects);
     })
     .then(null, console.error);
 
-  // PostingFactory.getDonePostsForUser(tempUserId)
-  //   .then(doneProjects => $scope.doneProjects = doneProjects)
-  //   .then(null, console.error);
+  PostingFactory.getDonePostsForUser(user._id)
+    .then(doneProjects => $scope.doneProjects = doneProjects)
+    .then(null, console.error);
 
   $scope.client = false;
   $scope.activeJobs = [];

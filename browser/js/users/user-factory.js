@@ -7,7 +7,7 @@ app.factory("UserFactory", function($http)
       .then(function(response)
       {
         return response.data;
-      })
+      });
     },
     getUserById: function(id)
     {
@@ -15,7 +15,7 @@ app.factory("UserFactory", function($http)
       .then(function(response)
       {
         return response.data;
-      })
+      });
     },
     getSavedPostingsForUser: function(userId)
     {
