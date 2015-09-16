@@ -54,8 +54,8 @@ var seedPostings = function() {
         job.location = "New York";
         job.title = "Project " + counter++;
         job.description = "TBD";
-        job.photo =
-          "http://cdn.sheknows.com/articles/2013/04/Puppy_2.jpg";
+        job.photos =
+          ["http://cdn.sheknows.com/articles/2013/04/Puppy_2.jpg"];
         job.artistsWhoSaved = [
           users[Math.floor(Math.random() * users.length)]._id,
           users[Math.floor(Math.random() * users.length)]._id,
