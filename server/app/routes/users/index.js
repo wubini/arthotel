@@ -52,3 +52,19 @@ router.get('/:userId/requested', function(req, res, next)
     res.send(postings);
   });
 });
+
+router.get('/:userId/active/artist', function(req, res, next){
+  Posting.find().where({artist: req.foundUser._id})
+  .populate('client')
+  .then(function(postings){
+    res.send(postings);
+  });
+});
+
+router.get('/:userId/active/client', function(req, res, next){
+  Posting.find().where({client: req.foundUser._id})
+  .populate('artist')
+  .then(function(postings){
+    res.send(postings);
+  });
+});
