@@ -4,6 +4,14 @@ app.config(function($stateProvider) {
     templateUrl: 'js/privatePages/privatePage.html',
     controller: 'privatePageCtrl',
     resolve: {
+      user: function(AuthService)
+      {
+        return AuthService.getLoggedInUser()
+        .then(function(user)
+        {
+          return user;
+        })
+      },
       allPostings: function(PostingFactory) {
         console.log("getting all postings");
         return PostingFactory.getAllPostings();
@@ -23,31 +31,40 @@ app.config(function($stateProvider) {
         {
           return UserFactory.getRequestedPostingsForUser(user._id);
         })
+      },
+      activeArtistPostings: function(AuthService, UserFactory)
+      {
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return UserFactory.getActivePostingsForArtist(user._id);
+        })
+      },
+      activeClientPostings: function(AuthService, UserFactory)
+      {
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return UserFactory.getActivePostingsForClient(user._id);
+        })
       }
     }
   });
 });
 
-app.controller('privatePageCtrl', function($scope, AuthService, $state,
-  allPostings, savedPostings, requestedPostings, Session, PostingFactory) {
+app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
+  allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
   $scope.client = true;
   $scope.activeJobs = [];
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
+  $scope.user = user;
+
+  console.log(activeArtistPostings);
 
   if ($scope.client) {
-    allPostings.forEach(function(post) {
-      if (post.client == Session.id && status == 'started') {
-        $scope.activeJobs.push(post);
-      }
-    });
+    $scope.activeJobs = activeClientPostings;
   } else {
-    allPostings.forEach(function(post) {
-      if (post.artist == Session.id && status == 'started') {
-        $scope.activeJobs.push(post);
-      }
-    });
+    $scope.activeJobs = activeArtistPostings;
   }
   //replace with true userId;
   var tempUserId = '55f8793c3ca6f90e2fd65bc2';

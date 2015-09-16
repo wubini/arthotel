@@ -32,6 +32,20 @@ app.factory("UserFactory", function($http)
       {
         return response.data;
       });
+    },
+    getActivePostingsForArtist: function(userId)
+    {
+      return $http.get('/api/users/'+userId+'/active/artist')
+      .then(function(response){
+        return response.data;
+      });
+    },
+    getActivePostingsForClient: function(userId)
+    {
+      return $http.get('/api/users/'+userId+'/active/client')
+      .then(function(response){
+        return response.data;
+      });
     }
   }
 })
