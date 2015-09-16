@@ -27,13 +27,20 @@ var Posting = Promise.promisifyAll(mongoose.model('Posting'));
 var seedUsers = function() {
 
   var users = [{
+    displayName: "Kathy Lu",
     email: 'kathy',
     password: '123'
   }, {
+    displayName: "Beckylee Dell",
     email: 'beckylee',
     password: '123'
   }, {
+    displayName: "Austin Shoecraft",
     email: 'austin',
+    password: '123'
+  },{
+    displayName: "David Scherban",
+    email: "david",
     password: '123'
   }];
 
@@ -54,8 +61,8 @@ var seedPostings = function() {
         job.location = "New York";
         job.title = "Project " + counter++;
         job.description = "TBD";
-        job.photo =
-          "http://cdn.sheknows.com/articles/2013/04/Puppy_2.jpg";
+        job.photos =
+          ["http://cdn.sheknows.com/articles/2013/04/Puppy_2.jpg"];
         job.artistsWhoSaved = [
           users[Math.floor(Math.random() * users.length)]._id,
           users[Math.floor(Math.random() * users.length)]._id,
@@ -65,12 +72,12 @@ var seedPostings = function() {
           users[Math.floor(Math.random() * users.length)]._id,
           users[Math.floor(Math.random() * users.length)]._id
         ];
-        console.log("adding job", job)
-      })
+        console.log("adding job", job);
+      });
 
       return Posting.createAsync(jobs);
     });
-}
+};
 
 connectToDb.then(function() {
   User.findAsync({}).then(function(users) {

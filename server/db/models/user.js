@@ -7,6 +7,9 @@ var schema = new mongoose.Schema({
     email: {
         type: String
     },
+    bio: {
+      type: String
+    },
     password: {
         type: String
     },
@@ -30,7 +33,8 @@ var schema = new mongoose.Schema({
       work: String,
       mobile: String
     },
-    photo: String
+    photoUrl: String,
+    portfolioUrl: String
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
