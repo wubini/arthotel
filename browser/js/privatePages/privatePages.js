@@ -23,31 +23,39 @@ app.config(function($stateProvider) {
         {
           return UserFactory.getRequestedPostingsForUser(user._id);
         })
+      },
+      activeArtistPostings: function(AuthService, UserFactory)
+      {
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return UserFactory.getActivePostingsForArtist(user._id);
+        })
+      },
+      activeClientPostings: function(AuthService, UserFactory)
+      {
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return UserFactory.getActivePostingsForClient(user._id);
+        })
       }
     }
   });
 });
 
 app.controller('privatePageCtrl', function($scope, AuthService, $state,
-  allPostings, savedPostings, requestedPostings, Session, PostingFactory) {
+  allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
   $scope.client = true;
   $scope.activeJobs = [];
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
 
+  console.log(activeArtistPostings);
+
   if ($scope.client) {
-    allPostings.forEach(function(post) {
-      if (post.client == Session.id && status == 'started') {
-        $scope.activeJobs.push(post);
-      }
-    });
+    $scope.activeJobs = activeClientPostings;
   } else {
-    allPostings.forEach(function(post) {
-      if (post.artist == Session.id && status == 'started') {
-        $scope.activeJobs.push(post);
-      }
-    });
+    $scope.activeJobs = activeArtistPostings;
   }
 
   $scope.client = false;
