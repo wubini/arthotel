@@ -27,13 +27,20 @@ var Posting = Promise.promisifyAll(mongoose.model('Posting'));
 var seedUsers = function() {
 
   var users = [{
+    displayName: "Kathy Lu",
     email: 'kathy',
     password: '123'
   }, {
+    displayName: "Beckylee Dell",
     email: 'beckylee',
     password: '123'
   }, {
+    displayName: "Austin Shoecraft",
     email: 'austin',
+    password: '123'
+  },{
+    displayName: "David Scherban",
+    email: "david",
     password: '123'
   }];
 
