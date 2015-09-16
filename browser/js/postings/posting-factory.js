@@ -6,11 +6,11 @@ app.factory("PostingFactory", function($http) {
           return response.data;
         });
     },
-    getArtistsByPostId: function(id) {
-      return $http.get('/postings/' + id + '/artistsWhoRequested')
+    getPostsForUser: function(userId) {
+      return $http.get('/api/users/' + userId + '/postings')
         .then(function(response) {
           return response.data;
-        })
+        });
     },
     getPostingById: function(id) {
       return $http.get('/api/postings/' + id)

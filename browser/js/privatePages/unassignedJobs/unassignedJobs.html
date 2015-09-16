@@ -5,6 +5,7 @@
     <p>{{project.description}}</p>
     <p>{{project.location}}</p>
     <p>{{project.date | date: 'medium'}}</p>
-    <artist-requested ng-repeat='artist in artists' artist="artist"></artist-requested>
+    <div ng-show='show'>
+        <artists-requested ng-repeat='artist in project.artistsWhoRequested' artist='artist'></artists-requested>
   </div>
 </row>

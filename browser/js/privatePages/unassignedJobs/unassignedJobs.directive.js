@@ -4,6 +4,7 @@ app.directive('unassignedJobs', function() {
     templateUrl: 'js/privatePages/unassignedJobs/unassignedJobs.html',
     scope: {
       project: '=project',
+      artists: '=artists'
     },
     link: function(scope, elem, attr) {
       scope.show = false;
