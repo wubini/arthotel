@@ -31,6 +31,13 @@ app.factory("PostingFactory", $http => {
     saveCartPostingsToUser: () => {
       return $http.put(`/api/postings`)
         .then(response => response.data);
-  }
+    },
+    createNewPosting: postInfo => {
+      return $http.post(`/api/postings/add/newPost`, {
+        postInfo
+      })
+        .then(response => response.data);
+    }
+
 }
 });
