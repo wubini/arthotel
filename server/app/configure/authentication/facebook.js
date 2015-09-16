@@ -28,7 +28,7 @@ module.exports = function (app) {
                         id: profile.id
                     },
                     displayName: profile.displayName,
-                    photo: [profile.photos[0].value]
+                    photoUrl: [profile.photos[0].value]
                 });
             }
         }).then(function (userToLogin) {
