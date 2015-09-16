@@ -1,18 +1,26 @@
 <private-nav></private-nav>
 <div class="container">
 	<div class="row">
-		<div class="col-lg-6">
-			<active-jobs></active-jobs>
-			<div ng-show='client'>
+		<div class="col-lg-6" ng-hide="tab==='profile'">
+			<div class="col-lg-5 col-md-5 col-sm-12">
+				<div class='panel'>
+					<h2>Active Jobs</h2>
+					<job ng-show="tab==='client'" ng-repeat="job in activeClientJobs" ></job>
+					<job ng-show="tab==='artist'" ng-repeat="job in activeArtistJobs" ></job>
+				</div>
+			</div>
+			<div ng-show="tab==='client'">
 				<h1>Unassigned Jobs</h1>
 				<unassigned-jobs ng-repeat='project in projects' project='project'</unassigned-jobs>
 			</div>
 		</div>
-		<div class="col-lg-6" ng-show="!client">
+		<div class="col-lg-6" ng-show="tab==='artist'">
 			<h1>Potential Jobs</h1>
 			<potential-jobs></potential-jobs>
 		</div>
+		<div class="col-lg-6" ng-show="tab==='profile'">
+			<h1>This is you</h1>
+			<user-profile></user-profile>
+		</div>
 	</div>
 </div>
-
-<user-profile user="user"></user-profile>

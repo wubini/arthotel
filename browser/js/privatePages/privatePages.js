@@ -53,30 +53,20 @@ app.config(function($stateProvider) {
 app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
-  $scope.client = true;
-  $scope.activeJobs = [];
+  //$scope.client = true;
+  $scope.tab = 'artist';
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
+  $scope.activeClientJobs = activeClientPostings;
+  $scope.activeArtistJobs = activeArtistPostings;
   $scope.user = user;
 
-  console.log(activeArtistPostings);
-
-  if ($scope.client) {
-    $scope.activeJobs = activeClientPostings;
-  } else {
-    $scope.activeJobs = activeArtistPostings;
-  }
   //replace with true userId;
   var tempUserId = '55f8793c3ca6f90e2fd65bc2';
   $scope.artists = [];
-  PostingFactory.getPostsForUser(tempUserId)
+  PostingFactory.getPostsForUser($scope.user._id)
     .then(function(projects) {
       $scope.projects = projects;
     })
     .then(null, console.error);
-
-  $scope.client = false;
-  $scope.activeJobs = [];
-
-
 });

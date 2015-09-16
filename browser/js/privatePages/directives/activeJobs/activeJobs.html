@@ -13,8 +13,7 @@
 	<h2>Active Jobs</h2>
 
 	<div class='panel'>
-		<job ng-repeat="job in activeJobs" >
-
-		</job>
+		<job ng-show="tab==='client'" ng-repeat="job in activeClientJobs" ></job>
+		<job ng-show="tab==='artist'" ng-repeat="job in activeArtistJobs" ></job>
 	</div>
 </div>

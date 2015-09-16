@@ -1,6 +1,8 @@
 
 <p>hello, {{user}}<p>
-<div contenteditable="{{editing}}">
-  <p><b>Name: </b><span>{{user.displayName}}</span><p>
-  <p><b>Bio: </b><span>{{user.bio}}</span><p>
+<i class="fa fa-pencil-square" ng-click="toggleEditing()"></i>
+<div>
+  <p><b>Name: </b><span contentEditable="true">{{user.displayName}}</span><p>
+  <p><b>Bio: </b><span contentEditable="{{editing}}">{{user.bio}}</span><p>
 </div>
+<i class="fa fa-floppy-o" ng-show="editing" ng-click='saveProfile(); toggleEditing()'></i>
