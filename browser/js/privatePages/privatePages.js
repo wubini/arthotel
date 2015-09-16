@@ -49,6 +49,14 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state,
       }
     });
   }
+  //replace with true userId;
+  var tempUserId = '55f8793c3ca6f90e2fd65bc2';
+  $scope.artists = [];
+  PostingFactory.getPostsForUser(tempUserId)
+    .then(function(projects) {
+      $scope.projects = projects;
+    })
+    .then(null, console.error);
 
   $scope.client = false;
   $scope.activeJobs = [];

@@ -30,7 +30,7 @@ router.put('/', function(req, res, next) {
 
   Promise.all(savePromises)
     .then(function(savedPostings) {
-      console.log("savedPostings to user", savedPostings)
+      console.log("savedPostings to user", savedPostings);
       req.session.cart = [];
       res.send(savedPostings);
     });
@@ -51,10 +51,9 @@ router.get('/:postingId', function(req, res, next) {
 });
 
 router.get('/:postingId/artistsWhoRequested', function(req, res, next) {
-  Posting.findById(req.params.postingId)
-    .populate('artistsWhoRequested')
+  Posting.findOne(req.params.postingId)
     .then(function(artists) {
-      req.json(artists);
+      res.send(artists);
     })
     .then(null, next);
 });
