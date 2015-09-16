@@ -1,7 +1,13 @@
 <private-nav></private-nav>
 <div class="container">
-	<active-jobs></active-jobs>
-	<unassigned-jobs></unassigned-jobs>
-	<p>Potential Jobs</p>
-	<potential-jobs></potential-jobs>
+	<div class="row">
+		<div class="col-lg-6">
+			<active-jobs></active-jobs>
+			<unassigned-jobs></unassigned-jobs>
+		</div>
+		<div class="col-lg-6" ng-show="!client">
+			<h1>Potential Jobs</h1>
+			<potential-jobs></potential-jobs>
+		</div>
+	</div>
 </div>
