@@ -19,7 +19,7 @@ app.factory("UserFactory", function($http)
     },
     getSavedPostingsForUser: function(userId)
     {
-      return $http.get('/api/users/'+id+'/saved')
+      return $http.get('/api/users/'+userId+'/saved')
       .then(function(response)
       {
         return response.data;
@@ -27,7 +27,7 @@ app.factory("UserFactory", function($http)
     },
     getRequestedPostingsForUser: function(userId)
     {
-      return $http.get('/api/users/'+id+'/requested')
+      return $http.get('/api/users/'+userId+'/requested')
       .then(function(response)
       {
         return response.data;

@@ -1,6 +1,6 @@
 app.directive("fb", function()
 {
   return {
-    template: '<p><a href="/auth/facebook">Log in with Facebook</a></p>'
+    template: '<div ng-click="facebookLogin()" class="btn btn-social btn-facebook"><i class="fa fa-facebook-square fa-4x"></i></div>'
   };
 })

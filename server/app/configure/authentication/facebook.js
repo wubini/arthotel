@@ -43,7 +43,7 @@ module.exports = function (app) {
 
     app.get('/auth/facebook', function(req, res, next)
       {
-        console.log("hitting /auth/facebook");
+        console.log('hitting /auth/facebook');
         next();
       },
       passport.authenticate('facebook'));
@@ -51,6 +51,7 @@ module.exports = function (app) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function (req, res) {
+            console.log('here');
             res.redirect('/');
         });
 

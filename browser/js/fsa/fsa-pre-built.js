@@ -48,7 +48,7 @@
         ]);
     });
 
-    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, PostingFactory) {
+    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, PostingFactory, $window) {
 
         function onSuccessfulLogin(response) {
           console.log("successful login")
@@ -102,6 +102,10 @@
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
             });
         };
+
+        this.facebookLogin = function(){
+            $window.location = $window.location.protocol + "//" + $window.location.host + "/auth/facebook";
+        }
 
     });
 
