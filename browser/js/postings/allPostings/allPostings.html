@@ -1,4 +1,9 @@
 <div class="container">
-	<search></search>
-	<posting ng-repeat="posting in postings"></posting>
+	<div class="col-sm-4 pull-right">
+		<search></search>
+		<newpost-button></newpost-button>
+	</div>
+	<div class="col-sm-8">
+		<posting ng-repeat="posting in postings"></posting>
+	</div>
 </div>
