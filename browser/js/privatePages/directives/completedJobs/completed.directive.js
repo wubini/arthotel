@@ -1,10 +1,10 @@
-app.directive('unassignedJobs', function() {
+app.directive('completedJobs', function() {
   return {
     restrict: 'E',
-    templateUrl: 'js/privatePages/unassignedJobs/unassignedJobs.html',
+    templateUrl: 'js/privatePages/directives/completedJobs/completed.html',
     scope: {
       project: '=project',
-      artists: '=artists'
+      artist: '=artist'
     },
     link: function(scope, elem, attr) {
       scope.show = false;

@@ -1,44 +1,36 @@
-app.factory("PostingFactory", function($http) {
+app.factory("PostingFactory", $http => {
   return {
-    getAllPostings: function() {
-      return $http.get('/api/postings')
-        .then(function(response) {
-          return response.data;
+    getAllPostings: () => {
+      return $http.get(`/api/postings`)
+        .then(response => response.data;
         });
     },
-    getPostsForUser: function(userId) {
-      return $http.get('/api/users/' + userId + '/postings')
-        .then(function(response) {
-          return response.data;
-        });
+    getPostsForUser: userId => {
+      return $http.get(`/api/users/${userId}/postings`)
+        .then(response => response.data);
+      },
+    getDonePostsForUser: userId => {
+      return $http.get(`/api/users/${userId}/postings/done`)
+        .then(response => response.data);
     },
-    getPostingById: function(id) {
-      return $http.get('/api/postings/' + id)
-        .then(function(response) {
-          return response.data;
-        });
+    getPostingById: id => {
+      return $http.get(`/api/postings/${id}`)
+        .then(response => response.data);
     },
-    savePostingToCart: function(id) {
-      return $http.post('/api/postings/' + id, {
+    savePostingToCart: id => {
+      return $http.post(`/api/postings/${id}`, {
           action: "save"
         })
-        .then(function(response) {
-          return response.data;
-        });
+        .then(response => response.data);
     },
-    requestPosting: function(id) {
-      return $http.post('/api/postings/' + id, {
+    requestPosting: id => {
+      return $http.post(`/api/postings/${id}`, {
           action: "request"
         })
-        .then(function(response) {
-          return response.data;
-        });
+        .then(response => response.data);
     },
-    saveCartPostingsToUser: function() {
-      return $http.put('/api/postings')
-        .then(function(response) {
-          return response.data;
-        });
-    }
+    saveCartPostingsToUser: () => {
+      return $http.put(`/api/postings`)
+        .then(response => response.data);
   };
 });
