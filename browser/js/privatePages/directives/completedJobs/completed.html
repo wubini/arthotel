@@ -1,7 +1,8 @@
 <row ng-click='show = !show'>
-  <img class='col-md-6' src={{done.photos[0]}}>
+<img class='col-md-6' ng-src={{done.photos[0]}}>
   <div class='col-md-6 '>
     <h1>{{done.title}}</h1>
+    <p>{{done.photos}}</p>
     <p>{{done.description}}</p>
     <p>{{done.location}}</p>
     <p>{{done.date | date: 'medium'}}</p>
