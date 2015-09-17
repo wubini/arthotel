@@ -71,13 +71,11 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
 
   console.log("in private page ctrl, user", $scope.user);
 
-  // PostingFactory.getPostsForUser($scope.user._id)
-  //   .then(function(projects) {
-  //     $scope.projects = projects;
-  //   })
-  //   .then(null, console.error);
 
   PostingFactory.getDonePostsForUser($scope.user._id)
     .then(doneProjects => $scope.doneProjects = doneProjects)
     .then(null, console.error);
+
+  $scope.defaultPic = "http://image.shutterstock.com/display_pic_with_logo/55893/55893,1320069230,4/stock-photo-kittens-of-the-metis-breed-bengal-maine-coon-age-month-87776425.jpg";
+
 });

@@ -2,11 +2,12 @@
 
 <div class="container">
 	<div class="row">
-
 		<div ng-show="tab==='artist'">
 			<div class="panel col-lg-6">
 				<h2>Current Projects</h2>
 				<job ng-repeat="job in activeArtistJobs" ></job>
+				<h2>Completed Projects</h2>
+				<completed-jobs ng-repeat='done in doneProjects' done='done'></completed-jobs>
 			</div>
 			<div class="panel col-lg-6">
 				<h2>Potential Projects</h2>
@@ -18,6 +19,8 @@
 			<div class="panel col-lg-6">
 				<h2>Current Projects</h2>
 				<job ng-repeat="job in activeClientJobs" ></job>
+				<h2>Completed Projects</h2>
+				<complete-artist ng-repeat='done in doneProjects' done='done'></complete-artist>
 			</div>
 			<div class="panel col-lg-6">
 				<h2>Projects that Need Artists</h2>

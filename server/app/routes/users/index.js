@@ -21,12 +21,17 @@ router.use('/:userId', (req, res, next) => {
 router.get('/:userId', (req, res, next) => {
   res.send(req.foundUser);
 });
-router.get(`:userId/postings/done`, (req, res, next) => {
+router.get('/:userId/postings/done', (req, res, next) => {
   Posting.find()
-    .where({status: 'complete'})
+    .where({client: req.params.userId, status: 'complete'})
     .populate('artist')
-    .then(postings => res.send(postings))
-    .then(null, next);
+    .then(postings => {
+      res.send(postings);
+    })
+    .then(null, () => {
+      console.log('could not find any!');
+      next();
+    });
 });
 
 //TODO -- check if these need to use the userId that is passed in.
