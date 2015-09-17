@@ -1,6 +1,5 @@
-app.directive('potentialJobs', function()
-{
+app.directive('potentialJobs', () => {
   return {
-    templateUrl: 'js/privatePages/directives/potentialJobs/potentialJobs.html'
-  }
+    templateUrl: 'js/privatePages/directives/potentialJobs/potentialJobs.html',
+  };
 });

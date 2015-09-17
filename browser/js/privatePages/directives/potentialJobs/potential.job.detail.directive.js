@@ -1,14 +1,38 @@
-app.directive('potentialJobDetail', function()
-{
+app.directive('potentialJobDetail', (PostingFactory, $state) => {
   return {
     restrict: 'EA',
     scope: {
-      posting: "="
+      posting: "=",
+      artist: '=',
+      type: '='
     },
     templateUrl: 'js/privatePages/directives/potentialJobs/potential.job.detail.html',
-    link: function(scope, element, attrs)
-    {
+    link: (scope, element, attrs) => {
+        var deleteRequest = (projectId, artistId) => {
+          PostingFactory.rejectArtist(artistId, projectId)
+            .then(() => {
+              $state.go('privatePage', {tab: 'artist'}, {reload: true});
+            });
+          };
 
-    }
-  }
+        var deleteSaved = (projectId, artistId) => {
+          PostingFactory.removeSaveArtist(artistId, projectId)
+          .then(() => {
+            $state.go('privatePage', {tab: 'artist'}, {reload: true});
+          });
+        };
+
+        scope.confirmDelete = (project, artistId, type) => {
+          var request = confirm(`Are you sure you want to remove ${type} for ${project.title}`);
+            if (request === true) {
+              if(type === 'request')
+                deleteRequest(project._id, artistId);
+              else if(type === 'saved') {
+                deleteSaved(project._id, artistId);
+              }
+            }
+        };
+
+      }
+  };
 });

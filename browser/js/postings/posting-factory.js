@@ -44,12 +44,17 @@ app.factory("PostingFactory", $http => {
       })
         .then(response => response.data);
     },
-    rejectArtist: (artist, postingId) =>{
+    rejectArtist: (artist, postingId) => {
       return $http.put(`/api/postings/${postingId}`, {
         reject: artist
       })
         .then(response => response.data);
+    },
+    removeSaveArtist: (artist, postingId) => {
+      return $http.put(`/api/postings/${postingId}/save`, {
+        reject: artist
+      })
+        .then(response => response.data);
     }
-
-}
+  };
 });
