@@ -44,13 +44,19 @@ app.config(function($stateProvider) {
         .then(function(user){
           return UserFactory.getActivePostingsForClient(user._id);
         });
+      },
+      unassignedPostings: function(AuthService, UserFactory){
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return UserFactory.unassignedPostings(user._id);
+        })
       }
     }
   });
 });
 
 app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
-  allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
+  allPostings, savedPostings, requestedPostings, unassignedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
   $scope.tab = 'artist';
   $scope.savedPostings = savedPostings;
@@ -58,17 +64,18 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   $scope.activeClientJobs = activeClientPostings;
   $scope.activeArtistJobs = activeArtistPostings;
   $scope.user = user;
+  $scope.unassignedPostings = unassignedPostings;
 
   //we need this to make sure that console.error works
   console.error = console.error.bind(console);
 
   console.log("in private page ctrl, user", $scope.user);
 
-  PostingFactory.getPostsForUser($scope.user._id)
-    .then(function(projects) {
-      $scope.projects = projects;
-    })
-    .then(null, console.error);
+  // PostingFactory.getPostsForUser($scope.user._id)
+  //   .then(function(projects) {
+  //     $scope.projects = projects;
+  //   })
+  //   .then(null, console.error);
 
   PostingFactory.getDonePostsForUser($scope.user._id)
     .then(doneProjects => $scope.doneProjects = doneProjects)

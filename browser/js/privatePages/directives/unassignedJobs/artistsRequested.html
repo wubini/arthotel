@@ -1,4 +1,14 @@
-<img class='col-md-4' src={{artist.photoUrl}}>
-<div clas='col-md-8 col-md-offset-6'>
-  <p>{{artist.email}}</p>
+<div class="col-sm-4">
+	<div class="clearfix">
+		<img class='col-sm-12' src={{artist.photoUrl}}>
+		<p>{{artist.displayName}}</p>
+	</div>
+<!-- 	<div clas='col-md-8 col-md-offset-6'>
+	  <p>{{artist.email}}</p>
+	</div> -->
+	<div class="clearfix col-sm-12">
+		<i class="fa fa-2x fa-times-circle-o pull-right text-danger" ng-click="rejectArtist(artist._id, project._id)"></i>
+		<i class="fa fa-2x fa-check-circle-o text-success"ng-click="acceptArtist(artist._id, project._id)"></i>
+
+	</div>
 </div>
