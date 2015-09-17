@@ -1,8 +1,6 @@
 <private-nav></private-nav>
-
 <div class="container">
 	<div class="row">
-
 		<div ng-show="tab==='artist'">
 			<div class="panel col-lg-6">
 				<h2>Current Projects</h2>
@@ -13,7 +11,6 @@
 				<potential-jobs></potential-jobs>
 			</div>
 		</div>
-
 		<div ng-show="tab==='client'">
 			<div class="panel col-lg-6">
 				<h2>Current Projects</h2>
@@ -24,11 +21,43 @@
 				<unassigned-jobs ng-repeat='project in projects' project='project'</unassigned-jobs>
 			</div>
 		</div>
-
 		<div ng-show="tab==='profile'">
 			<div class="panel col-lg-6">
-				<user-profile user="user"></user-profile>
+				<h2>You</h2>
+				<user-profile></user-profile>
 			</div>
-	 </div>
-
+	</div>
 </div>
+
+<!-- <div class="container">
+	<div class="row">
+		<div class="col-lg-6" ng-hide="tab==='profile'">
+			<div class="col-lg-5 col-md-5 col-sm-12">
+				<div class='panel'>
+					<h2>Active Jobs</h2>
+					<job ng-show="tab==='client'" ng-repeat="job in activeClientJobs" ></job>
+
+				</div>
+			</div>
+			<div ng-show="tab==='client'">
+				<h1>Unassigned Jobs</h1>
+
+			</div>
+		<div class='col-lg-6' ng-show='client'>
+			<h2>Completed Jobs</h2>
+			<completed-jobs ng-repeat='done in doneProjects' done='done'></completed-jobs>
+		</div>
+		<div class="col-lg-6" ng-show="tab==='artist'">
+			<h1>Potential Jobs</h1>
+			<potential-jobs></potential-jobs>
+		</div>
+		<div class="col-lg-6" ng-show="tab==='artist'">
+			<h1>Completed Jobs</h1>
+			<artist-complete ng-repeat='done in doneProjects' done='done'></artist-complete>
+		</div>
+		<div class="col-lg-6" ng-show="tab==='profile'">
+			<h1>This is you</h1>
+			<user-profile></user-profile>
+		</div>
+	</div>
+</div> -->
