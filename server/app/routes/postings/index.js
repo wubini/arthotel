@@ -61,12 +61,19 @@ router.get('/:postingId', function(req, res, next) {
   res.send(req.posting);
 });
 
-router.get('/:postingId/artistsWhoRequested', function(req, res, next) {
-  Posting.findOne(req.params.postingId)
-    .then(function(artists) {
-      res.send(artists);
+router.put('/:postingId', function(req, res, next){
+
+  for(var k in req.body){
+    req.posting[k] = req.body[k];
+  }
+  req.posting.save()
+    .then(function(updatedPost){
+      res.status(201).send(updatedPost);
+
     })
     .then(null, next);
+
+  
 });
 
 router.post('/:postingId', function(req, res, next) {
