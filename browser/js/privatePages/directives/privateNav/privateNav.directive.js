@@ -10,6 +10,7 @@ app.directive('privateNav', function ($state) {
             selected.addClass('active-tab');
             scope.tab = tab;
           };
+          console.log("after scope.changeRole definition");
         }
       }
 });

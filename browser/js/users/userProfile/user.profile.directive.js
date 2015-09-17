@@ -5,9 +5,11 @@ app.directive("userProfile", function()
     scope: {
       user: '='
     },
+    templateUrl: 'js/users/userProfile/user.profile.html',
     controller: function($scope, UserFactory)
     {
       $scope.userCopy = {};
+
       for(var key in $scope.user)
       {
         $scope.userCopy[key]= $scope.user[key];
@@ -26,12 +28,10 @@ app.directive("userProfile", function()
           $scope.user[key]= $scope.userCopy[key];
         }
       }
-
       $scope.saveProfile = function()
       {
         UserFactory.editUser($scope.user);
       }
-    },
-    templateUrl: 'js/users/userProfile/user.profile.html'
+    }
   }
 })
