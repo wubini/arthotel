@@ -37,6 +37,12 @@ app.factory("PostingFactory", $http => {
         postInfo
       })
         .then(response => response.data);
+    },
+    assignPostingToArtist: (artist, postingId) => {
+      return $http.put(`/api/postings/${postingId}`, {
+        artist: artist
+      })
+        .then(response => response.data);
     }
 
 }

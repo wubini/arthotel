@@ -46,6 +46,11 @@ app.factory("UserFactory", function($http)
       .then(function(response){
         return response.data;
       });
+    },
+    unassignedPostings: function(userId)
+    {
+      return $http.get('/api/users/'+userId+'/unassigned')
+      .then(response => response.data);
     }
   }
 })
