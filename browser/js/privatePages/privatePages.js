@@ -13,7 +13,6 @@ app.config(function($stateProvider) {
         });
       },
       allPostings: function(PostingFactory) {
-        console.log("getting all postings");
         return PostingFactory.getAllPostings();
       },
       savedPostings: function(AuthService, UserFactory)
@@ -59,6 +58,7 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   $scope.activeClientJobs = activeClientPostings;
   $scope.activeArtistJobs = activeArtistPostings;
   $scope.user = user;
+  console.log("in private page ctrl, user", $scope.user);
 
   PostingFactory.getPostsForUser($scope.user._id)
     .then(function(projects) {
