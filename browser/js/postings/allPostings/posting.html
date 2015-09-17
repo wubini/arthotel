@@ -3,9 +3,9 @@
 
 	<div class="project_info">
 		<p><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></p>
-		<p>{{posting.client}}</p>
+		<p><a ui-sref="userPage({userId: posting.client._id})">{{posting.client.displayName}}</a></p>
 		<p>{{posting.description}}</p>
-		<p>{{posting.date}}</p>
+		<p>{{posting.date | date: 'short'}}</p>
 	</div>
 
 </div>
