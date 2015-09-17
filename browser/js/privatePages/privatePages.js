@@ -59,6 +59,11 @@ app.controller('privatePageCtrl', ($scope, AuthService, $state, user,
   $scope.activeArtistJobs = activeArtistPostings;
   $scope.user = user;
 
+  //we need this to make sure that console.error works
+  console.error = console.error.bind(console);
+
+  console.log("in private page ctrl, user", $scope.user);
+
   PostingFactory.getPostsForUser($scope.user._id)
     .then(projects => {
       $scope.projects = projects;
