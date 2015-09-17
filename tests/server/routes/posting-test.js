@@ -80,7 +80,7 @@ describe('Returning Posts',function(){
 
 })
 describe('Posting ID Tests',function(){
-	it('should ',function(done){
+	xit('should ',function(done){
 		postAgent.use('/:')
 	})
 
@@ -97,6 +97,7 @@ describe('New Artist Who Saved',function(){
 		postAgent.put('/api/postings').expect(200).end(function(err,response){
 			if(err) return done(err);
 			//expect()
+			done();
 		})
 	})
 })
