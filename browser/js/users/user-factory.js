@@ -34,6 +34,11 @@ app.factory("UserFactory", function($http)
     {
       return $http.get('/api/users/'+userId+'/unassigned')
       .then(response => response.data);
+    },
+    editUser: function(editedUser)
+    {
+      return $http.put('/api/users/'+editedUser._id, {user: editedUser})
+      .then(response => response.data);
     }
   };
 });

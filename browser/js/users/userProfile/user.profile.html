@@ -1,4 +1,4 @@
-<p>hello, {{user}}<p>
+<img src="{{user.photoUrl}}"></img>
 <div class="clearfix">
   <i class="fa fa-3x fa-pencil-square pull-right" ng-hide="editing" ng-click="toggleEditing()"></i>
 </div>
@@ -16,4 +16,5 @@
     <textarea class="form-control" rows="10" id="bio" ng-model="user.bio"></textarea>
   </div>
   <div class="btn btn-default" type="submit" ng-show="editing" ng-click='saveProfile(); toggleEditing()'>Save <i class="fa fa-2x fa-floppy-o"></i></div>
+  <div class="btn btn-default" ng-show="editing" ng-click='restoreValuesToSaved(); toggleEditing()'>Cancel Editing</i></div>
 </form>

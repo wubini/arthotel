@@ -14,12 +14,13 @@ app.config(function ($stateProvider) {
 
 app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $state, PostingFactory) {
     $scope.range = [0, 100, 200, 300];
-    $scope.writing = true; 
+    $scope.writing = true;
 
     if(!currentUser) $state.go('home');
 
     $scope.newPost = {
-      client: currentUser._id
+      client: currentUser._id,
+      photos: []
     };
 
 
