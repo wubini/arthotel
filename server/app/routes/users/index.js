@@ -21,6 +21,19 @@ router.use('/:userId', (req, res, next) => {
 router.get('/:userId', (req, res, next) => {
   res.send(req.foundUser);
 });
+
+router.put('/:userId', (req, res, next) => {
+  for(var key in req.body.user)
+  {
+    req.foundUser[key] = req.body.user[key];
+  }
+  req.foundUser.save()
+  .then(function(user)
+  {
+    res.send(user);
+  });
+});
+
 router.get('/:userId/postings/done', (req, res, next) => {
   Posting.find()
     .where({client: req.params.userId, status: 'complete'})
