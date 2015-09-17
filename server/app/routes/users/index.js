@@ -21,6 +21,21 @@ router.use('/:userId', (req, res, next) => {
 router.get('/:userId', (req, res, next) => {
   res.send(req.foundUser);
 });
+
+router.put('/:userId', (req, res, next) => {
+  console.log("hit put (edit) user route");
+  for (var key in req.foundUser)
+  {
+    req.foundUser[key] = req.body[key];
+  }
+
+  req.foundUser.save()
+  .then(function(savedUser)
+  {
+    res.send(savedUser);
+  });
+});
+
 router.get(`:userId/postings/done`, (req, res, next) => {
   Posting.find()
     .where({status: 'complete'})

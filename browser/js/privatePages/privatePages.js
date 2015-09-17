@@ -52,6 +52,7 @@ app.config(function($stateProvider) {
 app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
+  console.log("me state controller start");
   $scope.tab = 'artist';
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
@@ -69,4 +70,6 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   PostingFactory.getDonePostsForUser($scope.user._id)
     .then(doneProjects => $scope.doneProjects = doneProjects)
     .then(null, console.error);
+
+  console.log("me start controller finish");
 });

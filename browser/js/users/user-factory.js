@@ -46,6 +46,15 @@ app.factory("UserFactory", function($http)
       .then(function(response){
         return response.data;
       });
+    },
+    editUser: function(user)
+    {
+      console.log("edituser called");
+      return $http.put(`/api/users/${user._id}/`, user)
+      .then(function(response)
+      {
+        return response.data;
+      });
     }
   }
 })

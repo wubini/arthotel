@@ -5,7 +5,7 @@ app.directive("userProfile", function()
     scope: {
       user: '='
     },
-    controller: function($scope)
+    controller: function($scope, UserFactory)
     {
       $scope.userCopy = {};
       for(var key in $scope.user)
@@ -25,6 +25,11 @@ app.directive("userProfile", function()
         {
           $scope.user[key]= $scope.userCopy[key];
         }
+      }
+
+      $scope.saveProfile = function()
+      {
+        UserFactory.editUser($scope.user);
       }
     },
     templateUrl: 'js/users/userProfile/user.profile.html'
