@@ -15,6 +15,7 @@ describe("Postings' Routes",function(){
 	});
 	var createdUsers;
 	var createdPosts;
+
 	beforeEach('Creating users', function (done) {
 		var usersToCreate = [
 			{
@@ -30,12 +31,15 @@ describe("Postings' Routes",function(){
 				password: 'iamironman'
 			}
 		];
+
 		User.create(usersToCreate).then(function (users) {
 			createdUsers = users;
 			done();
 		});
-	});
+
+
 	beforeEach('Postings', function(done){
+		
 		var postings = [
 			{
 				client: createdUsers[0]._id,
@@ -53,12 +57,13 @@ describe("Postings' Routes",function(){
 			done();
 		})
 	})
+
 	afterEach('Clear test database', function (done) {
 		clearDB(done);
 	});
 	var postAgent=supertest.agent(app);
 describe('Returning Posts',function(){
-	
+
 	it('should return all posts as array',function(done){
 		postAgent.get('/api/postings/').expect(200).end(function(err,response){
 			if(err) return done(err);
@@ -68,6 +73,7 @@ describe('Returning Posts',function(){
 	})
 
 })
+
 // describe('Posting ID Tests',function(){
 // 	it('should ',function(done){
 // 		postAgent.use('/:'+createdUsers[0]._id).expect(200).end(function(err,response){
@@ -78,6 +84,7 @@ describe('Returning Posts',function(){
 
 
 // })
+
 
 
 // describe('All Posts',function(){

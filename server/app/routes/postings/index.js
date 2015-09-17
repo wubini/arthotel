@@ -6,6 +6,7 @@ mongoose.Promise = require('bluebird');
 
 router.get('/', function(req, res, next) {
   Posting.find()
+    .populate('client')
     .then(function(postings) {
       res.send(postings);
     });
@@ -61,10 +62,26 @@ router.get('/:postingId', function(req, res, next) {
   res.send(req.posting);
 });
 
-router.get('/:postingId/artistsWhoRequested', function(req, res, next) {
-  Posting.findOne(req.params.postingId)
-    .then(function(artists) {
-      res.send(artists);
+router.put('/:postingId', function(req, res, next){
+
+  if(req.body.reject){
+    var index = req.posting.artistsWhoRequested.indexOf(req.body.reject);
+    req.posting.artistsWhoRequested.splice(index,1);
+
+  }else if(req.body.accept){
+    req.posting.artist = req.body.accept;
+    req.posting.artistsWhoRequested = [];
+  }else{
+    for(var k in req.body){
+      req.posting[k] = req.body[k];
+    }
+
+  }
+
+  req.posting.save()
+    .then(function(updatedPost){
+      res.status(201).send(updatedPost);
+
     })
     .then(null, next);
 });

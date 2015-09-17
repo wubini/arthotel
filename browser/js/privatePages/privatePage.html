@@ -1,25 +1,38 @@
 <private-nav></private-nav>
-<user-profile user="user"></user-profile>
+
 <div class="container">
 	<div class="row">
-		<div class="col-lg-6">
-			<active-jobs></active-jobs>
+		<div ng-show="tab==='artist'">
+			<div class="panel col-lg-6">
+				<h2>Current Projects</h2>
+				<job ng-repeat="job in activeArtistJobs" ></job>
+				<h2>Completed Projects</h2>
+				<completed-jobs ng-repeat='done in doneProjects' done='done'></completed-jobs>
+			</div>
+			<div class="panel col-lg-6">
+				<h2>At A Glance</h2>
+				<at-glance></at-glance>
+				<h2>Potential Projects</h2>
+				<potential-jobs></potential-jobs>
+			</div>
 		</div>
-		<div class='col-lg-6' ng-show='client'>
-				<h2>Unassigned Jobs</h2>
-				<unassigned-jobs ng-repeat='project in projects' project='project'</unassigned-jobs>
+		<div ng-show="tab==='client'">
+			<div class="panel col-lg-6">
+				<h2>Current Projects</h2>
+				<job ng-repeat="job in activeClientJobs" ></job>
+				<h2>Completed Projects</h2>
+				<complete-artist ng-repeat='done in doneProjects' done='done'></complete-artist>
+			</div>
+			<div class="panel col-lg-6">
+				<h2>Projects that Need Artists</h2>
+				<unassigned-jobs ng-repeat='project in unassignedPostings' project='project'</unassigned-jobs>
+			</div>
 		</div>
-		<div class='col-lg-6' ng-show='client'>
-			<h2>Completed Jobs</h2>
-			<completed-jobs ng-repeat='done in doneProjects' done='done'></completed-jobs>
-		</div>
-		<div class="col-lg-6" ng-show="!client">
-			<h1>Potential Jobs</h1>
-			<potential-jobs></potential-jobs>
-		</div>
-		<div class="col-lg-6" ng-show="!client">
-			<h1>Completed Jobs</h1>
-			<artist-complete ng-repeat='done in doneProjects' done='done'></artist-complete>
-		</div>
-	</div>
+
+		<div ng-show="tab==='profile'">
+			<div class="panel col-lg-6">
+				<user-profile user="user"></user-profile>
+			</div>
+	 </div>
+
 </div>

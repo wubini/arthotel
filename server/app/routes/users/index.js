@@ -21,12 +21,17 @@ router.use('/:userId', (req, res, next) => {
 router.get('/:userId', (req, res, next) => {
   res.send(req.foundUser);
 });
-router.get(`:userId/postings/done`, (req, res, next) => {
+router.get('/:userId/postings/done', (req, res, next) => {
   Posting.find()
-    .where({status: 'complete'})
+    .where({client: req.params.userId, status: 'complete'})
     .populate('artist')
-    .then(postings => res.send(postings))
-    .then(null, next);
+    .then(postings => {
+      res.send(postings);
+    })
+    .then(null, () => {
+      console.log('could not find any!');
+      next();
+    });
 });
 
 //TODO -- check if these need to use the userId that is passed in.
@@ -53,6 +58,16 @@ router.get('/:userId/requested', (req, res, next) => {
   .then(postings => res.send(postings));
 });
 
+router.get('/:userId/unassigned', function(req, res, next){
+  Posting.find({client:req.foundUser._id, artist: {$exists: false}})
+  .populate('artistsWhoRequested')
+  .then(function(postings){
+    console.log(postings);
+    res.send(postings);
+  })
+  .then(null, next);
+});
+
 router.get('/:userId/active/artist', function(req, res, next){
   Posting.find().where({artist: req.foundUser._id})
   .populate('client')
@@ -62,7 +77,7 @@ router.get('/:userId/active/artist', function(req, res, next){
 });
 
 router.get('/:userId/active/client', function(req, res, next){
-  Posting.find().where({client: req.foundUser._id})
+  Posting.find().where({client: req.foundUser._id, artist: {$exists: true}})
   .populate('artist')
   .then(function(postings){
     res.send(postings);

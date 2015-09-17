@@ -3,8 +3,7 @@ app.directive('completedJobs', function() {
     restrict: 'E',
     templateUrl: 'js/privatePages/directives/completedJobs/completed.html',
     scope: {
-      done: '=done',
-      artist: '=artist'
+      done: '=done'
     },
     link: function(scope, elem, attr) {
       scope.show = false;

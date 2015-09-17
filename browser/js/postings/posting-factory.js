@@ -37,6 +37,18 @@ app.factory("PostingFactory", $http => {
         postInfo
       })
         .then(response => response.data);
+    },
+    assignPostingToArtist: (artist, postingId) => {
+      return $http.put(`/api/postings/${postingId}`, {
+        accept: artist
+      })
+        .then(response => response.data);
+    },
+    rejectArtist: (artist, postingId) =>{
+      return $http.put(`/api/postings/${postingId}`, {
+        reject: artist
+      })
+        .then(response => response.data);
     }
 
 }

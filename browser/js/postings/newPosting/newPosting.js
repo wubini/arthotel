@@ -16,6 +16,8 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
     $scope.range = [0, 100, 200, 300];
     $scope.writing = true; 
 
+    if(!currentUser) $state.go('home');
+
     $scope.newPost = {
       client: currentUser._id
     };

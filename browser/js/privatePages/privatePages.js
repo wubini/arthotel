@@ -1,6 +1,6 @@
 app.config(function($stateProvider) {
   $stateProvider.state('privatePage', {
-    url: '/me',
+    url: '/me/:tab',
     templateUrl: 'js/privatePages/privatePage.html',
     controller: 'privatePageCtrl',
     resolve: {
@@ -13,7 +13,6 @@ app.config(function($stateProvider) {
         });
       },
       allPostings: function(PostingFactory) {
-        console.log("getting all postings");
         return PostingFactory.getAllPostings();
       },
       savedPostings: function(AuthService, UserFactory)
@@ -45,42 +44,48 @@ app.config(function($stateProvider) {
         .then(function(user){
           return UserFactory.getActivePostingsForClient(user._id);
         });
+      },
+      unassignedPostings: function(AuthService, UserFactory){
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return UserFactory.unassignedPostings(user._id);
+        })
       }
     }
   });
 });
 
-app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
-  allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
+app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $state, user,
+  allPostings, savedPostings, requestedPostings, unassignedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
-  $scope.client = true;
-  $scope.activeJobs = [];
+  $scope.tab = $stateParams.tab;
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
+  $scope.activeClientJobs = activeClientPostings;
+  $scope.activeArtistJobs = activeArtistPostings;
   $scope.user = user;
+  $scope.unassignedPostings = unassignedPostings;
 
-  //console.log(activeArtistPostings);
+  //we need this to make sure that console.error works
+  console.error = console.error.bind(console);
 
-  if ($scope.client) {
-    $scope.activeJobs = activeClientPostings;
-  } else {
-    $scope.activeJobs = activeArtistPostings;
-  }
-  //replace with user._id;
-  // var tempUserId = '55f9cd8aacbf8b0749637dcb';
-  PostingFactory.getPostsForUser(user._id)
-    .then(function(projects) {
-      $scope.projects = projects;
-      $scope.doneProjects = $scope.projects;
-    })
-    .then(null, console.error);
+  console.log("in private page ctrl, user", $scope.user);
 
-  PostingFactory.getDonePostsForUser(user._id)
+
+  PostingFactory.getDonePostsForUser($scope.user._id)
     .then(doneProjects => $scope.doneProjects = doneProjects)
     .then(null, console.error);
 
-  $scope.client = false;
-  $scope.activeJobs = [];
-
+  //$scope.amountOwed = $$$;
+  var size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+  $scope.requestedPostingsCount = size(requestedPostings);
+  $scope.activeArtistJobsCount = size(activeArtistPostings);
+  $scope.savedPostingsCount = size(savedPostings);
 
 });
