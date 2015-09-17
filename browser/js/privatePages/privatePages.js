@@ -74,6 +74,16 @@ app.controller('privatePageCtrl', ($scope, AuthService, $state, user,
     .then(doneProjects => $scope.doneProjects = doneProjects)
     .then(null, console.error);
 
-  $scope.defaultPic = "http://image.shutterstock.com/display_pic_with_logo/55893/55893,1320069230,4/stock-photo-kittens-of-the-metis-breed-bengal-maine-coon-age-month-87776425.jpg";
+  //$scope.amountOwed = $$$;
+  var size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+  $scope.requestedPostingsCount = size(requestedPostings);
+  $scope.activeArtistJobsCount = size(activeArtistPostings);
+  $scope.savedPostingsCount = size(savedPostings);
 
 });

@@ -11,9 +11,3 @@ app.directive('unassignedJobs', function() {
     }
   };
 });
-
-
-// app.controller('unassignJobCtrl', function($scope) {
-//   $scope = scope;
-//   console.log("here !", $scope);
-// });
