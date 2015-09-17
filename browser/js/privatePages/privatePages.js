@@ -49,8 +49,8 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
-  allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
+app.controller('privatePageCtrl', ($scope, AuthService, $state, user,
+  allPostings, savedPostings, requestedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) => {
   //this will be dynamically changed
   $scope.tab = 'artist';
   $scope.savedPostings = savedPostings;
@@ -58,10 +58,14 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   $scope.activeClientJobs = activeClientPostings;
   $scope.activeArtistJobs = activeArtistPostings;
   $scope.user = user;
+
+  //we need this to make sure that console.error works
+  console.error = console.error.bind(console);
+
   console.log("in private page ctrl, user", $scope.user);
 
   PostingFactory.getPostsForUser($scope.user._id)
-    .then(function(projects) {
+    .then(projects => {
       $scope.projects = projects;
     })
     .then(null, console.error);
@@ -69,4 +73,7 @@ app.controller('privatePageCtrl', function($scope, AuthService, $state, user,
   PostingFactory.getDonePostsForUser($scope.user._id)
     .then(doneProjects => $scope.doneProjects = doneProjects)
     .then(null, console.error);
+
+  $scope.defaultPic = "http://image.shutterstock.com/display_pic_with_logo/55893/55893,1320069230,4/stock-photo-kittens-of-the-metis-breed-bengal-maine-coon-age-month-87776425.jpg";
+
 });
