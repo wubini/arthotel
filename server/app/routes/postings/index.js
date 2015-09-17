@@ -63,16 +63,23 @@ router.get('/:postingId', function(req, res, next) {
 
 router.put('/:postingId', function(req, res, next){
 
-  for(var k in req.body){
-    req.posting[k] = req.body[k];
+  if(req.body.reject){
+    var index = req.posting.artistsWhoRequested.indexOf(req.body.reject);
+    req.posting.artistsWhoRequested.splice(index,1);
+
+  }else{
+    for(var k in req.body){
+      req.posting[k] = req.body[k];
+    }
+    
   }
+
   req.posting.save()
     .then(function(updatedPost){
       res.status(201).send(updatedPost);
 
     })
     .then(null, next);
-
   
 });
 

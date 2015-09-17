@@ -43,6 +43,12 @@ app.factory("PostingFactory", $http => {
         artist: artist
       })
         .then(response => response.data);
+    },
+    rejectArtist: (artist, postingId) =>{
+      return $http.put(`/api/postings/${postingId}`, {
+        reject: artist
+      })
+        .then(response => response.data);
     }
 
 }
