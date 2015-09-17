@@ -23,16 +23,15 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
         };
 
         scope.confirmDelete = (project, artistId, type) => {
-          var request = confirm(`Are you sure you want to remove ${type} for ${project.title}`);
-            if (request === true) {
-              if(type === 'request')
-                deleteRequest(project._id, artistId);
-              else if(type === 'saved') {
-                deleteSaved(project._id, artistId);
+          bootbox.confirm(`Are you sure you want to remove ${type} for ${project.title}`, function(result) {
+              if (result) {
+                if(type === 'request')
+                  deleteRequest(project._id, artistId);
+                else if(type === 'saved')
+                  deleteSaved(project._id, artistId);
               }
-            }
-        };
-
-      }
+            });
+      };
+    }
   };
 });
