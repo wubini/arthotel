@@ -10,7 +10,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
                 { label: 'Job Postings', state: 'allPostings' },
-                { label: 'Me', state: 'privatePage', auth: true }
+                { label: 'Me', state: 'privatePage({tab: "artist"})', auth: true }
             ];
 
             scope.user = null;
@@ -41,7 +41,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
 
-            scope.facebookLogin = function(){    
+            scope.facebookLogin = function(){
                 AuthService.facebookLogin();
             };
         }
