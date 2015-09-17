@@ -6,6 +6,7 @@ mongoose.Promise = require('bluebird');
 
 router.get('/', function(req, res, next) {
   Posting.find()
+    .populate('client') 
     .then(function(postings) {
       res.send(postings);
     });
@@ -73,7 +74,7 @@ router.put('/:postingId', function(req, res, next){
     })
     .then(null, next);
 
-  
+
 });
 
 router.post('/:postingId', function(req, res, next) {
