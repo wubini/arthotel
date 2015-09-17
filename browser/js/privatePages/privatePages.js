@@ -1,4 +1,4 @@
-app.config(function($stateProvider) {
+ app.config(function($stateProvider) {
   $stateProvider.state('privatePage', {
     url: '/me/:tab',
     templateUrl: 'js/privatePages/privatePage.html',
@@ -87,5 +87,9 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   $scope.requestedPostingsCount = size(requestedPostings);
   $scope.activeArtistJobsCount = size(activeArtistPostings);
   $scope.savedPostingsCount = size(savedPostings);
+
+
+  $scope.request = 'request';
+  $scope.saved = 'saved';
 
 });

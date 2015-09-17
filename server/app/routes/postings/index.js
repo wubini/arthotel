@@ -63,8 +63,8 @@ router.get('/:postingId', function(req, res, next) {
 });
 
 router.put('/:postingId', function(req, res, next){
-
   if(req.body.reject){
+    console.log("Rejected! ", req.body);
     var index = req.posting.artistsWhoRequested.indexOf(req.body.reject);
     req.posting.artistsWhoRequested.splice(index,1);
 
@@ -75,9 +75,28 @@ router.put('/:postingId', function(req, res, next){
     for(var k in req.body){
       req.posting[k] = req.body[k];
     }
-
   }
+  req.posting.save()
+    .then(function(updatedPost){
+      res.status(201).send(updatedPost);
 
+    })
+    .then(null, next);
+});
+
+router.put('/:postingId/save', (req, res, next) => {
+  if(req.body.reject){
+    console.log("Rejected! ", req.body);
+    var index = req.posting.artistsWhoSaved.indexOf(req.body.reject);
+    req.posting.artistsWhoSaved.splice(index,1);
+  }else if(req.body.accept){
+    req.posting.artist = req.body.accept;
+    req.posting.artistsWhoSaved = [];
+  }else {
+      for(var k in req.body){
+        req.posting[k] = req.body[k];
+      }
+  }
   req.posting.save()
     .then(function(updatedPost){
       res.status(201).send(updatedPost);
