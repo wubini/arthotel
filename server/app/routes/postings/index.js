@@ -68,6 +68,9 @@ router.put('/:postingId', function(req, res, next){
     var index = req.posting.artistsWhoRequested.indexOf(req.body.reject);
     req.posting.artistsWhoRequested.splice(index,1);
 
+  }else if(req.body.accept){
+    req.posting.artist = req.body.accept;
+    req.posting.artistsWhoRequested = [];
   }else{
     for(var k in req.body){
       req.posting[k] = req.body[k];

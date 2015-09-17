@@ -40,7 +40,7 @@ app.factory("PostingFactory", $http => {
     },
     assignPostingToArtist: (artist, postingId) => {
       return $http.put(`/api/postings/${postingId}`, {
-        artist: artist
+        accept: artist
       })
         .then(response => response.data);
     },
