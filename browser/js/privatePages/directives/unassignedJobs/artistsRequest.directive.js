@@ -13,7 +13,14 @@ app.directive('artistsRequested', function(PostingFactory) {
           .then(function(){
             console.log('hi!');
           });
-      }
+      };
+
+      scope.rejectArtist = function(artistId, projectId){
+        PostingFactory.rejectArtist(artistId, projectId)
+          .then(function(){
+            console.log(':(');
+          });
+      };
     }
   };
 });
