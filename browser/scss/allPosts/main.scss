@@ -47,7 +47,7 @@ posting {
 	}
 
 
-	.clickedStar, span.clickedStar ~ span.star:before {
+	span.clickedStar:before, span.clickedStar ~ span.star:before {
 	  content: "\f005";
 	  color: #e3cf7a;
 	}
