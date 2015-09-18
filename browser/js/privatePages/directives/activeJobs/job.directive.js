@@ -8,6 +8,7 @@ app.directive('job', function ($state, PostingFactory) {
           // });
 
           scope.artistCompleted = function(){
+            
             PostingFactory.changePostingStatus(scope.job._id, "pendingApproval")
             .then(function(posting)
             {

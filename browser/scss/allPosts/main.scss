@@ -21,3 +21,35 @@ posting {
 		}
 	}
 }
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: 30px;
+
+	span.star {
+	  font-family: FontAwesome;
+	  font-weight: normal;
+	  font-style: normal;
+	  display: inline-block;
+	}
+	span.star:hover {
+	  cursor: pointer;
+	}
+	span.star:before {
+	  content: "\f006";
+	  padding-right: 5px;
+	  color: #777777;
+	}
+	span.star:hover:before, span.star:hover ~ span.star:before {
+	  content: "\f005";
+	  color: #e3cf7a;
+	}
+
+
+	.clickedStar, span.clickedStar ~ span.star:before {
+	  content: "\f005";
+	  color: #e3cf7a;
+	}
+
+}
