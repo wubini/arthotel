@@ -5,7 +5,7 @@
 		<p><span class="bold">Due: </span>{{job.date}}</p>
 		<div ng-show="tab==='artist'">
 			<p><span class="bold">Client:</span> {{job.client.displayName}}</p>
-			<p class="btn btn-default" ng-show="job.status==='started'" ng-click="artistCompleted()">Complete</p>
+			<p class="btn btn-default" ng-show="job.status==='started'" ng-click="show=!show">Complete</p>
 			<p ng-show="job.status==='pendingApproval'">Pending client approval</p>
 		</div>
 		<div ng-show="tab==='client'">
@@ -13,6 +13,8 @@
 			<p class="btn btn-default" ng-show="job.status==='pendingApproval'" ng-click="clientApproved()">Approve</p>
 			<p ng-show="job.status==='started'">Work in progress</p>
 		</div>
+
+		<write-review ng-show="show"></write-review>
 
 	</div>
 
