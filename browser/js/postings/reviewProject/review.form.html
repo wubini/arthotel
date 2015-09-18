@@ -2,13 +2,15 @@
 	<form name="reviewForm" ng-submit="reviewForm.$valid && artistCompleted(review)" class="form-horizontal" novalidate>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Rating: </label>
-			<div class="rating col-sm-9 center-block">
-					<span type="radio" name="review.reviewOption" id="review1" value="5" class="star"></span>
-					<span type="radio" name="review.reviewOption" id="review2" value="4" class="star"></span>
-					<span type="radio" name="review.reviewOption" id="review3" value="3" class="star"></span>
-					<span type="radio" name="review.reviewOption" id="review4" value="2" class="star"></span>
-					<span type="radio" name="review.reviewOption" id="review5" value="1" class="star clickedStar"></span>
-				
+			<div class="col-sm-9 center-block">
+				<div class="rating">
+					<span type="radio" name="review.reviewOption" id="5" class="star"></span>
+					<span type="radio" name="review.reviewOption" id="4" class="star"></span>
+					<span type="radio" name="review.reviewOption" id="3" class="star"></span>
+					<span type="radio" name="review.reviewOption" id="2" class="star"></span>
+					<span type="radio" name="review.reviewOption" id="1" class="star"></span>
+				</div>
+					<p ng-show="hasError" class="bold text-danger">Please give this project a review</p>
 			</div>
 		</div>
 
@@ -16,7 +18,7 @@
 			<label class="col-sm-3 control-label">Review: </label>
 
 			<div class="col-sm-9">
-				<textarea class="form-control" name="review.text" ng-model="newPost.review" required></textarea>
+				<textarea class="form-control" name="review" ng-model="review.text"></textarea>
 			</div>
 		</div>
 

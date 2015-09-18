@@ -3,7 +3,13 @@ app.directive('writeReview', function ($state, PostingFactory) {
         restrict: 'E',
         templateUrl: 'js/postings/reviewProject/review.form.html',
         link: function(scope, elem, attr){
+          scope.review = {};
+          scope.hasError = false;
            scope.artistCompleted = function(review){
+            if(!scope.review.rating){
+              return scope.hasError = true;
+            }
+
             console.log(review);
             // PostingFactory.changePostingStatus(scope.job._id, "pendingApproval")
             // .then(function(posting)
@@ -12,13 +18,16 @@ app.directive('writeReview', function ($state, PostingFactory) {
             // });
           }
 
-          console.log(document.querySelectorAll('span.star'));
-
           var stars = angular.element(document.querySelectorAll('span.star'));
           stars.on('click', function(){
-            console.log('here', this);
-            angular.element(document.querySelector('span.clickedStar')).removeClass('clickedStar');
-            angular.element(this).addClass('clickedStar');
+            var currentStar = angular.element(this);
+            var clicked = document.querySelector('span.clickedStar');
+            if(clicked){
+              angular.element(document.querySelector('span.clickedStar')).removeClass('clickedStar');
+            }
+            currentStar.addClass('clickedStar');
+            scope.review.rating = this.id;
+
           });
         }
     };
