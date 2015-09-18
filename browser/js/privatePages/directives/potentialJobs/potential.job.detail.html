@@ -1,6 +1,8 @@
-<h4>{{posting.title}}</h4>
-<p>{{posting.client.displayName}}</p>
-<img ng-src={{posting.photos[0]}}></img>
-<div class="clearfix col-sm-12">
-  <i class="fa fa-2x fa-times-circle-o pull-right text-danger" ng-click="confirmDelete(posting, artist._id, type)"></i>
+<div class="panel-body">
+	<h4>{{posting.title}}</h4>
+	<p>{{posting.client.displayName}}</p>
+	<img ng-src={{posting.photos[0]}}></img>
+	<div class="clearfix col-sm-12">
+	  <i class="fa fa-2x fa-times-circle-o pull-right text-danger" ng-click="confirmDelete(posting, artist._id, type)"></i>
+	</div>
 </div>
