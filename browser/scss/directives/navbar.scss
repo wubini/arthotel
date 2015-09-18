@@ -1,7 +1,13 @@
 navbar {
 
   display: block;
-  background: white;
+
+
+  background: url('/js/common/directives/navbar/michelangelo-hands.jpg');
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-opacity:0.5;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
 
@@ -9,6 +15,10 @@ navbar {
     width: 91%;
     max-width: 1340px;
     padding-top: 20px;
+  }
+
+  .btn-green{
+    background-color:#ced9a1;
   }
 
   fullstack-logo {
@@ -23,14 +33,15 @@ navbar {
   }
 
   .nav > li > a {
+    font-weight:bold;
     cursor: pointer;
     transition: color 0.2s;
     &.active {
-      color: darken(#f31214, 10%);
+      color: white;
     }
     &:hover {
       background: none;
-      color: #f31214;
+      color: white;
     }
     &:focus {
       background: none;
@@ -52,8 +63,12 @@ navbar {
       color: white;
     }
     a {
-      color: #f30046;
+      color: black;
       cursor: pointer;
+
+      &:hover{
+        color:white;
+      }
     }
   }
 

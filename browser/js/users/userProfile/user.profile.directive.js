@@ -19,7 +19,7 @@ app.directive("userProfile", function()
       $scope.toggleEditing = function()
       {
         $scope.editing = !$scope.editing;
-      }
+      };
 
       $scope.restoreValuesToSaved = function()
       {
@@ -27,11 +27,11 @@ app.directive("userProfile", function()
         {
           $scope.user[key]= $scope.userCopy[key];
         }
-      }
+      };
       $scope.saveProfile = function()
       {
         UserFactory.editUser($scope.user);
-      }
+      };
     }
   }
-})
+});

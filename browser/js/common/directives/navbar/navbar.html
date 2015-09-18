@@ -12,7 +12,7 @@
         <fb ng-show="!user" class="pull-right"></fb>
 
         <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
+            <span>Welcome, {{ user.displayName }}!</span>
             <a ng-click="logout()">Logout</a>
         </div>
     </div>
