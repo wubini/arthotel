@@ -29,6 +29,23 @@ body {
   
 }
 
+.full-size-photo{
+  height:30vh;
+  width:30vw;
+  overflow:hidden;
+
+}
+
+.thumbnail-photo{
+  height:10vh;
+  width:10vw;
+  overflow:hidden;
+}
+
+.photo{
+  max-width:100%;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

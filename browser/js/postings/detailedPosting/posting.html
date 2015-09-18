@@ -1,28 +1,15 @@
-<!--
-	title
-	price
-	timeline
-	size
-	location
-	description
 
-	save for later
-	request
-
-	client info
-		name
-		business name
-		rating
-		link to profile
-	-->
 <div class="container">
 	<project-info></project-info>
 	<save-request></save-request>
-
-	<div class="jumbotron bio">
+	<div class="jumbotron bio col-md-6 col-sm-12">
 		{{posting.description}}
 	</div>
+	<div class="col-md-6 col-sm-12">
+      <img class="photo" ng-src={{posting.photos[0]}}></img>
+	</div>
 
-	<client-info></client-info>
-
+	<div class="clear-fix">
+		<client-info></client-info>
+	</div>
 </div>
