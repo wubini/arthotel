@@ -70,6 +70,7 @@ router.put('/:postingId', function(req, res, next){
 
   }else if(req.body.accept){
     req.posting.artist = req.body.accept;
+    req.posting.status = "started";
     req.posting.artistsWhoRequested = [];
   }else{
     for(var k in req.body){
