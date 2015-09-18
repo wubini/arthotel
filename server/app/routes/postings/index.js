@@ -106,7 +106,7 @@ router.put('/:postingId/save', (req, res, next) => {
 });
 
 router.post('/:postingId', function(req, res, next) {
-  //add to cart and/or add partnership
+  //add to cart
   var action = req.body.action;
   if (req.user) {
     console.log("user logged in", req.user);
