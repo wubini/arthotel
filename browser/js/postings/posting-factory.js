@@ -55,6 +55,12 @@ app.factory("PostingFactory", $http => {
         reject: artist
       })
         .then(response => response.data);
+    },
+    changePostingStatus: (postingId, newStatus) => {
+      return $http.put(`/api/postings/${postingId}`, {
+        status: newStatus
+      })
+      .then(response => response.data);
     }
   };
 });
