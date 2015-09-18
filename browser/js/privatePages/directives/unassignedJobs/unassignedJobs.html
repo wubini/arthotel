@@ -1,7 +1,9 @@
 <row class='col-md-12' >
-<img class='col-md-6' ng-src={{project.photos[0]}}>
-  <div ng-click='show = !show' class='col-sm-12'>
-    <h2>{{project.title}}</h2>
+	<div class="thumbnail-photo pull-left">
+		<img class='photo' ng-src="{{project.photos[0]}}"/>
+	</div>
+  <div ng-click='show = !show' class='col-sm-12 col-md-7'>
+    <h3>{{project.title}}</h3>
     <p>{{project.description}}</p>
     <p>{{project.location}}</p>
     <p>{{project.date | date: 'medium'}}</p>
