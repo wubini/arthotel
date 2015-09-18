@@ -1,29 +1,6 @@
 var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
-var Partnership = mongoose.model('Partnership');
-
-router.get('/', function(req, res, next)
-{
-  console.log("getting all partnerships for user", req.user)
-  Partnership.find()
-  .then(function(partnerships)
-  {
-    res.send(partnerships);
-  });
-});
-
-router.use('/:postingId', function(req, res, next)
-{
-  Partnership.findById(req.params.postingId)
-  .populate('client')
-  .then(function(posting)
-  {
-    req.posting = posting;
-    next();
-  })
-  .then(null, next);
-});
 
 router.get('/:postingId', function(req, res, next)
 {
