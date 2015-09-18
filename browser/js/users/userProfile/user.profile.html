@@ -1,12 +1,17 @@
-<img ng-src={{user.photoUrl}}></img>
 <div class="clearfix">
   <i class="fa fa-3x fa-pencil-square pull-right" ng-hide="editing" ng-click="toggleEditing()"></i>
 </div>
 <div class="clearfix" ng-hide="editing">
+  <p><img ng-src={{user.photoUrl}}></img></p>
   <p><b>Name: </b><span>{{user.displayName}}</span><p>
   <p><b>Bio: </b><span>{{user.bio}}</span><p>
 </div>
 <form ng-show="editing" role="form">
+  <div class="form-group">
+    <img ng-src={{user.photoUrl}}></img>
+    <label for="photoUrl">Photo URL:</label>
+    <input type="text" class="form-control" id="photoUrl" ng-model="user.photoUrl">
+  </div>
   <div class="form-group form-inline">
     <label for="name">Name:</label>
     <input type="text" class="form-control" id="name" ng-model="user.displayName">
