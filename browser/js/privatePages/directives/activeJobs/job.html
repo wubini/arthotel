@@ -1,14 +1,18 @@
 <div class='panel-body' ng-class-even="'add-background'">
-	<img ng-src={{job.photo}} class="img-thumbnail pull-left"/>
+	<a ui-sref="detailedPosting({postingId: job._id})"><img ng-src={{job.photo}} class="img-thumbnail pull-left"/></a>
 	<div class="info pull-left">
-		<h4>{{job.title}}</h4>
+		<a ui-sref="detailedPosting({postingId: job._id})"><h4>{{job.title}}</h4></a>
 		<p><span class="bold">Due: </span>{{job.date}}</p>
-		<p ng-show="client">
-			<span class="bold">Client:</span> {{job.client.displayName}}
-		</p>
-		<p ng-hide="client">
-			<span class="bold">Artist:</span> {{job.artist.displayName}}
-		</p>
+		<div ng-show="tab==='artist'">
+			<p><span class="bold">Client:</span> {{job.client.displayName}}</p>
+			<p class="btn btn-default" ng-show="job.status==='started'" ng-click="artistCompleted()">Complete</p>
+			<p ng-show="job.status==='pendingApproval'">Pending client approval</p>
+		</div>
+		<div ng-show="tab==='client'">
+			<p><span class="bold">Artist:</span> {{job.artist.displayName}}</p>
+			<p class="btn btn-default" ng-show="job.status==='pendingApproval'" ng-click="clientApproved()">Approve</p>
+			<p ng-show="job.status==='started'">Work in progress</p>
+		</div>
 
 	</div>
 

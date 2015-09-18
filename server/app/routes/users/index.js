@@ -82,7 +82,7 @@ router.get('/:userId/unassigned', function(req, res, next){
 });
 
 router.get('/:userId/active/artist', function(req, res, next){
-  Posting.find().where({artist: req.foundUser._id})
+  Posting.find({artist: req.foundUser._id, status:'started'})
   .populate('client')
   .then(function(postings){
     res.send(postings);
@@ -90,7 +90,7 @@ router.get('/:userId/active/artist', function(req, res, next){
 });
 
 router.get('/:userId/active/client', function(req, res, next){
-  Posting.find().where({client: req.foundUser._id, artist: {$exists: true}})
+  Posting.find({client: req.foundUser._id, artist: {$exists: true}, status: 'started'})
   .populate('artist')
   .then(function(postings){
     res.send(postings);
