@@ -2,7 +2,7 @@ app.directive('privateNav', function ($state, $stateParams) {
     return {
         restrict: 'E',
         templateUrl: 'js/privatePages/directives/privateNav/privateNav.html',
-        link: function(scope, elem, attr){
+        link: function(scope){
           console.log("in link fn scope.tab", scope.tab);
           scope.changeRole = function(tab){
             var selected = angular.element(document.getElementById(tab));

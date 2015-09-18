@@ -2,12 +2,15 @@ app.directive('writeReview', function ($state, PostingFactory) {
     return {
         restrict: 'E',
         templateUrl: 'js/postings/reviewProject/review.form.html',
-        link: function(scope, elem, attr){
-          scope.review = {};
+        link: function(scope){
+          scope.review = {
+            text: ''
+          };
           scope.hasError = false;
            scope.submitReview = function(review){
             if(!scope.review.rating){
-              return scope.hasError = true;
+              scope.hasError = true;
+              return;
             }
 
             console.log(review);

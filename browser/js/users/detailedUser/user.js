@@ -11,7 +11,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('userPageCtrl', function ($scope, AuthService, $state) {
+app.controller('userPageCtrl', function ($scope, AuthService) {
   $scope.user = {
     bio: 'hello',
     location: 'New York, NY',
