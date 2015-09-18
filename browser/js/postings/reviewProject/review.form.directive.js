@@ -5,17 +5,31 @@ app.directive('writeReview', function ($state, PostingFactory) {
         link: function(scope, elem, attr){
           scope.review = {};
           scope.hasError = false;
-           scope.artistCompleted = function(review){
+           scope.submitReview = function(review){
             if(!scope.review.rating){
               return scope.hasError = true;
             }
 
             console.log(review);
-            // PostingFactory.changePostingStatus(scope.job._id, "pendingApproval")
-            // .then(function(posting)
-            // {
-            //   $state.go('privatePage',{tab: scope.tab}, {reload:true});
-            // });
+
+            // NEED A WAY TO SEND REVIEW
+            // if(scope.tab === 'artist'){
+
+            //   PostingFactory.changePostingStatus(scope.job._id, "pendingApproval")
+            //   .then(function(posting)
+            //   {
+            //     $state.go('privatePage',{tab: scope.tab}, {reload:true});
+            //   });              
+            // }
+
+            // if(scope.tab === 'client'){
+            //   PostingFactory.changePostingStatus(scope.job._id, "complete")
+            //   .then(function(posting)
+            //   {
+            //     $state.go('privatePage',{tab: scope.tab}, {reload: true});
+            //   });
+            // }
+
           }
 
           var stars = angular.element(document.querySelectorAll('span.star'));
