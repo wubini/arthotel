@@ -10,7 +10,7 @@
 		</div>
 		<div ng-show="tab==='client'">
 			<p><span class="bold">Artist:</span> {{job.artist.displayName}}</p>
-			<p class="btn btn-default" ng-show="job.status==='pendingApproval'" ng-click="clientApproved()">Approve</p>
+			<p class="btn btn-default" ng-show="job.status==='pendingApproval' && !show" ng-click="show=!show">Approve</p>
 			<p ng-show="job.status==='started'">Work in progress</p>
 		</div>
 
