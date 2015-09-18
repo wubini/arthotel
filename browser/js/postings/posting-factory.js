@@ -33,7 +33,7 @@ app.factory("PostingFactory", $http => {
         .then(response => response.data);
     },
     createNewPosting: postInfo => {
-      return $http.post(`/api/postings/add/newPost`, {
+      return $http.post(`/api/postings/`, {
         postInfo
       })
         .then(response => response.data);

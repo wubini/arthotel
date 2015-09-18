@@ -36,17 +36,11 @@ router.put('/', function(req, res, next) {
         });
 });
 
-router.post('/add/newPost', function(req, res, next){
-  console.log('adding new post', req.body);
-
+router.post('/', function(req, res, next){
   Posting.create(req.body.postInfo)
-  .then(function(newPost){
-    console.log('successfully created');
-    res.send(newPost);
-  })
+  .then(newPost => res.send(newPost))
   .then(null, next);
 });
-
 
 router.get('/:postingId', function(req, res, next) {
   res.send(req.posting);
@@ -97,8 +91,6 @@ router.put('/:postingId/save', (req, res, next) => {
 });
 
 router.post('/:postingId', function(req, res, next) {
-  //add to cart
-  console.log(req.body);
   var action = req.body.action;
   if (req.user) {
     console.log("user logged in", req.user);
