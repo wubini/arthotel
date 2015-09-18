@@ -21,20 +21,19 @@ router.put('/', function(req, res, next) {
       }
     })
     .then(function(postings) {
-      postings.forEach(function(posting) {
+      postings.forEach(posting => {
         if (posting.artistsWhoSaved.indexOf(req.user._id) < 0) {
           posting.artistsWhoSaved.push(req.user._id);
           savePromises.push(posting.save());
         }
-      })
-    });
-
-  Promise.all(savePromises)
-    .then(function(savedPostings) {
-      console.log("savedPostings to user", savedPostings);
-      req.session.cart = [];
-      res.send(savedPostings);
-    });
+      });
+    }).then(() => {
+        Promise.all(savePromises)
+          .then(savedPostings => {
+            req.session.cart = [];
+            res.send(savedPostings);
+          });
+        });
 });
 
 router.post('/add/newPost', function(req, res, next){
@@ -48,15 +47,6 @@ router.post('/add/newPost', function(req, res, next){
   .then(null, next);
 });
 
-router.use('/:postingId', function(req, res, next) {
-  Posting.findById(req.params.postingId)
-    .populate('client')
-    .then(function(posting) {
-      req.posting = posting;
-      next();
-    })
-    .then(null, next);
-});
 
 router.get('/:postingId', function(req, res, next) {
   res.send(req.posting);
@@ -107,6 +97,7 @@ router.put('/:postingId/save', (req, res, next) => {
 
 router.post('/:postingId', function(req, res, next) {
   //add to cart
+  console.log(req.body);
   var action = req.body.action;
   if (req.user) {
     console.log("user logged in", req.user);
@@ -120,7 +111,7 @@ router.post('/:postingId', function(req, res, next) {
       }
     }
   } else {
-    console.log("req.session.cart", req.session.cart)
+    console.log("req.session.cart", req.session.cart);
     if (req.session.cart) {
       console.log("index", req.session.cart.indexOf(req.posting._id),
         "req.posting._id", req.posting._id);
@@ -130,9 +121,17 @@ router.post('/:postingId', function(req, res, next) {
     } else {
       req.session.cart = [req.posting._id.toString()];
     }
-  };
+  }
   req.posting.save()
-    .then(function(posting) {
-      res.send(posting);
-    });
+    .then(posting => res.send(posting));
+});
+
+router.param('postingId',(req, res, next, postingId) => {
+  Posting.findById(postingId)
+    .populate('client')
+    .then(posting => {
+      req.posting = posting;
+      next();
+    })
+    .then(null, next);
 });
