@@ -47,6 +47,7 @@ router.get('/:postingId', function(req, res, next) {
 });
 
 router.put('/:postingId', function(req, res, next){
+  console.log("req.body in put posting", req.body);
   if(req.body.reject){
     console.log("Rejected! ", req.body);
     var index = req.posting.artistsWhoRequested.indexOf(req.body.reject);
@@ -61,6 +62,7 @@ router.put('/:postingId', function(req, res, next){
       req.posting[k] = req.body[k];
     }
   }
+  console.log("status ",req.posting.status);
   req.posting.save()
     .then(function(updatedPost){
       res.status(201).send(updatedPost);

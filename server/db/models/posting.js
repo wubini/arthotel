@@ -12,7 +12,7 @@ var schema = new mongoose.Schema({
   title: {type: String, required: true},
   description: String,
   photos: [String],
-  status: {type: String, default: "unstarted", match: /(unstarted|started|complete)/},
+  status: {type: String, default: "unstarted", match: /(unstarted|started|pendingApproval|complete)/},
   date: { type: Date, default: Date.now },
   size: String,
   tags: [String]
