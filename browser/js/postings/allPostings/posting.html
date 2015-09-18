@@ -1,8 +1,10 @@
-<div class="jobPosting">
-	<img ng-src={{posting.photos[0]}} class="img-rounded pull-left photo-thumbnail" />
+<div class="jobPosting panel-body">
+	<div class="col-sm-4">
+		<img ng-src={{posting.photos[0]}} class="img-rounded photo-thumbnail" />
+	</div>
 
-	<div class="project_info">
-		<p><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></p>
+	<div class="project_info col-sm-8">
+		<h3><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></h3>
 		<p><a ui-sref="userPage({userId: posting.client._id})">{{posting.client.displayName}}</a></p>
 		<p>{{posting.description}}</p>
 		<p>{{posting.date | date: 'short'}}</p>

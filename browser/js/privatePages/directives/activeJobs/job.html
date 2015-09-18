@@ -3,8 +3,12 @@
 	<div class="info pull-left">
 		<h4>{{job.title}}</h4>
 		<p><span class="bold">Due: </span>{{job.date}}</p>
-		<p ng-show="client">{{job.client}}</p>
-		<p ng-hide="client">{{job.artist}}</p>
+		<p ng-show="client">
+			<span class="bold">Client:</span> {{job.client.displayName}}
+		</p>
+		<p ng-hide="client">
+			<span class="bold">Artist:</span> {{job.artist.displayName}}
+		</p>
 
 	</div>
 
