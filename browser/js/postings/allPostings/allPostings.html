@@ -1,7 +1,9 @@
 <div class="container">
 	<div class="col-sm-4 pull-right">
 		<search></search>
-		<newpost-button ng-show="loggedIn"></newpost-button>
+		<div class="panel">
+			<newpost-button ng-show="loggedIn"></newpost-button>
+		</div>
 	</div>
 	<div class="col-sm-8">
 		<posting ng-repeat="posting in postings"></posting>
