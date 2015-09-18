@@ -14,7 +14,7 @@
 
 				<div class="panel">
 					<h2 class="panel-heading">Completed Projects</h2>
-					<completed-jobs ng-repeat='done in doneProjects' done='done'></completed-jobs>
+					<completed-jobs ng-repeat='done in completeArtistPostings' done='done'></completed-jobs>
 					<div class="panel-body" ng-hide="doneProjects.length !== 0">
 						<p>No completed projects</p>
 					</div>
@@ -42,7 +42,7 @@
 				</div>
 				<div class="panel">
 					<h2>Completed Projects</h2>
-					<complete-artist ng-repeat='done in doneProjects' done='done'></complete-artist>
+					<artist-complete ng-repeat='done in completeClientPostings' done='done'></artist-complete>
 					<div class="panel-body" ng-hide="doneProjects.length !== 0">
 						<p>No completed projects</p>
 					</div>
