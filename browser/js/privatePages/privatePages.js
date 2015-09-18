@@ -50,19 +50,33 @@
         .then(function(user){
           return UserFactory.unassignedPostings(user._id);
         })
+      },
+      completeArtistPostings: function(AuthService, PostingFactory){
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return PostingFactory.getDonePostsForUser(user._id)
+        })
+      },
+      completeClientPostings: function(AuthService, PostingFactory){
+        return AuthService.getLoggedInUser()
+        .then(function(user){
+          return PostingFactory.getDonePostsForUser(user._id)
+        })
       }
     }
   });
 });
 
 app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $state, user,
-  allPostings, savedPostings, requestedPostings, unassignedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
+  allPostings, completeArtistPostings, completeClientPostings, savedPostings, requestedPostings, unassignedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
   $scope.tab = $stateParams.tab;
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
   $scope.activeClientJobs = activeClientPostings;
   $scope.activeArtistJobs = activeArtistPostings;
+  $scope.completeArtistPostings = completeArtistPostings;
+  $scope.completeClientPostings = completeClientPostings;
   $scope.user = user;
   $scope.unassignedPostings = unassignedPostings;
 
