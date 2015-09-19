@@ -1,7 +1,7 @@
 <div class="col-lg-6 col-md-6 col-sm-12">
 	<h2>{{posting.title}}</h2>
 	<p><span class="bold">Location:</span> {{posting.location}}</p>
-	<p><span class="bold">Budget:</span> {{posting.priceMin}} - {{posting.priceMax}}</p>
+	<p><span class="bold">Budget:</span> ${{posting.price}} </p>
 	<p ng-show="posting.startDate"><span class="bold">Start date:</span> {{posting.startDate}}</p>
 	<p><span class="bold">Size:</span> {{posting.size}}</p>
 	<p><span class="bold">Tags:</span> <span ng-repeat="tag in project.tags">{{tag}} </span></p>

@@ -4,6 +4,15 @@ var mongoose = require('mongoose');
 var Posting = mongoose.model('Posting');
 mongoose.Promise = require('bluebird');
 
+var userIdString;
+
+router.use(function(req, res, next){
+  if(req.user){
+     userIdString = req.user._id.toString();
+  }
+   next();
+});
+
 router.get('/', function(req, res, next) {
   Posting.find()
     .populate('client')
@@ -39,12 +48,37 @@ router.put('/', function(req, res, next) {
 router.post('/', function(req, res, next){
   Posting.create(req.body.postInfo)
   .then(newPost => res.send(newPost))
+
+router.post('/add/newPost', function(req, res, next){
+  console.log('adding new post', req.body);
+
+  Posting.find({
+    client: req.user._id,
+    status: {$in: ['unstarted', 'started', 'pendingApproval']},
+    title: req.body.postInfo.title
+  })
+  .exec()
+  .then(function(post){
+    if(post.length === 0){
+      Posting.create(req.body.postInfo)
+      .then(function(newPost){
+        console.log('successfully created');
+        res.send(newPost);
+      })
+      .then(null, next);
+    }else{
+      res.send('Already exists');
+    }
+  })
+
   .then(null, next);
+
 });
 
 router.get('/:postingId', function(req, res, next) {
   res.send(req.posting);
 });
+
 
 router.put('/:postingId', (req, res, next) => {
   if(req.body.action === 'reject'){

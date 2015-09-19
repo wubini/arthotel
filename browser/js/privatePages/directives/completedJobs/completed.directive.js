@@ -5,7 +5,7 @@ app.directive('completedJobs', function() {
     scope: {
       done: '=done'
     },
-    link: function(scope, elem, attr) {
+    link: function(scope) {
       scope.show = false;
     }
   };

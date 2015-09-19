@@ -76,6 +76,17 @@ app.factory("PostingFactory", $http => {
         status: newStatus
       })
       .then(response => response.data);
+    },
+    submitReview: (postingId, newStatus, role, stars, text) => {
+      return $http.put(`/api/postings/${postingId}`, {
+        status: newStatus,
+        reviews: {
+          type: role,
+          stars: stars,
+          text: text
+        }
+      })
+      .then(response => response.data);
     }
   };
 });

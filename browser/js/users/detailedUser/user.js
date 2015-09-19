@@ -4,29 +4,53 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/users/detailedUser/user.html',
         controller: 'userPageCtrl',
         resolve: {
-          getUser: function(){
-            //get user by userID.
-          }
+          getUser: function(UserFactory, $stateParams){
+            return UserFactory.getUserById($stateParams.userId);
+          },
+          clientRating: function(PostingFactory, $stateParams){
+            return PostingFactory.getDonePostsForUser($stateParams.userId)
+            .then(function(donePostings){
+              var num = donePostings.length;
+              var total = 0;
+              donePostings.forEach(function(elem){
+                total += elem.reviews[1].stars;
+              });
+              return total/num;
+            });
+           },
+           reviews: function(PostingFactory, $stateParams){
+            return PostingFactory.getDonePostsForUser($stateParams.userId)
+            .then(function(donePostings){
+
+              return donePostings.map(function(post){
+                var review = {};
+                review.project = post.title;
+                if(post.client === $stateParams.userId){
+                  review.rating = post.reviews[1].stars;
+                  review.message = post.reviews[1].text;                  
+                  review.role = 'Client'
+
+                }
+
+                if(post.artist === $stateParams.userId){
+                  review.rating = post.reviews[0].stars;
+                  review.message = post.reviews[0].text;                  
+                  review.role = 'Artist'
+                }
+
+                return review;
+              });
+
+            });
+           }
         }
     });
 });
 
-app.controller('userPageCtrl', function ($scope, AuthService, $state) {
-  $scope.user = {
-    bio: 'hello',
-    location: 'New York, NY',
-    phone: '917 414 4468'
-  };
+app.controller('userPageCtrl', function ($scope, clientRating, AuthService, getUser, reviews) {
 
-  $scope.user.reviews=[
-    {
-      rating: '1',
-      message: 'hi'
-    },
-    {
-      rating: 5,
-      message: "message!"
-    }
-  ];
+
+  $scope.user = getUser;
+  $scope.reviews= reviews;
 
 });

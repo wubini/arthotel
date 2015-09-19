@@ -24,6 +24,27 @@ body {
   font-weight:bold;
 }
 
+.sistine-green{
+    background-color:#ced9a1;
+  
+}
+
+.full-size-photo{
+  height:30vh;
+  width:30vw;
+  overflow:hidden;
+
+}
+
+.thumbnail-photo{
+  width:8vw;
+  overflow:hidden;
+}
+
+.photo{
+  max-width:100%;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

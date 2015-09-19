@@ -2,7 +2,7 @@ app.directive('newPosting', function () {
     return {
         restrict: 'E',
         templateUrl: 'js/postings/newPosting/newPostingForm.html',
-        link: function(scope, elem, attr){
+        link: function(scope){
           
 
           $('#tagsDiv input').tagsinput({

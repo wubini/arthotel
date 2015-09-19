@@ -21,3 +21,41 @@ posting {
 		}
 	}
 }
+
+.rating {
+	span.star:hover:before, span.star:hover ~ span.star:before {
+	  content: "\f005";
+	  color: #e3cf7a;
+	}
+
+	span.star:hover {
+	  cursor: pointer;
+	}
+
+	
+
+}
+
+span.star {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+}
+
+span.star:before {
+  content: "\f006";
+  padding-right: 5px;
+  color: #777777;
+}
+
+span.clickedStar:before, span.clickedStar ~ span.star:before {
+  content: "\f005";
+  color: #e3cf7a;
+}
+
+.already-set-rating, .rating{
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  font-size: x-large;
+}

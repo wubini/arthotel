@@ -20,16 +20,22 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
 
     $scope.newPost = {
       client: currentUser._id,
-      photos: []
     };
 
+    $scope.titleIssue = false;
 
     $scope.sendPost = function(postInfo){
       if(!currentUser) return;
 
+      $scope.titleIssue = false;
+
       PostingFactory.createNewPosting(postInfo)
       .then(function(newPost){
-        $state.go('detailedPosting', {postingId:newPost._id});
+        if(newPost._id){
+          $state.go('detailedPosting', {postingId:newPost._id});
+        }else{
+          $scope.titleIssue = true;
+        }
       });
 
     };

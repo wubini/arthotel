@@ -1,8 +1,10 @@
 <div class=" col-lg-4 col-md-4 col-sm-12">
-	<img src="{{posting.client.photoUrl}}" class='img-circle'/>
+	<div class="thumbnail-photo img-circle pull-left">
+		<img src="{{posting.client.photoUrl}}" class=' photo'/>
+	</div>
 
-	<div class="client-inner pull-right">
-		<p>{{posting.client.displayName}}</p>
+	<div class="client-inner">
+		<h4>{{posting.client.displayName}}</h4>
 		<p><span class="bold">{{posting.client.businessName}}</span></p>
 		<p>{{posting.client.rating}}</p>
 	</div>
