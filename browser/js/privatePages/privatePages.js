@@ -23,11 +23,12 @@
           return UserFactory.getSavedPostingsForUser(user._id);
         });
       },
-      requestedPostings: function(AuthService, UserFactory)
+      requestedPostings: (AuthService, UserFactory) =>
       {
         return AuthService.getLoggedInUser()
-        .then(function(user)
+        .then(user =>
         {
+          console.log('here', user);
           return UserFactory.getRequestedPostingsForUser(user._id);
         });
       },
@@ -73,6 +74,7 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   $scope.tab = $stateParams.tab;
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
+  console.log('scope check', $scope.requestedPostings);
   $scope.activeClientJobs = activeClientPostings;
   $scope.activeArtistJobs = activeArtistPostings;
   $scope.completeArtistPostings = completeArtistPostings;

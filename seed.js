@@ -68,8 +68,9 @@ var seedPostings = function() {
           users[Math.floor(Math.random() * users.length)]._id
         ];
         job.artistsWhoRequested = [
-          users[Math.floor(Math.random() * users.length)]._id,
-          users[Math.floor(Math.random() * users.length)]._id
+          {user: users[Math.floor(Math.random() * users.length)]._id, time: Date.now()},
+          {user: users[Math.floor(Math.random() * users.length)]._id, time: Date.now()},
+          {user: users[Math.floor(Math.random() * users.length)]._id, time: Date.now()}
         ];
         console.log("adding job", job);
       });
