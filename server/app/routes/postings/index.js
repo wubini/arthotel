@@ -90,10 +90,7 @@ router.put('/:postingId', (req, res, next) => {
   if(req.user) {
     if(req.body.action === 'update') {
       if(req.body.section === 'Requested') {
-        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0) {
-          req.posting.artistsWhoRequested.push({user: req.user._id});
-          console.log('inside add request', req.posting.artistsWhoRequested)
-        }
+        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0) req.posting.artistsWhoRequested.push({user: req.user._id});
       } else if(req.body.section === 'Saved') {
         if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
           req.posting.artistsWhoSaved.push(req.user);
@@ -101,7 +98,6 @@ router.put('/:postingId', (req, res, next) => {
     } else if(req.body.action === 'assign') {
         req.posting.artist = req.body.accept;
         req.posting.status = "started";
-        req.posting.artistsWhoRequested = [];
     } else if(req.body.action === 'save') {
       if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
         req.posting.artistsWhoSaved.push(req.user);
