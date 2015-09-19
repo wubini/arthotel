@@ -55,7 +55,6 @@ var seedPostings = function() {
       users = allUsers;
       jobs = [{}, {}, {}];
       counter = 1;
-      console.log("Users", users)
       jobs.forEach(function(job) {
         job.client = users[Math.floor(Math.random() * users.length)]._id;
         job.location = "New York";
