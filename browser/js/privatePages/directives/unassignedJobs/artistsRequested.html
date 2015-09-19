@@ -7,6 +7,7 @@
 	</div>
 	<div class="clearfix col-sm-12">
 		<i class="fa fa-2x fa-times-circle-o pull-right text-danger" ng-click="rejectArtist(artist._id, project._id)"></i>
-		<i class="fa fa-2x fa-check-circle-o text-success"ng-click="acceptArtist(artist._id, project._id)"></i>
+		<i class="fa fa-2x fa-check-circle-o text-success"ng-click="requestForm = !requestForm"></i>
 	</div>
+	<confirm-form ng-show="requestForm"></confirm-form>
 </div>

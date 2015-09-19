@@ -7,10 +7,15 @@ app.directive('artistsRequested', function(PostingFactory, $state) {
       project: '='
     },
     link: function(scope){
-      scope.acceptArtist = function(artistId, projectId){
+      //
+      // scope.confirmForm = (artistId, projectId) => {
+      //
+      // };
+
+      scope.acceptArtist = (artistId, projectId) => {
         console.log('clicked accept artist!');
         PostingFactory.assignPostingToArtist(artistId, projectId)
-          .then(function(){
+          .then(() => {
             $state.go('privatePage', {tab: 'client'}, {reload: true});
           });
       };
