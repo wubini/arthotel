@@ -73,7 +73,6 @@ router.put('/:postingId', function(req, res, next){
     for(var k in req.body){
       if(k === 'reviews'){
         var id = req.posting[req.body[k].type];
-        console.log('right person: ', id, id._id);
         if(id.toString() === userIdString || id._id.toString() === userIdString){
           req.posting[k].push(req.body[k]);
         }
