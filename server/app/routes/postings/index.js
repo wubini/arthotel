@@ -45,10 +45,10 @@ router.put('/', function(req, res, next) {
         });
 });
 
-router.post('/', function(req, res, next){
+router.post('/', function(req, res, next) {
   Posting.create(req.body.postInfo)
-  .then(newPost => res.send(newPost))
-
+  .then(newPost => res.send(newPost));
+});
 router.post('/add/newPost', function(req, res, next){
   console.log('adding new post', req.body);
 
