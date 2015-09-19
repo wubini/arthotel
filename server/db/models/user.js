@@ -1,6 +1,8 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var Posting = mongoose.model('Posting');
+var _ = require('lodash');
 
 var schema = new mongoose.Schema({
     displayName: String,
@@ -35,6 +37,56 @@ var schema = new mongoose.Schema({
     },
     photoUrl: String,
     portfolioUrl: String
+});
+
+schema.virtual('artistRating').get(function()
+{
+  return Posting.find({artist: this._id, status:'complete'})
+  .then(function(postings)
+  {
+    if(postings.length)
+    {
+      var totalRating = 0;
+      postings.forEach(function(posting)
+      {
+        var index = _.findIndex(posting.reviews, function(rev)
+        {
+          return rev.type==='client';
+        });
+        totalRating += posting.reviews[index].stars;
+      })
+      return totalRating/postings.length();
+    }
+    else
+    {
+      return undefined;
+    }
+  })
+});
+
+schema.virtual('clientRating').get(function()
+{
+  return Posting.find({client: this._id, status:'complete'})
+  .then(function(postings)
+  {
+    if(postings.length)
+    {
+      var totalRating = 0;
+      postings.forEach(function(posting)
+      {
+        var index = _.findIndex(posting.reviews, function(rev)
+        {
+          return rev.type==='artist';
+        });
+        totalRating += posting.reviews[index].stars;
+      })
+      return totalRating/postings.length();
+    }
+    else
+    {
+      return undefined;
+    }
+  })
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
