@@ -12,6 +12,7 @@ var schema = new mongoose.Schema({
   title: {type: String, required: true},
   description: String,
   photos: [String],
+  price: Number,
   status: {type: String, default: "unstarted", match: /(unstarted|started|pendingApproval|complete)/},
   date: { type: Date, default: Date.now },
   size: String,
