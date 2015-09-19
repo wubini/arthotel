@@ -7,13 +7,15 @@ mongoose.Promise = require('bluebird');
 var userIdString;
 
 router.use(function(req, res, next){
-   userIdString = req.user._id.toString();
+  if(req.user){
+     userIdString = req.user._id.toString();
+  }
    next();
 });
 
 router.get('/', function(req, res, next) {
   Posting.find()
-    .populate('client', 'artist')
+    .populate('client')
     .then(function(postings) {
       res.send(postings);
     });
@@ -87,6 +89,8 @@ router.put('/:postingId', function(req, res, next){
     for(var k in req.body){
       if(k === 'reviews'){
         var id = req.posting[req.body[k].type];
+        console.log('id ', id);
+        console.log(userIdString);
         if(id.toString() === userIdString || id._id.toString() === userIdString){
           req.posting[k].push(req.body[k]);
         }
