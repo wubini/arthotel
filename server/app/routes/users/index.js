@@ -66,15 +66,16 @@ router.get('/:userId/postings', (req, res, next) => {
 
 router.get('/:userId/requested', (req, res, next) => {
   Posting.find()
-  .where({artistsWhoRequested: req.foundUser._id})
+  .where('artistsWhoRequested')
+  .elemMatch({user: req.params.userId})
   .populate('client')
   .then(postings => res.send(postings));
 });
 
-router.get('/:userId/unassigned', function(req, res, next){
+router.get('/:userId/unassigned', (req, res, next) => {
   Posting.find({client:req.foundUser._id, artist: {$exists: false}})
   .populate('artistsWhoRequested')
-  .then(function(postings){
+  .then(postings => {
     console.log(postings);
     res.send(postings);
   })
@@ -84,9 +85,7 @@ router.get('/:userId/unassigned', function(req, res, next){
 router.get('/:userId/active/artist', function(req, res, next){
   Posting.find({artist: req.foundUser._id, status:{$in:['started', 'pendingApproval']} })
   .populate('client')
-  .then(function(postings){
-    res.send(postings);
-  });
+  .then(postings => res.send(postings));
 });
 
 router.get('/:userId/active/client', function(req, res, next){

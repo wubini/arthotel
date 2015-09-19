@@ -26,7 +26,7 @@ app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParam
           PostingFactory.requestPosting(postingId)
           .then(() => {
             $state.go($state.current, $stateParams, {reload: true});
-          })
+          });
         };
 
         AuthService.getLoggedInUser()

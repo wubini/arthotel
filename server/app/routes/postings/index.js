@@ -2,6 +2,7 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var Posting = mongoose.model('Posting');
+var _ = require('lodash');
 mongoose.Promise = require('bluebird');
 
 var userIdString;
@@ -89,8 +90,10 @@ router.put('/:postingId', (req, res, next) => {
   if(req.user) {
     if(req.body.action === 'update') {
       if(req.body.section === 'Requested') {
-        if (req.posting.artistsWhoRequested.indexOf(req.user._id) < 0)
-          req.posting.artistsWhoRequested.push(req.user);
+        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0) {
+          req.posting.artistsWhoRequested.push({user: req.user._id});
+          console.log('inside add request', req.posting.artistsWhoRequested)
+        }
       } else if(req.body.section === 'Saved') {
         if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
           req.posting.artistsWhoSaved.push(req.user);
