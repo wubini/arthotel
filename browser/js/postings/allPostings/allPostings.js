@@ -27,16 +27,19 @@ app.controller('allPostingsCtrl', function ($scope, activePostings, AuthService,
 
   if($stateParams.search)
   {
-    $scope.searchTerms = $stateParams.search.split(" ");
+    $scope.searchTerms = $stateParams.search.toLowerCase().split(" ");
     $scope.postings = activePostings.filter(function(posting)
     {
       var contains = true;
+
+      var tagsWordArray = posting.tags;
+      var titleWordArray = posting.title.toLowerCase().split(' ');
+      var clientNameWordArray = posting.client.displayName.toLowerCase().split(' ');
+
       $scope.searchTerms.forEach(function(term)
       {
-        console.log(`checking ${posting.title} for term ${term}`);
-        if(posting.tags.indexOf(term)===-1)
+        if(tagsWordArray.indexOf(term)===-1 && titleWordArray.indexOf(term)===-1 && clientNameWordArray.indexOf(term)===-1)
         {
-          console.log("not found in tags", posting.tags);
           contains = false;
         }
       })
