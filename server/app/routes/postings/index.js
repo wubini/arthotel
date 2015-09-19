@@ -65,12 +65,17 @@ router.put('/:postingId', function(req, res, next){
     req.posting.artistsWhoRequested = [];
   }else{
     for(var k in req.body){
-      req.posting[k] = req.body[k];
+      if(k === 'reviews'){
+        req.posting[k].push(req.body[k]);
+      }else{
+        req.posting[k] = req.body[k];
+      }
     }
   }
   console.log("status ",req.posting.status);
   req.posting.save()
     .then(function(updatedPost){
+      console.log('updated ',updatedPost );
       res.status(201).send(updatedPost);
 
     })
