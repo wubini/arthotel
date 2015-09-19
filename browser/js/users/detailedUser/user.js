@@ -18,14 +18,25 @@ app.config(function ($stateProvider) {
               return total/num;
             });
            },
-           clientReviews: function(PostingFactory, $stateParams){
+           reviews: function(PostingFactory, $stateParams){
             return PostingFactory.getDonePostsForUser($stateParams.userId)
             .then(function(donePostings){
 
               return donePostings.map(function(post){
                 var review = {};
-                review.rating = post.reviews[1].stars;
-                review.message = post.reviews[1].text;
+                review.project = post.title;
+                if(post.client === $stateParams.userId){
+                  review.rating = post.reviews[1].stars;
+                  review.message = post.reviews[1].text;                  
+                  review.role = 'Client'
+
+                }
+
+                if(post.artist === $stateParams.userId){
+                  review.rating = post.reviews[0].stars;
+                  review.message = post.reviews[0].text;                  
+                  review.role = 'Artist'
+                }
 
                 return review;
               });
@@ -36,13 +47,10 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('userPageCtrl', function ($scope, clientRating, AuthService, getUser, clientReviews) {
+app.controller('userPageCtrl', function ($scope, clientRating, AuthService, getUser, reviews) {
 
 
   $scope.user = getUser;
-
-  console.log(clientReviews);
-
-  $scope.clientReviews= clientReviews;
+  $scope.reviews= reviews;
 
 });
