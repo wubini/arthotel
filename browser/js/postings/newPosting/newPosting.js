@@ -28,7 +28,6 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
       if(!currentUser) return;
       postInfo.tags = postInfo.tags.toLowerCase().split(',');
       $scope.titleIssue = false;
-      postInfo.tags = postInfo.tags.split(',');
 
       PostingFactory.createNewPosting(postInfo)
       .then(function(newPost){
