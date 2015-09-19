@@ -104,8 +104,9 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   $scope.activeArtistJobsCount = size(activeArtistPostings);
   $scope.savedPostingsCount = size(savedPostings);
 
-
+  $scope.requestForm = false;
   $scope.request = 'request';
   $scope.saved = 'saved';
+
 
 });
