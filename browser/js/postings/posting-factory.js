@@ -16,43 +16,58 @@ app.factory("PostingFactory", $http => {
       return $http.get(`/api/postings/${id}`)
         .then(response => response.data);
     },
-    savePostingToCart: id => {
-      return $http.post(`/api/postings/${id}`, {
-          action: "save"
-        })
-        .then(response => response.data);
-    },
-    requestPosting: id => {
-      return $http.post(`/api/postings/${id}`, {
-          action: "request"
-        })
-        .then(response => response.data);
-    },
+    // checks when a user logs in if there were items in the cart of the guest
+    // moves them to the users logged in cart
     saveCartPostingsToUser: () => {
       return $http.put(`/api/postings`)
         .then(response => response.data);
     },
+    // creates a new posting
     createNewPosting: postInfo => {
       return $http.post(`/api/postings/`, {
         postInfo
       })
         .then(response => response.data);
     },
+    //saves a posting to a users cart
+    savePostingToCart: id => {
+      return $http.put(`/api/postings/${id}`, {
+          action: "save"
+        })
+        .then(response => response.data);
+    },
+    // for requesting a posting and having it save to a users requested postings
+    //section
+    requestPosting: postingId => {
+      return $http.put(`/api/postings/${postingId}`, {
+          action: 'update',
+          section: 'Requested'
+        })
+        .then(response => response.data);
+    },
+    // Sets an Artist to be artist who is doing the work. Removes all from artistsWhoRequested
+    // Sets status to "started"
+    // sets posting.artist to artist
     assignPostingToArtist: (artist, postingId) => {
       return $http.put(`/api/postings/${postingId}`, {
-        accept: artist
+        action: "assign",
+        section: 'Requested'
       })
         .then(response => response.data);
     },
+    // for rejecting a request by an artist. Removes them from the array of artistsWhoRequested
     rejectArtist: (artist, postingId) => {
       return $http.put(`/api/postings/${postingId}`, {
-        reject: artist
+        action: 'reject',
+        section: 'Requested',
       })
         .then(response => response.data);
     },
+    // Removes an artistsID from artistsWhoSaved on posting page
     removeSaveArtist: (artist, postingId) => {
-      return $http.put(`/api/postings/${postingId}/save`, {
-        reject: artist
+      return $http.put(`/api/postings/${postingId}`, {
+        action: 'reject',
+        section: 'Saved'
       })
         .then(response => response.data);
     },
