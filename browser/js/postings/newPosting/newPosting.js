@@ -20,7 +20,6 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
 
     $scope.newPost = {
       client: currentUser._id,
-      photos: []
     };
 
     $scope.titleIssue = false;
