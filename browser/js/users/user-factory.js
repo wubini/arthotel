@@ -1,4 +1,4 @@
-app.factory("UserFactory", function($http)
+app.factory("UserFactory", function($http, PostingFactory)
 {
   return {
     getAllUsers: function()
