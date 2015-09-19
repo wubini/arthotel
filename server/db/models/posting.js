@@ -11,7 +11,7 @@ var schema = new mongoose.Schema({
   location: String,
   title: {type: String, required: true},
   description: String,
-  photos: [String],
+  photos: [{type: String, default: 'js/common/directives/navbar/michelangelo-hands.jpg'}],
   price: Number,
   status: {type: String, default: "unstarted", match: /(unstarted|started|pendingApproval|complete)/},
   date: { type: Date, default: Date.now },
@@ -24,4 +24,10 @@ var schema = new mongoose.Schema({
   }]
 });
 
+schema.pre('save', function(next){
+  if(this.isNew && 0 === this.photos.length){
+    this.photos = ['js/common/directives/navbar/michelangelo-hands.jpg'];
+  }
+  next();
+})
 mongoose.model('Posting', schema);
