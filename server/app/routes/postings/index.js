@@ -4,9 +4,16 @@ var mongoose = require('mongoose');
 var Posting = mongoose.model('Posting');
 mongoose.Promise = require('bluebird');
 
+var userIdString;
+
+router.use(function(req, res, next){
+   userIdString = req.user._id.toString();
+   next();
+});
+
 router.get('/', function(req, res, next) {
   Posting.find()
-    .populate('client')
+    .populate('client', 'artist')
     .then(function(postings) {
       res.send(postings);
     });
@@ -53,26 +60,28 @@ router.get('/:postingId', function(req, res, next) {
 });
 
 router.put('/:postingId', function(req, res, next){
-  console.log("req.body in put posting", req.body);
-  if(req.body.reject){
+  if(userIdString === req.posting.client._id.toString() && req.body.reject){
     console.log("Rejected! ", req.body);
     var index = req.posting.artistsWhoRequested.indexOf(req.body.reject);
     req.posting.artistsWhoRequested.splice(index,1);
 
-  }else if(req.body.accept){
+  }else if(userIdString === req.posting.client._id.toString() && req.body.accept){
     req.posting.artist = req.body.accept;
     req.posting.status = "started";
     req.posting.artistsWhoRequested = [];
   }else{
     for(var k in req.body){
       if(k === 'reviews'){
-        req.posting[k].push(req.body[k]);
+        var id = req.posting[req.body[k].type];
+        console.log('right person: ', id, id._id);
+        if(id.toString() === userIdString || id._id.toString() === userIdString){
+          req.posting[k].push(req.body[k]);
+        }
       }else{
         req.posting[k] = req.body[k];
       }
     }
   }
-  console.log("status ",req.posting.status);
   req.posting.save()
     .then(function(updatedPost){
       console.log('updated ',updatedPost );
