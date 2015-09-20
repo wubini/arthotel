@@ -1,25 +1,71 @@
 <div class="col-lg-6 col-md-6 col-sm-12">
-	<i class="fa fa-2x fa-pencil-square pull-right" ng-hide="editing" ng-click="toggleEditing()"></i>
+	<div ng-show="editable">
+		<i class="fa fa-2x fa-pencil-square pull-right" ng-hide="editing" ng-click="toggleEditing()"></i>
+		<i class="fa fa-2x fa-floppy-o pull-right" ng-show="editing" ng-click="toggleEditing()"></i>
+	</div>
 	<div>
-		{{editing}}
-		<h2 contenteditable="{{editing}}">{{posting.title}}</h2> 
+		<div class="form-group clearfix">
+			<h2 ng-hide="editing">{{posting.title}}</h2> 
 
-		<p>
-			<span class="bold">Location:</span> 
-			<span contenteditable="{{editing}}">{{posting.location || 'unspecified'}}</span>
-		</p>
-		<p>
-			<span class="bold">Budget:</span> 
-			$<span contenteditable="{{editing}}">{{posting.price}} </span>
-		</p>
-		<p ng-show="posting.startDate">
-			<span class="bold">Start date:</span> 
-			<span contenteditable="{{editing}}">{{posting.startDate || 'unspecified'}}</span>
-		</p>
-		<p>
-			<span class="bold">Size:</span> 
-			<span contenteditable="{{editing}}">{{posting.size || 'unspecified'}}</span>
-		</p>
-		<p><span class="bold">Tags:</span> <span ng-repeat="tag in project.tags">{{tag}} </span></p>
+			<input type="text" class="form-control input-lg" ng-model="posting.title" value="{{posting.title}}" ng-change="change = true" ng-show="editing" />
+		</div>
+
+		<div class="form-group clearfix">
+			<div class="col-sm-3">
+				<label class="bold">Location:</label> 
+			</div>
+			<div class="col-sm-9">
+				<span ng-hide="editing">{{posting.location || 'unspecified'}}</span>
+				<input class="form-control" type="text" ng-model="posting.location" value="{{posting.location}}" ng-show="editing" ng-change="change = true"/>
+			</div>
+		</div>
+		<div class="form-group clearfix">
+			<div class="col-sm-3">
+				<label class="bold">Budget:</label> 
+			</div>		
+			<div class="col-sm-9">	
+				<span ng-hide="editing">${{posting.price}} </span>
+				<div class="input-group" ng-show="editing">
+				  <span class="input-group-addon">$</span>
+				  <input type="number" class="form-control" name="price" ng-change="change = true" ng-model="posting.price" value="{{posting.price}}" required/>
+				</div>
+
+			</div>
+		</div>
+		<div class="form-group clearfix">
+			<div class="col-sm-3">
+				<label class="bold">Start date:</label> 
+			</div>			
+
+			<div class="col-sm-9">	
+
+				<span ng-hide="editing">{{posting.startDate || 'unspecified'}}</span>
+				<input class="form-control" type="text" ng-model="posting.startDate" ng-change="change = true" value="{{posting.startDate}}" ng-show="editing" />
+			</div>
+		</div>
+		<div class="form-group clearfix">
+			<div class="col-sm-3">
+				<label class="bold">Size:</label> 
+			</div>	
+			
+			<div class="col-sm-9">	
+
+				<span ng-hide="editing">{{posting.size || 'unspecified'}}</span>
+
+				<input class="form-control" type="text" ng-model="posting.size" ng-change="change = true" value="{{posting.size}}" ng-show="editing" />
+			</div>
+		</div>
+		<div class="form-group clearfix">
+			<div class="col-sm-3">
+				<label class="bold">Tags:</label> 
+			</div>	
+			<div class="col-sm-9">
+				<span ng-hide="editing" ng-repeat="tag in project.tags">{{tag}} </span>
+				<div id="tagsDiv" ng-show="editing">
+					<input class="form-control" type="text" ng-model="posting.tags" ng-change="change = true" data-role="tagsinput" ng-keypress="tagify($event)" />
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>

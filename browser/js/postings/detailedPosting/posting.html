@@ -3,7 +3,8 @@
 	<project-info></project-info>
 	<save-request></save-request>
 	<div class="jumbotron bio col-md-6 col-sm-12">
-		{{posting.description}}
+		<p ng-hide="editing">{{posting.description}}</p>
+		<input type="textarea" class="form-control" ng-model="posting.description" value="posting.description" ng-show="editing" ng-change="change = true"/>
 	</div>
 	<div class="col-md-6 col-sm-12">
       <img class="photo" ng-src={{posting.photos[0]}}></img>

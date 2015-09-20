@@ -3,11 +3,9 @@ app.directive('projectInfo', function () {
         restrict: 'E',
         templateUrl: 'js/postings/detailedPosting/projectInfo.html',
         link: function(scope){
-          scope.editing = false;
-
-          scope.toggleEditing = function(){
-            scope.editing = !scope.editing;
-          }
+          $('#tagsDiv input').tagsinput({
+            confirmKeys: [13, 44, 32]
+          });
         }
     };
 });
