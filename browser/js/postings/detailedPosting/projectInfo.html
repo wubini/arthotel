@@ -1,23 +1,22 @@
 <div class="col-lg-6 col-md-6 col-sm-12">
-	<i class="fa fa-2x fa-pencil-square pull-right" ng-hide="editing" ng-click="toggleEditing()"></i>
+<button type="button" class="btn btn-info" ng-hide="editing" ng-click="toggleEditing()">Edit Post</button>
+		<button type="button" class="btn btn-success" ng-hide="!editing" ng-click="toggleEditing(); updatePosting()">Confirm Edit</button>
 	<div>
-		{{editing}}
-		<h2 contenteditable="{{editing}}">{{posting.title}}</h2> 
-
+		<h2 contenteditable="{{editing}}" class='posting'>{{posting.title}}</h2>
 		<p>
-			<span class="bold">Location:</span> 
+			<span class="bold">Location:</span>
 			<span contenteditable="{{editing}}">{{posting.location || 'unspecified'}}</span>
 		</p>
 		<p>
-			<span class="bold">Budget:</span> 
-			$<span contenteditable="{{editing}}">{{posting.price}} </span>
+			<span class="bold">Budget:</span>
+			<span contenteditable="{{editing}}">{{posting.price}}</span>
 		</p>
 		<p ng-show="posting.startDate">
-			<span class="bold">Start date:</span> 
+			<span class="bold">Start date:</span>
 			<span contenteditable="{{editing}}">{{posting.startDate || 'unspecified'}}</span>
 		</p>
 		<p>
-			<span class="bold">Size:</span> 
+			<span class="bold">Size:</span>
 			<span contenteditable="{{editing}}">{{posting.size || 'unspecified'}}</span>
 		</p>
 		<p><span class="bold">Tags:</span> <span ng-repeat="tag in project.tags">{{tag}} </span></p>

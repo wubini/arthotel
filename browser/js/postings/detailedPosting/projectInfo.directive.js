@@ -1,13 +1,21 @@
-app.directive('projectInfo', function () {
+app.directive('projectInfo', () => {
     return {
         restrict: 'E',
         templateUrl: 'js/postings/detailedPosting/projectInfo.html',
-        link: function(scope){
-          scope.editing = false;
+        controller: ($scope, PostingFactory) => {
+            $scope.editing = false;
+            $scope.beforeEdit = {};
 
-          scope.toggleEditing = function(){
-            scope.editing = !scope.editing;
-          }
+            $scope.toggleEditing = () => $scope.editing = !$scope.editing;
+            _.assign($scope.beforeEdit, $scope.posting);
+
+            $scope.restoreValueToBefore = () =>
+              _.assign($scope.posting, $scope.beforeEdit);
+
+            $scope.updatePosting = () => {
+              PostingFactory
+            }
+
         }
     };
 });

@@ -5,7 +5,7 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
 
     $locationProvider.html5Mode(true);
-    
+
     if (window.location.hash && window.location.hash === '#_=_') {
         window.location.hash = '';
         window.location.href=window.location.href.slice(0, -1);
@@ -57,4 +57,3 @@ app.run(function ($rootScope, AuthService, $state) {
     });
 
 });
-
