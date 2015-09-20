@@ -31,8 +31,6 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
           $scope.editable = currentUser.isAdmin || currentUser._id === $scope.posting.client._id;
         }
 
-        console.log($scope.editable);
-
         $scope.toggleEditing = function(){
             $scope.editing = !$scope.editing;
 
