@@ -2,6 +2,8 @@
 var path = require('path');
 var express = require('express');
 var app = express();
+var stripe = require("stripe")('sk_test_6waNZsHTarCoDzWYcCuOOuCj')
+
 module.exports = app;
 
 // Pass our express application pipeline into the configuration
@@ -31,6 +33,26 @@ app.use(function (req, res, next) {
 
 app.get('/*', function (req, res) {
     res.sendFile(app.get('indexHTMLPath'));
+});
+
+app.post("/charge", function(req, res){
+  console.log(req.body);
+  var stripeToken = req.body.stripeToken;
+
+  var charge = stripe.charges.create({
+    amount: req.body, // amount in cents, again
+    currency: "usd",
+    source: stripeToken,
+    description: "Example charge"
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      // The card has been declined
+    }
+    else{
+      // res.json(charge);
+      res.redirect('/me/client');
+    }
+  });
 });
 
 // Error catching endware.
