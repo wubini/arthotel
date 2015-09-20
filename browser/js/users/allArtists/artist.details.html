@@ -1,13 +1,11 @@
 <div class="col-sm-4">
-  <img ng-src={{artist.photoUrl}} class="img-rounded photo thumbnail-photo" />
-</div>
-
-<div class="project_info col-sm-8">
-  <h3><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></h3>
-  <p><a ui-sref="userPage({userId: posting.client._id})">{{posting.client.displayName}}</a></p>
-  <p>{{artist.displayName}}</p>
-  <p>Rating: {{artist.artistRating | number: 2}}</p>
-  <p>INSERT ARTIST PAST PROJECTS HERE</p>
-</div>
-
+  <div class="row">
+    <img ng-src={{artist.photoUrl}} class="img-rounded photo thumbnail-photo" />
+  </div>
+  <div class="row">
+    <a ui-sref="userPage({userId: artist._id})"><h3>{{artist.displayName}}</h3></a>
+    <p>Rating: {{artist.artistRating | number: 2}}</p>
+    <p>Completed Projects: </p>
+    <p>Tags: </p>
+  </div>
 </div>
