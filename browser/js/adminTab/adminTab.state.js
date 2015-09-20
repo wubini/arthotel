@@ -10,6 +10,12 @@ app.config(function ($stateProvider) {
           },
           allPostings: function(PostingFactory){
             return PostingFactory.getAllPostings();
+          },
+          allUsers: function(UserFactory){
+            return UserFactory.getAllUsers()
+            .then(function(users){
+              return users;
+            });
           }
         }
     });
