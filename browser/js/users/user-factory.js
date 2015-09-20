@@ -39,6 +39,10 @@ app.factory("UserFactory", function($http, PostingFactory)
     {
       return $http.put('/api/users/'+editedUser._id, {user: editedUser})
       .then(response => response.data);
+    },
+    getSessionCart: function()
+    {
+
     }
   };
 });
