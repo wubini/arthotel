@@ -54,6 +54,15 @@ body {
   max-width:100%;
 }
 
+  .btn-green{
+    color:#ced9a1;
+  }
+
+.inline{
+  display:inline-block;
+  vertical-align:middle;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
