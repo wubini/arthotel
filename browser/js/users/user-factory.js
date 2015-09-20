@@ -42,7 +42,7 @@ app.factory("UserFactory", function($http, PostingFactory)
     },
     getSessionCart: function()
     {
-
+      return
     }
   };
 });
