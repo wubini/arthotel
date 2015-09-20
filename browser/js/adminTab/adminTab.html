@@ -1,0 +1,46 @@
+<!--
+	see all current projects:
+		title
+		client
+		artist
+		status
+		price
+		date
+-->
+<div class="form-control">
+	<div class="col-sm-12">
+		<div class="form-group col-sm-6">
+
+			<div class="input-group">
+		      <select class="form-control" ng-model="filter" ng-change="filterStatus()">
+					<option ng-repeat="status in statuses" value="{{status.status}}">{{status.show}}</option>
+				</select>
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button">Filter by status</button>
+		      </span>
+		    </div>
+
+		</div>
+
+		<search></search>
+	</div>
+
+	<div class="panel">
+		<div class="panel-heading"><h3>Projects</h3></div>
+
+		<div class="panel-body">
+			<posting ng-repeat="posting in postings  | filter: filter: strict"></posting>
+		</div>
+	</div>
+
+	<div class="panel">
+		<div class="panel-heading"><h3>Users</h3></div>
+
+		<div class="panel-body">
+
+			<div class="container row panel">
+			    <artist-details ng-repeat="artist in allUsers" artist="artist"></artist-details>
+			  </div>
+		</div>
+	</div>
+</div>

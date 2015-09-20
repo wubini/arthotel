@@ -23,11 +23,12 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
         $scope.editing = false;
         $scope.change = false;
 
-        if(currentUser){
-          $scope.editable = currentUser._id === $scope.posting.client._id;
-        }
         if($scope.posting.artistsWhoRequested.length > 0){
           $scope.editable = false;
+        }
+
+        if(currentUser){
+          $scope.editable = currentUser.isAdmin || currentUser._id === $scope.posting.client._id;
         }
 
         $scope.toggleEditing = function(){
