@@ -95,7 +95,8 @@ app.factory("PostingFactory", $http => {
         price: updatedPost.price,
         startDate: updatedPost.startDate,
         size: updatedPost.size,
-        tags: updatedPost.tags
+        tags: updatedPost.tags,
+        photos: updatedPost.photos
       })
       .then(response => response.data)
     }
