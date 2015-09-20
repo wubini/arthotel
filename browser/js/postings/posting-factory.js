@@ -94,6 +94,18 @@ app.factory("PostingFactory", $http => {
         }
       })
       .then(response => response.data);
+    },
+    updatePost: (updatedPost) => {
+      return $http.put(`/api/postings/${updatedPost._id}`, {
+        title: updatedPost.title,
+        location: updatedPost.location,
+        price: updatedPost.price,
+        startDate: updatedPost.startDate,
+        size: updatedPost.size,
+        tags: updatedPost.tags,
+        photos: updatedPost.photos
+      })
+      .then(response => response.data)
     }
   };
 });

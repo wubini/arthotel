@@ -15,7 +15,11 @@ app.directive('projectInfo', () => {
             $scope.updatePosting = () => {
               PostingFactory
             }
-
+          },
+          link: scope => {
+            $('#tagsDiv input').tagsinput({
+              confirmKeys: [13, 44, 32]
+            });
         }
     };
 });

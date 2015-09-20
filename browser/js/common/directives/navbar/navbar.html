@@ -13,7 +13,10 @@
             </li>
         </ul>
 
-        <fb ng-show="!user" class="pull-right"></fb>
+        <div ng-show="!user" class="pull-right">
+            <login class="inline"></login>
+            <fb class="inline"></fb>
+        </div>
 
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.displayName }}!</span>

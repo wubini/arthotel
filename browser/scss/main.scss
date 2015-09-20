@@ -6,11 +6,6 @@ body {
   background: #fdfdfd;
 }
 
-.second-nav{
-  margin-top: -4em;
-}
-
-
 
 @mixin clearfix {
   &:after {
@@ -52,6 +47,15 @@ body {
 
 .photo{
   max-width:100%;
+}
+
+  .btn-green{
+    color:#ced9a1;
+  }
+
+.inline{
+  display:inline-block;
+  vertical-align:middle;
 }
 
 @import 'directives/main';

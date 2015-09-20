@@ -2,7 +2,7 @@ job{
 	.info{
 		margin-left:1%;
 		vertical-align:text-top;
-	}
+	};
 
 	img, .img-thumbnail{
 		height:100%;
@@ -10,7 +10,25 @@ job{
 	}
 }
 
+.photo-extend {
+	width: 100%;
+	height: auto;
+}
+
+.atAGlance {
+	margin-top: 1.4em;
+}
+
+.second-nav {
+	margin-top: -4em;
+}
+
 .active-tab{
 	color: red;
 	background-color: blue;
+}
+
+.privatePageContent {
+	background-color: #e4e6af;
+	background-image: url(http://www.transparenttextures.com/patterns/45-degree-fabric-dark.png);
 }

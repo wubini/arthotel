@@ -7,14 +7,39 @@ app.config(function ($stateProvider) {
           posting: function(PostingFactory, $stateParams)
           {
             return PostingFactory.getPostingById($stateParams.postingId);
+          },
+          currentUser: function(AuthService)
+          {
+            return AuthService.getLoggedInUser();
           }
         }
     });
 });
 
-app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParams, posting, PostingFactory) {
+app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state, $stateParams, posting, PostingFactory) {
         $scope.posting = posting;
         $scope.showRequest = true;
+
+        $scope.editing = false;
+        $scope.change = false;
+
+        if(currentUser){
+          $scope.editable = currentUser._id === $scope.posting.client._id;
+        }
+        if($scope.posting.artistsWhoRequested.length > 0){
+          $scope.editable = false;
+        }
+
+        $scope.toggleEditing = function(){
+            $scope.editing = !$scope.editing;
+
+            if(!$scope.editing && $scope.change){
+              PostingFactory.updatePost($scope.posting)
+              .then(() => {
+                $state.go($state.current, $stateParams, {reload: true});
+              })
+            }
+          }
 
         $scope.savePostingToCart = (postingId) => {
           PostingFactory.savePostingToCart(postingId)
@@ -63,5 +88,9 @@ app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParam
               $state.go($state.current,$stateParams, {reload: true});
           });
         };
+
+      
+
+
 
 });
