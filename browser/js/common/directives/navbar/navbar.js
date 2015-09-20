@@ -12,7 +12,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
                 { label: 'Projects', state: 'allPostings({search: undefined})' },
-                { label: 'Me', state: 'privatePage({tab: "artist"})', auth: true },
+                { label: 'Me', state: 'privatePage.artistTab', auth: true },
                 { label: 'Find an Artist', state: 'allArtists'}
             ];
 

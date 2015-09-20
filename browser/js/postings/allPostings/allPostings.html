@@ -1,11 +1,12 @@
 <div class="container">
-	<div class="col-sm-4 pull-right">
-		<search></search>
-		<div class="panel">
-			<newpost-button ng-show="loggedIn"></newpost-button>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="panel">
+				<newpost-button ng-show="loggedIn"></newpost-button>
+			</div>
 		</div>
 	</div>
-	<div class="col-sm-8">
+	<div class="row">
 		<posting ng-repeat="posting in postings"></posting>
 	</div>
 </div>

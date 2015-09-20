@@ -1,0 +1,27 @@
+<div>
+  <div class="col-lg-6 col-sm-6">
+    <div class="panel">
+      <h2 class="panel-heading">Current Projects</h2>
+      <job ng-repeat="job in activeClientJobs" ></job>
+      <div class="panel-body" ng-hide="activeClientJobs.length !== 0">
+        <p>No active projects</p>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Completed Projects</h2>
+      <artist-complete ng-repeat='done in completeClientPostings' done='done'></artist-complete>
+      <div class="panel-body" ng-hide="doneProjects.length !== 0">
+        <p>No completed projects</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-sm-6">
+    <div class="panel">
+      <h2 class="panel-heading">Projects that Need Artists</h2>
+      <unassigned-jobs ng-repeat='project in unassignedPostings' project='project'></unassigned-jobs>
+      <div class="panel-body" ng-hide="unassignedPostings.length !== 0">
+        <p>No pending projects</p>
+      </div>
+    </div>
+  </div>
+</div>

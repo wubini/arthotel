@@ -1,13 +1,18 @@
-<row ng-click='show = !show'>
-<img class='col-md-6' ng-src={{done.photos[0]}}>
-  <div class='col-md-6 '>
-    <h1>{{done.title}}</h1>
-    <p>{{done.photos}}</p>
-    <p>{{done.description}}</p>
-    <p>{{done.location}}</p>
-    <p>{{done.date | date: 'medium'}}</p>
-  </div>
-    <div ng-show='show'>
-      <complete-artist ng-repeat="artist in done.artist" artist='artist'></complete-artist>
+<div class = "col-sm-4">
+    <div class ="row">
+      <div class = "col-sm-12">
+        <img style = "width: 100%; height:auto" src="http://lorempixel.com/400/400/abstract/"/>
+      </div>
     </div>
-</row>
+    <div class = "row">
+      <div class='col-sm-12 '>
+          <h3 >{{done.title}}</h3>
+          <p>{{done.description}}</p>
+          <p>{{done.location}}</p>
+          <p>{{done.date | date: 'medium'}}</p>
+          <div ng-show='show'>
+            <complete-artist ng-repeat="artist in done.artist" artist='artist'></complete-artist>
+          </div>
+      </div>
+    </div>
+</div>

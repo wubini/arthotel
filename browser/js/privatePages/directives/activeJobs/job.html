@@ -1,10 +1,10 @@
-<div class='panel-body col-sm-12' ng-class-even="'sistine-green'">
+<div class='col-sm-12' ng-class-even="'sistine-green'">
 
 	<div class="info col-sm-12">
 		<a ui-sref="detailedPosting({postingId: job._id})"><h4>{{job.title}}</h4></a>
 		<p><span class="bold">Due: </span>{{job.date}}</p>
 		<div ng-show="tab==='artist'">
-			<p><span class="bold">Client:</span> 
+			<p><span class="bold">Client:</span>
 				<a ui-sref="userPage({userId: job.client._id})">{{job.client.displayName}}
 				</a>
 			</p>
@@ -12,7 +12,7 @@
 			<p ng-show="job.status==='pendingApproval'">Pending client approval</p>
 		</div>
 		<div ng-show="tab==='client'">
-			<p><span class="bold">Artist:</span> 
+			<p><span class="bold">Artist:</span>
 				<a ui-sref="userPage({userId: job.artist._id})">
 					{{job.artist.displayName}}
 				</a>

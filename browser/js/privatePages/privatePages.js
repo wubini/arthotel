@@ -1,6 +1,6 @@
  app.config(function($stateProvider) {
   $stateProvider.state('privatePage', {
-    url: '/me/:tab',
+    url: '/me',
     templateUrl: 'js/privatePages/privatePage.html',
     controller: 'privatePageCtrl',
     resolve: {
@@ -65,13 +65,13 @@
         })
       }
     }
-  });
-});
+  })
+})
+
 
 app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $state, user,
   allPostings, completeArtistPostings, completeClientPostings, savedPostings, requestedPostings, unassignedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
   //this will be dynamically changed
-  $scope.tab = $stateParams.tab;
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
   console.log('scope check', $scope.requestedPostings);
