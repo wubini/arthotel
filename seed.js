@@ -33,7 +33,8 @@ var seedUsers = function() {
   }, {
     displayName: "Beckylee Dell",
     email: 'beckylee',
-    password: '123'
+    password: '123',
+    isAdmin: 'true'
   }, {
     displayName: "Austin Shoecraft",
     email: 'austin',
