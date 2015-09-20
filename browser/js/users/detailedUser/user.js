@@ -27,14 +27,14 @@ app.config(function ($stateProvider) {
                 review.project = post.title;
                 if(post.client === $stateParams.userId){
                   review.rating = post.reviews[1].stars;
-                  review.message = post.reviews[1].text;                  
+                  review.message = post.reviews[1].text;
                   review.role = 'Client'
 
                 }
 
                 if(post.artist === $stateParams.userId){
                   review.rating = post.reviews[0].stars;
-                  review.message = post.reviews[0].text;                  
+                  review.message = post.reviews[0].text;
                   review.role = 'Artist'
                 }
 

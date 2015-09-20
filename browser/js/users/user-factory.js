@@ -42,7 +42,8 @@ app.factory("UserFactory", function($http, PostingFactory)
     },
     getSessionCart: function()
     {
-      return
+      return $http.get('/api/cart')
+      .then(response => response.data);
     }
   };
 });
