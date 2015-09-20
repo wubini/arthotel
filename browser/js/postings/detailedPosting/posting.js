@@ -48,7 +48,7 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
             $state.go($state.current, $stateParams, {reload: true});
           })
         };
-
+        
         AuthService.getLoggedInUser()
         .then(function(user)
         {
@@ -90,7 +90,7 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
           });
         };
 
-      
+
 
 
 
