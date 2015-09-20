@@ -5,11 +5,10 @@ var Posting = mongoose.model('Posting');
 var _ = require('lodash');
 mongoose.Promise = require('bluebird');
 
-var userIdString;
 
 router.use(function(req, res, next){
   if(req.user){
-     userIdString = req.user._id.toString();
+     req.userIdString = req.user._id.toString();
   }
    next();
 });
@@ -23,7 +22,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.put('/', function(req, res, next) {
-  var savePromises = [];
   Posting.find()
     .where({
       _id: {
@@ -31,13 +29,16 @@ router.put('/', function(req, res, next) {
       }
     })
     .then(function(postings) {
+      var savePromises = [];
       postings.forEach(posting => {
         if (posting.artistsWhoSaved.indexOf(req.user._id) < 0) {
           posting.artistsWhoSaved.push(req.user._id);
           savePromises.push(posting.save());
         }
       });
-    }).then(() => {
+      return savePromises;
+    }).then((savePromises) => {
+      console.log("savedPromises", savePromises);
         Promise.all(savePromises)
           .then(savedPostings => {
             req.session.cart = [];
@@ -82,28 +83,53 @@ router.get('/:postingId', function(req, res, next) {
 
 
 router.put('/:postingId', (req, res, next) => {
-  if(req.body.action === 'reject'){
+  if(req.body.action === 'reject')
+  {
       var combine = req.posting['artistsWho' + req.body.section];
       var index = combine.indexOf(req.body.reject);
       combine.splice(index,1);
   }
-  if(req.user) {
-    if(req.body.action === 'update') {
-      if(req.body.section === 'Requested') {
-        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0) req.posting.artistsWhoRequested.push({user: req.user._id});
-      } else if(req.body.section === 'Saved') {
+  if(req.user)
+  {
+    if(req.body.action === 'update')
+    {
+      if(req.body.section === 'Requested')
+      {
+        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0)
+        {
+          req.posting.artistsWhoRequested.push({user: req.user._id});
+        }
+      }
+      else if(req.body.section === 'Saved')
+      {
         if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
           req.posting.artistsWhoSaved.push(req.user);
       }
-    } else if(req.body.action === 'assign') {
+    }
+    else if(req.body.action === 'assign')
+    {
         req.posting.artist = req.body.accept;
         req.posting.status = "started";
-    } else if(req.body.action === 'save') {
-      if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
-        req.posting.artistsWhoSaved.push(req.user);
     }
-  } else{
-    _.assign(req.posting, req.body);
+    else if(req.body.action === 'save')
+    {
+      if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
+      {
+        req.posting.artistsWhoSaved.push(req.user);
+      }
+    }
+    else
+    {
+      _.assign(req.posting, req.body);
+    }
+  }
+  else
+  {
+    if(!req.session.cart) req.session.cart = [];
+    if(req.session.cart.indexOf(req.posting._id.toString())<0)
+    {
+      req.session.cart.push(req.posting._id);
+    }
   }
 
   req.posting.save()
