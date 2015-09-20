@@ -1,5 +1,4 @@
-app.controller('adminCtrl', function($scope, $stateParams, currentUser, $state, allPostings){
-  console.log('here?');
+app.controller('adminCtrl', function($scope, $stateParams, currentUser, $state, allPostings, allUsers){
   if(!currentUser.isAdmin){
     $state.go('home');
     return;
@@ -31,12 +30,15 @@ app.controller('adminCtrl', function($scope, $stateParams, currentUser, $state, 
   $scope.currentUser = currentUser;
   $scope.filter = '',
   $scope.strict = false;
+  $scope.allUsers = allUsers;
 
   $scope.filterStatus = function(){
       if($scope.filter !== ''){
         $scope.strict = true;
       }
   }
+
+
 
 
 
