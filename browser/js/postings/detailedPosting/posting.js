@@ -42,6 +42,14 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
 
         $scope.updateCachedCart();
 
+        $scope.removePostingFromCart = function(postingId){
+          PostingFactory.removePostingFromCart(postingId)
+          .then(cart => {
+            $scope.cachedCart = cart;
+            return cart;
+          })
+        }
+
         $scope.toggleEditing = function(){
             $scope.editing = !$scope.editing;
 

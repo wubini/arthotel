@@ -1,11 +1,11 @@
 <div class="col-lg-5 col-md-5 col-sm-12">
 	<div class="panel request">
-		<div ng-show="!user && cachedCart.indexOf(posting._id)===-1 || (user && posting.artistsWhoSaved.indexOf(user._id)===-1)">
+		<div ng-show="(!user && cachedCart.indexOf(posting._id)===-1)|| (user && posting.artistsWhoSaved.indexOf(user._id)===-1)">
 			<button class="btn btn-lg btn-block" ng-click="savePostingToCart(posting._id)">Save for later</button>
 		</div>
-		<div ng-show="!user && cachedCart.indexOf(posting._id)>-1|| (user && posting.artistsWhoSaved.indexOf(user._id)>-1)">
+		<div ng-show="(!user && cachedCart.indexOf(posting._id)>-1)|| (user && posting.artistsWhoSaved.indexOf(user._id)>-1)">
 			<p>You've saved this project.</p>
-			<button class="btn btn-lg btn-block" ng-click="deleteSaved()">Unsave</button>
+			<button class="btn btn-lg btn-block" ng-click="(user && deleteSaved()) ||(!user && removePostingFromCart(posting._id)) ">Unsave</button>
 		</div>
 		<br>
 		<div ng-show="showRequest">

@@ -75,6 +75,12 @@ app.factory("PostingFactory", $http => {
       })
         .then(response => response.data);
     },
+
+    removePostingFromCart: (postingId) => {
+      return $http.delete(`/api/cart/${postingId}`)
+      .then(response => response.data);
+    },
+
     changePostingStatus: (postingId, newStatus) => {
       return $http.put(`/api/postings/${postingId}`, {
         status: newStatus
