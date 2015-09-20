@@ -23,6 +23,7 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
         $scope.editing = false;
         $scope.change = false;
 
+
         if($scope.posting.artistsWhoRequested.length > 0){
           $scope.editable = false;
         }
@@ -30,6 +31,16 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
         if(currentUser){
           $scope.editable = currentUser.isAdmin || currentUser._id === $scope.posting.client._id;
         }
+
+        $scope.updateCachedCart = function(){
+          PostingFactory.getPostingsInCart()
+          .then((postings) => {
+            console.log("updated cached cart", postings)
+            $scope.cachedCart = postings;
+          })
+        }
+
+        $scope.updateCachedCart();
 
         $scope.toggleEditing = function(){
             $scope.editing = !$scope.editing;
@@ -40,15 +51,16 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
                 $state.go($state.current, $stateParams, {reload: true});
               })
             }
-          }
+        }
 
         $scope.savePostingToCart = (postingId) => {
           PostingFactory.savePostingToCart(postingId)
           .then(() => {
+            $scope.updateCachedCart();
             $state.go($state.current, $stateParams, {reload: true});
           })
         };
-        
+
         AuthService.getLoggedInUser()
         .then(function(user)
         {
@@ -86,6 +98,7 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
         $scope.deleteSaved = () => {
           PostingFactory.removeSaveArtist($scope.user._id, $scope.posting._id)
           .then(() => {
+              $scope.updateCachedCart();
               $state.go($state.current,$stateParams, {reload: true});
           });
         };

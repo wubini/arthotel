@@ -22,11 +22,15 @@ app.factory("PostingFactory", $http => {
       return $http.put(`/api/postings`)
         .then(response => response.data);
     },
+
+    getPostingsInCart: () => {
+      return $http.get(`api/cart`)
+      .then(response => response.data);
+    },
+
     // creates a new posting
     createNewPosting: postInfo => {
-      return $http.post(`/api/postings/`, {
-        postInfo
-      })
+      return $http.post(`/api/postings/`, {postInfo})
         .then(response => response.data);
     },
     //saves a posting to a users cart
