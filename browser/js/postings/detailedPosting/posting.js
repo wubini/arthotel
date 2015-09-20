@@ -26,6 +26,9 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
         if(currentUser){
           $scope.editable = currentUser._id === $scope.posting.client._id;
         }
+        if($scope.posting.artistsWhoRequested.length > 0){
+          $scope.editable = false;
+        }
 
         $scope.toggleEditing = function(){
             $scope.editing = !$scope.editing;
