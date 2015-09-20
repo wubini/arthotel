@@ -6,6 +6,12 @@ body {
   background: #fdfdfd;
 }
 
+.second-nav{
+  margin-top: -4em;
+}
+
+
+
 @mixin clearfix {
   &:after {
     content: "";
@@ -13,6 +19,9 @@ body {
     clear: both;
   }
 }
+
+
+
 
 #main {
   padding-top: 60px;
@@ -26,7 +35,7 @@ body {
 
 .sistine-green{
     background-color:#ced9a1;
-  
+
 }
 
 .full-size-photo{
