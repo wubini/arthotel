@@ -83,6 +83,7 @@ router.get('/:postingId', function(req, res, next) {
 
 
 router.put('/:postingId', (req, res, next) => {
+  console.log('updating post: ', req.body);
   if(req.body.action === 'reject')
   {
       var combine = req.posting['artistsWho' + req.body.section];

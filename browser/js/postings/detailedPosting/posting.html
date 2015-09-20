@@ -2,15 +2,23 @@
 <div class="container">
 	<project-info></project-info>
 	<save-request></save-request>
-	<div class="jumbotron bio col-md-6 col-sm-12">
-		<p ng-hide="editing">{{posting.description}}</p>
-		<input type="textarea" class="form-control" ng-model="posting.description" value="posting.description" ng-show="editing" ng-change="change = true"/>
-	</div>
-	<div class="col-md-6 col-sm-12">
-      <img class="photo" ng-src={{posting.photos[0]}}></img>
+	<div class="clearfix">
+		<div class="jumbotron bio col-md-6 col-sm-12">
+			<p ng-hide="editing">{{posting.description}}</p>
+			<input type="textarea" class="form-control" ng-model="posting.description" value="posting.description" ng-show="editing" ng-change="change = true"/>
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<div class="full-size-photo">
+		      	<img class="photo" ng-src={{posting.photos[0]}} ng-hide="editing"></img>
+		     </div>
+	      	<div class="form-group"  ng-show="editing">
+		      	<label>Photo URL:</label>
+			    <input type="text" class="form-control" ng-model="posting.photos[0]" value="{{posting.photos[0]}}" ng-change="change=true"/>
+			</div>
+		</div>
 	</div>
 
-	<div class="clear-fix">
+	<div class="clearfix">
 		<client-info></client-info>
 	</div>
 </div>
