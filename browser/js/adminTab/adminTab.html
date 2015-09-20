@@ -7,7 +7,22 @@
 		price
 		date
 -->
-<div>
-	<posting ng-repeat="posting in postings"></posting>
+<div class="form-control">
+	<div class="col-sm-12">
+		<div class="form-group col-sm-6">
 
+			<div class="input-group">
+		      <select class="form-control" ng-model="filter" ng-change="filterStatus()">
+					<option ng-repeat="status in statuses" value="{{status.status}}">{{status.show}}</option>
+				</select>
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button">Filter by status</button>
+		      </span>
+		    </div>
+
+		</div>
+
+		<search></search>
+	</div>
+	<posting ng-repeat="posting in postings  | filter: filter: strict"></posting>
 </div>
