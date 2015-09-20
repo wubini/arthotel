@@ -23,7 +23,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.put('/', function(req, res, next) {
-  var savePromises = [];
   Posting.find()
     .where({
       _id: {
@@ -31,13 +30,16 @@ router.put('/', function(req, res, next) {
       }
     })
     .then(function(postings) {
+      var savePromises = [];
       postings.forEach(posting => {
         if (posting.artistsWhoSaved.indexOf(req.user._id) < 0) {
           posting.artistsWhoSaved.push(req.user._id);
           savePromises.push(posting.save());
         }
       });
-    }).then(() => {
+      return savePromises;
+    }).then((savePromises) => {
+      console.log("savedPromises", savePromises);
         Promise.all(savePromises)
           .then(savedPostings => {
             req.session.cart = [];

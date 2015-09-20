@@ -14,6 +14,7 @@ app.config(function ($stateProvider) {
 
 app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParams, posting, PostingFactory) {
         $scope.posting = posting;
+        $scope.showRequest = true;
 
         $scope.savePostingToCart = (postingId) => {
           PostingFactory.savePostingToCart(postingId)
@@ -21,23 +22,26 @@ app.controller('postingCtrl', function ($scope, AuthService, $state, $stateParam
             $state.go($state.current, $stateParams, {reload: true});
           })
         };
+
         AuthService.getLoggedInUser()
         .then(function(user)
         {
           $scope.user = user;
+          if(user)
+          {
+            $scope.checkRequestedArray();
+          }
         });
 
         $scope.checkRequestedArray = () => {
-          PostingFactory.getPostingById($scope.posting._id).then(post => {
-            if(_.findIndex(post.artistsWhoRequested, {user: $scope.user._id}) < 0) {
+          console.log("checking array");
+            if(_.findIndex($scope.posting.artistsWhoRequested, {user: $scope.user._id}) < 0) {
+              console.log("user has not requested this posting")
               $scope.showRequest = true;
             } else {
               $scope.showRequest = false;
             }
-          });
         };
-
-        $scope.checkRequestedArray();
 
         $scope.requestPosting = (postingId) => {
           PostingFactory.requestPosting(postingId)
