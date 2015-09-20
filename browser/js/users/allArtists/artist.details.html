@@ -6,7 +6,7 @@
   <h3><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></h3>
   <p><a ui-sref="userPage({userId: posting.client._id})">{{posting.client.displayName}}</a></p>
   <p>{{artist.displayName}}</p>
-  <p>{{artist.artistRating}}</p>
+  <p>Rating: {{artist.artistRating | number: 2}}</p>
   <p>INSERT ARTIST PAST PROJECTS HERE</p>
 </div>
 

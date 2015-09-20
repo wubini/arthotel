@@ -106,7 +106,9 @@ router.put('/:postingId', (req, res, next) => {
       if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
         req.posting.artistsWhoSaved.push(req.user);
     }
-  } else _.assign(req.posting, req.body);
+  } else{
+    _.assign(req.posting, req.body);
+  }
 
   req.posting.save()
     .then(function(updatedPost){
