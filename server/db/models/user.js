@@ -39,34 +39,13 @@ var schema = new mongoose.Schema({
     portfolioUrl: String
 });
 
-schema.virtual('artistRating').get(function()
+schema.methods.getRating = function(role)
 {
-  return Posting.find({artist: this._id, status:'complete'})
-  .then(function(postings)
-  {
-    if(postings.length)
-    {
-      var totalRating = 0;
-      postings.forEach(function(posting)
-      {
-        var index = _.findIndex(posting.reviews, function(rev)
-        {
-          return rev.type==='client';
-        });
-        totalRating += posting.reviews[index].stars;
-      })
-      return totalRating/postings.length();
-    }
-    else
-    {
-      return undefined;
-    }
-  })
-});
+  var conditions = {};
+  conditions[role] = this._id;
+  conditions.status = "complete";
 
-schema.virtual('clientRating').get(function()
-{
-  return Posting.find({client: this._id, status:'complete'})
+  return Posting.find(conditions)
   .then(function(postings)
   {
     if(postings.length)
@@ -76,18 +55,22 @@ schema.virtual('clientRating').get(function()
       {
         var index = _.findIndex(posting.reviews, function(rev)
         {
-          return rev.type==='artist';
+          if(role==="artist") return rev.type==='client';
+          if(role==="client") return rev.type==='artist';
         });
-        totalRating += posting.reviews[index].stars;
+        if(index>=0)
+        {
+          totalRating += posting.reviews[index].stars;
+        }
       })
-      return totalRating/postings.length();
+      return totalRating/postings.length;
     }
     else
     {
-      return undefined;
+      return null;
     }
-  })
-});
+  });
+};
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.

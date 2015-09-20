@@ -3,12 +3,16 @@ module.exports = router;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Posting = mongoose.model('Posting');
+mongoose.Promise = require('bluebird');
+var _ = require('lodash');
 
 router.get('/', (req, res, next) => {
   User.find()
-    .then(users => {
-      res.send(users)
-    });
+  .then(users => {
+    var promisedRatedUsers = getPromisesForRatedUsers(users);
+    return Promise.all(promisedRatedUsers)
+  })
+  .then(users => {res.send(users)});
 });
 
 router.use('/:userId', (req, res, next) => {
@@ -97,3 +101,23 @@ router.get('/:userId/active/client', function(req, res, next){
     res.send(postings);
   });
 });
+
+function getPromisesForRatedUsers(users)
+{
+  return users.map(user => {
+    var userCopy ={};
+    _.assign(userCopy, user._doc);
+    return user.getRating('artist')
+    .then(rating => {
+      userCopy.artistRating = rating;
+      return user;
+    })
+    .then(user => {
+      return user.getRating('client')
+      .then(rating => {
+        userCopy.clientRating = rating;
+        return userCopy;
+      })
+    })
+  });
+}
