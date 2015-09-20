@@ -6,11 +6,12 @@
 				<img ng-src={{posting.photos[0]}} class="img-rounded photo" />
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="project_info col-sm-12">
 				<h3><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></h3>
-				<p><a ui-sref="userPage({userId: posting.client._id})">{{posting.client.displayName}}</a></p>
+				<p><span class="bold">Posted by: </span><a ui-sref="userPage({userId: posting.client._id})">{{posting.client.displayName}}</a></p>
+				<p ng-show="currentUser.isAdmin"><span class="bold">Artist: </span>{{posting.artist.displayName || 'unassigned'}}</p>
+				<p ng-show="currentUser.isAdmin"><span class="bold"> Status: </span>{{posting.status}}</p>
 				<p>{{posting.description}}</p>
 				<p>{{posting.date | date: 'short'}}</p>
 				<p>{{posting.tags}}</p>

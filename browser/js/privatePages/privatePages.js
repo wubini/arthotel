@@ -28,7 +28,6 @@
         return AuthService.getLoggedInUser()
         .then(user =>
         {
-          console.log('here', user);
           return UserFactory.getRequestedPostingsForUser(user._id);
         });
       },
@@ -74,7 +73,6 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   //this will be dynamically changed
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
-  console.log('scope check', $scope.requestedPostings);
   $scope.activeClientJobs = activeClientPostings;
   $scope.activeArtistJobs = activeArtistPostings;
   $scope.completeArtistPostings = completeArtistPostings;
