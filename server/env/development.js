@@ -1,6 +1,6 @@
 module.exports = {
   "DATABASE_URI": "mongodb://localhost:27017/arthotel",
-  "SESSION_SECRET": "Optimus Prime is my real dad",
+  "SESSION_SECRET": "I wonder what the world's most secure secret is",
   "TWITTER": {
     "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
     "consumerSecret": "INSERT_TWITTER_CONSUMER_SECRET_HERE",
@@ -12,8 +12,8 @@ module.exports = {
     "callbackURL": "http://localhost:1337/auth/facebook/callback"
   },
   "GOOGLE": {
-    "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
-    "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
-    "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
+    "clientID": "882561220275-tobifiig8d9cjminibip8ofa2glt6j1k.apps.googleusercontent.com",
+    "clientSecret": "qy6QptxnKqTIMJa1bPtQj8Yg",
+    "callbackURL": "http://localhost:1337/auth/google/callback"
   }
 };

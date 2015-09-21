@@ -8,7 +8,6 @@ var UserModel = mongoose.model('User');
 module.exports = function (app) {
 
     var googleConfig = app.getValue('env').GOOGLE;
-
     var googleCredentials = {
         clientID: googleConfig.clientID,
         clientSecret: googleConfig.clientSecret,
@@ -30,9 +29,8 @@ module.exports = function (app) {
                     });
                 }
 
-            }).then(function (userToLogin) {
-                done(null, userToLogin);
-            }, function (err) {
+            }).then(userToLogin => {done(null, userToLogin);
+            }, (err) => {
                 console.error('Error creating user from Google authentication', err);
                 done(err);
             });

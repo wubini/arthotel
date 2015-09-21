@@ -107,6 +107,10 @@
             $window.location = $window.location.protocol + "//" + $window.location.host + "/auth/facebook";
         }
 
+        this.googleLogin = function() {
+          $window.location = $window.location.protocol +"//" + '127.0.0.1:1337/auth/google';
+        }
+
     });
 
     app.service('Session', function ($rootScope, AUTH_EVENTS) {

@@ -47,6 +47,9 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             scope.facebookLogin = function(){
                 AuthService.facebookLogin();
             };
+            scope.googleLogin = function() {
+              AuthService.googleLogin();
+            }
         }
 
     };
