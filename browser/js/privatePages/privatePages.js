@@ -3,6 +3,9 @@
     url: '/me',
     templateUrl: 'js/privatePages/privatePage.html',
     controller: 'privatePageCtrl',
+        data: {
+      authenticate: true
+    },
     resolve: {
       user: function(AuthService)
       {

@@ -24,6 +24,10 @@ app.run(function ($rootScope, AuthService, $state) {
         return state.data && state.data.authenticate;
     };
 
+    var destinationAdminOnly = function(state){
+        return state.data && state.data.adminOnly;
+    };
+
     // $stateChangeStart is an event fired
     // whenever the process of changing a state begins.
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
@@ -37,6 +41,7 @@ app.run(function ($rootScope, AuthService, $state) {
         if (AuthService.isAuthenticated()) {
             // The user is authenticated.
             // Short circuit with return.
+
             return;
         }
 
@@ -48,9 +53,17 @@ app.run(function ($rootScope, AuthService, $state) {
             // (the second time, AuthService.isAuthenticated() will work)
             // otherwise, if no user is logged in, go to "login" state.
             if (user) {
-                $state.go(toState.name, toParams);
+                if(destinationAdminOnly(toState)){
+                    if(user.isAdmin){
+                        $state.go(toState.name, toParams);
+                    }else{
+                        $state.go('home');
+                    }
+                }else{
+                    $state.go(toState.name, toParams);
+                }
             } else {
-                $state.go('login');
+                $state.go('home');
             }
         });
 

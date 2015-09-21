@@ -3,6 +3,9 @@ app.config(function ($stateProvider) {
         url: '/postings/add/newPost',
         templateUrl: 'js/postings/newPosting/newposting.html',
         controller: 'newPostingCtrl',
+        data: {
+          authenticate: true
+        },
         resolve: {
           currentUser: function(AuthService){
             return AuthService.getLoggedInUser();
@@ -15,8 +18,6 @@ app.config(function ($stateProvider) {
 app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $state, PostingFactory) {
     $scope.range = [0, 100, 200, 300];
     $scope.writing = true;
-
-    if(!currentUser) $state.go('home');
 
     $scope.newPost = {
       client: currentUser._id,
