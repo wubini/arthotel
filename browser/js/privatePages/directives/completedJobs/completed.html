@@ -11,7 +11,8 @@
           <p>{{done.location}}</p>
           <p>{{done.date | date: 'medium'}}</p>
           <div ng-show='show'>
-            <complete-artist ng-repeat="artist in done.artist" artist='artist'></complete-artist>
+          <!-- <div> -->
+            <complete-artist artist='done.artist'></complete-artist>
           </div>
       </div>
     </div>

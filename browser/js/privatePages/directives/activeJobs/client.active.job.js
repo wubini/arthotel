@@ -11,7 +11,7 @@ app.directive('clientActiveJob', function ($state, PostingFactory) {
             PostingFactory.changePostingStatus(scope.job._id, "complete")
             .then(function(posting)
             {
-              $state.go('privatePage',{tab: scope.tab}, {reload: true});
+              $state.go('privatePage.clientTab', {reload: true});
             });
           }
         }
