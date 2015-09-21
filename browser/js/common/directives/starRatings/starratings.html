@@ -1,7 +1,3 @@
 <div class="already-set-rating">
-	<span class="star"></span>
-	<span class="star"></span>
-	<span class="star"></span>
-	<span class="star"></span>
-	<span class="star"></span>
+	<span class="star" ng-repeat="star in stars" ng-class="{clickedStar: star === 6-review.rating}"></span>
 </div>
