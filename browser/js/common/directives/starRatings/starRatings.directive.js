@@ -3,10 +3,10 @@ app.directive('starRatings', function () {
         restrict: 'E',
         templateUrl: 'js/common/directives/starRatings/starratings.html',
         scope:{
-          rating:"="
+          number:"="
         },
         link: function(scope){
-
+          scope.intRating = parseInt(scope.number);
           scope.stars = [1, 2, 3, 4, 5];
         }
     };

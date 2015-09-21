@@ -11,7 +11,8 @@
 						</div>
 						<div class="row">
 							<p><b>Client Review: </b></p>
-							<star-ratings></star-ratings>
+						{{project.reviews.client.stars}}
+							<star-ratings number="project.reviews.client.stars"></star-ratings>
 						</div>
 						<div class="row">
 							<p>{{project.reviews.client.text}}</p>
