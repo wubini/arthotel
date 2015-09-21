@@ -8,7 +8,7 @@ app.directive("artistDetails", function()
     },
     templateUrl: 'js/users/allArtists/artist.details.html',
     link: function(scope){
-      console.log(scope);
+      console.log('scope: ', scope);
     }
   }
 });
