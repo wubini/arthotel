@@ -19,9 +19,9 @@ module.exports = function (app) {
             .then(function (user) {
 
                 if (user) {
-                    user.email = profile._json.email;
-                    user.displayName = profile._json.name;
-                    user.photoUrl = profile._json.picture;
+                    if(!user.email) user.email = profile._json.email;
+                    if(!user.displayName) user.displayName = profile._json.name;
+                    if(!user.photoUrl) user.photoUrl = profile._json.picture;
                     return user.save();
                 } else {
                     return UserModel.create({
