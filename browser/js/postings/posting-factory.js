@@ -96,15 +96,15 @@ app.factory("PostingFactory", $http => {
       })
       .then(response => response.data);
     },
-    submitReview: (postingId, newStatus, role, stars, text) => {
-      return $http.put(`/api/postings/${postingId}`, {
-        status: newStatus,
-        reviews: {
-          type: role,
-          stars: stars,
-          text: text
-        }
-      })
+    submitReview: (posting, newStatus, role, stars, text) => {
+      var body = {};
+      body.status = newStatus;
+      body.reviews = posting.reviews || {};
+      body.reviews[role] = {
+        stars: stars,
+        text: text
+      };
+      return $http.put(`/api/postings/${posting._id}`, body)
       .then(response => response.data);
     },
     updatePost: (updatedPost) => {

@@ -15,21 +15,22 @@ app.directive('writeReview', function ($state, PostingFactory) {
 
             console.log(review);
 
-            // NEED A WAY TO SEND REVIEW
-            if(scope.tab === 'artist'){
 
-              PostingFactory.submitReview(scope.job._id, "pendingApproval", 'artist', review.rating, review.text)
+            // NEED A WAY TO SEND REVIEW
+            if($state.current.url==="/artist"){
+
+              PostingFactory.submitReview(scope.job, "pendingApproval", 'artist', review.rating, review.text)
               .then(function(posting)
               {
-                $state.go('privatePage',{tab: scope.tab}, {reload:true});
-              });              
+                $state.go('privatePage.artistTab', {reload:true});
+              });
             }
 
-            if(scope.tab === 'client'){
-              PostingFactory.submitReview(scope.job._id, "complete", 'client', review.rating, review.text)
+            if($state.current.url==="/client"){
+              PostingFactory.submitReview(scope.job, "complete", 'client', review.rating, review.text)
               .then(function(posting)
               {
-                $state.go('privatePage',{tab: scope.tab}, {reload: true});
+                $state.go('privatePage.clientTab', {reload: true});
               });
             }
 

@@ -17,11 +17,16 @@ var schema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   size: String,
   tags: [String],
-  reviews: [{
-    type: {type: String, enum: ['client', 'artist']},
-    stars: {type: Number, enum: [1, 2, 3, 4, 5]},
-    text: String
-  }]
+  reviews: {
+    client: {
+      stars: {type: Number, enum: [1, 2, 3, 4, 5]},
+      text: String
+    },
+    artist: {
+      stars: {type: Number, enum: [1, 2, 3, 4, 5]},
+      text: String
+    }
+  }
 });
 
 schema.pre('save', function(next){
