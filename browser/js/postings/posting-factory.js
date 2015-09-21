@@ -31,8 +31,9 @@ app.factory("PostingFactory", $http => {
     },
     //updates a posting after it has been edited
     updatePostingById: posting => {
-      return http.put(`/api/postings/${posting._id}`, {
-        newPost: posting
+      return $http.put(`/api/postings/${posting._id}`, {
+        newPost: posting,
+        action: 'fullUpdate'
       })
       .then(response => response.data);
     },
