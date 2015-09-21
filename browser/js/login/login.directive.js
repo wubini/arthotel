@@ -6,8 +6,22 @@ app.directive('login', function ($state, PostingFactory, AuthService) {
           scope.login = {};
           scope.error = null;
 
-          $('.dropdown-menu form').click(e => e.stopPropagation());
+        //  $('.dropdown-menu form').click(e => e.stopPropagation());
 
+      scope.isopen = false;
+
+      scope.toggled = function(open) {
+          console.log('Dropdown is now: ', open);
+        };
+        console.log(scope.isopen);
+      scope.toggleDropdown = function($event) {
+        console.log(scope.isopen);
+          if(scope.isopen){
+            console.log('here');
+            $event.preventDefault();
+            $event.stopPropagation();
+          }
+        };
           scope.sendLogin = loginInfo => {
 
               scope.error = null;
