@@ -3,7 +3,7 @@
     url: '/me',
     templateUrl: 'js/privatePages/privatePage.html',
     controller: 'privatePageCtrl',
-        data: {
+    data: {
       authenticate: true
     },
     resolve: {

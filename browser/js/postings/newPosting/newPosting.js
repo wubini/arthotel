@@ -26,7 +26,6 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
     $scope.titleIssue = false;
 
     $scope.sendPost = function(postInfo){
-      if(!currentUser) return;
       if(postInfo.tags) postInfo.tags = postInfo.tags.toLowerCase().split(',');
       $scope.titleIssue = false;
 
