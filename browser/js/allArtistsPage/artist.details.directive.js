@@ -11,11 +11,19 @@ app.directive("artistDetails", function(UserFactory, $state)
      
       scope.deleteUser = function(){
         UserFactory.deleteUser(scope.artist._id)
-        .then(function(returned){
+        .then(function(){
           $state.go('privatePage.adminTab', {}, {reload:true})
         });
 
-      }
+      };
+
+      scope.changeAdmin = function(){
+        console.log(scope.artist.isAdmin);
+        UserFactory.editUser(scope.artist)
+        .then(function(updatedUser){
+          $state.go('privatePage.adminTab', {}, {reload:true})
+        });
+      };
     }
   }
 });

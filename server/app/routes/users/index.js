@@ -31,7 +31,9 @@ router.get('/:userId', (req, res, next) => {
 router.put('/:userId', (req, res, next) => {
   for(var key in req.body.user)
   {
-    req.foundUser[key] = req.body.user[key];
+    if(key === 'isAdmin' && req.user.isAdmin || key !== 'isAdmin'){
+      req.foundUser[key] = req.body.user[key];
+    }
   }
   req.foundUser.save()
   .then(function(user)
