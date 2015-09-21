@@ -15,15 +15,13 @@ module.exports = function (app) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-
-      console.log("profile", profile);
         UserModel.findOne({ 'google.id': profile.id }).exec()
             .then(function (user) {
 
                 if (user) {
-                    user.email = profile._json.email;
-                    user.displayName = profile._json.name;
-                    user.photoUrl = profile._json.picture;
+                    if(!user.email) user.email = profile._json.email;
+                    if(!user.displayName) user.displayName = profile._json.name;
+                    if(!user.photoUrl) user.photoUrl = profile._json.picture;
                     return user.save();
                 } else {
                     return UserModel.create({
