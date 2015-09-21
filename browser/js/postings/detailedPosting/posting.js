@@ -110,9 +110,4 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
               $state.go($state.current,$stateParams, {reload: true});
           });
         };
-
-
-
-
-
 });

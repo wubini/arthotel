@@ -31,13 +31,23 @@ router.get('/:userId', (req, res, next) => {
 router.put('/:userId', (req, res, next) => {
   for(var key in req.body.user)
   {
-    req.foundUser[key] = req.body.user[key];
+    if(key === 'isAdmin' && req.user.isAdmin || key !== 'isAdmin'){
+      req.foundUser[key] = req.body.user[key];
+    }
   }
   req.foundUser.save()
   .then(function(user)
   {
     res.send(user);
   });
+});
+
+router.delete('/:userId', (req, res, next) =>{
+  User.remove({_id:req.params.userId}).exec()
+  .then(function(response){
+    res.status(200).send();
+  })
+  .then(null, next);
 });
 
 router.get('/:userId/postings/done', (req, res, next) => {

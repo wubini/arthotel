@@ -6,11 +6,9 @@ app.directive('login', function ($state, PostingFactory, AuthService) {
           scope.login = {};
           scope.error = null;
 
-            $('.dropdown-menu form').click(function(e) {
-              e.stopPropagation();
-            });
+          $('.dropdown-menu form').click(e => e.stopPropagation());
 
-          scope.sendLogin = function (loginInfo) {
+          scope.sendLogin = loginInfo => {
 
               scope.error = null;
 
