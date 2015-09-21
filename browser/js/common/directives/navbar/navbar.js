@@ -22,16 +22,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 return AuthService.isAuthenticated();
             };
 
-            scope.logout = function () {
-                AuthService.logout().then(function () {
-                   $state.go('home');
-                });
-            };
+            scope.logout = () => AuthService.logout().then(() => $state.go('home'));
 
             var setUser = function () {
-                AuthService.getLoggedInUser().then(function (user) {
-                    scope.user = user;
-                });
+                AuthService.getLoggedInUser().then(user => scope.user = user);
             };
 
             var removeUser = function () {
