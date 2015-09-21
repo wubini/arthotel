@@ -57,10 +57,18 @@ router.delete('/:userId', (req, res, next) =>{
   .then(null, next);
 });
 
-router.get('/:userId/postings/done', (req, res, next) => {
+router.get('/:userId/postings/done/:role', (req, res, next) => {
+  var role = req.params.role;
+  var otherRole = role==="artist"? "client" : "artist";
+
+  console.log("looking for done postings ")
+  var conditions = {};
+  conditions[role] = req.params.userId;
+  conditions.status = 'complete';
+
   Posting.find()
     .where({client: req.params.userId, status: 'complete'})
-    .populate('artist')
+    .populate(otherRole)
     .then(postings => {
       res.send(postings);
     })
