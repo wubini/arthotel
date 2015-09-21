@@ -1,7 +1,7 @@
 app.directive('posting', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/postings/allPostings/posting.html',
+        templateUrl: 'js/allPostings/posting.html',
         link: function(scope){
 
             scope.editing = false;

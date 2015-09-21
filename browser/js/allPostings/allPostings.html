@@ -1,0 +1,16 @@
+<div class="container panel">
+	<div class="row">
+		<newpost-button ng-show="loggedIn"></newpost-button>
+	</div>
+</div>
+
+<div class="container panel">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>Projects Looking for Artists</h2>
+		</div>
+	</div>
+	<div class="row">
+		<posting ng-repeat="posting in postings"></posting>
+	</div>
+</div>

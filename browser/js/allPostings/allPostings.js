@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('allPostings', {
         url: '/postings?search',
-        templateUrl: 'js/postings/allPostings/allPostings.html',
+        templateUrl: 'js/allPostings/allPostings.html',
         controller: 'allPostingsCtrl',
         resolve: {
           currentUser: function(AuthService){
