@@ -22,11 +22,15 @@ app.factory("PostingFactory", $http => {
       return $http.put(`/api/postings`)
         .then(response => response.data);
     },
+
+    getPostingsInCart: () => {
+      return $http.get(`api/cart`)
+      .then(response => response.data);
+    },
+
     // creates a new posting
     createNewPosting: postInfo => {
-      return $http.post(`/api/postings/`, {
-        postInfo
-      })
+      return $http.post(`/api/postings/`, {postInfo})
         .then(response => response.data);
     },
     //updates a posting after it has been edited
@@ -78,6 +82,12 @@ app.factory("PostingFactory", $http => {
       })
         .then(response => response.data);
     },
+
+    removePostingFromCart: (postingId) => {
+      return $http.delete(`/api/cart/${postingId}`)
+      .then(response => response.data);
+    },
+
     changePostingStatus: (postingId, newStatus) => {
       return $http.put(`/api/postings/${postingId}`, {
         status: newStatus
