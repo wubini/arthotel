@@ -1,11 +1,22 @@
-<div class="container">
-	<user-info></user-info>
-	<request></request>
-
-	<div class="jumbotron bio">
-		{{user.bio}}
+<div class="container panel">
+	<div class="row">
+			<user-info></user-info>
 	</div>
 
-	<review></review>
+	<div class="row">
+		<div class="col-sm-12" ng-show="user.bio">
+			<p><b>Bio:</b> </p>
+			<div class="jumbotron bio">
+				{{user.bio}}
+			</div>
+		</div>
+		<div class="col-sm-6 col-sm-offset-6">
+			<request></request>
+		</div>
+	</div>
 
+</div>
+
+<div class ="container panel">
+	<reviews user="user" projects="artistProjects"></reviews>
 </div>

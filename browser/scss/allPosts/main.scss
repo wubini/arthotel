@@ -49,7 +49,7 @@ posting {
   color: #777777;
 }
 
-.clickedStar:before {
+.clickedStar:before, span.clickedStar ~ span.star:before {
   content: "\f005";
   color: #e3cf7a;
 }
