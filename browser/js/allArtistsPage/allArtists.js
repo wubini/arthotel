@@ -22,18 +22,17 @@ app.controller('allArtistsCtrl', function ($scope, AuthService, UserFactory, Pos
 
   $scope.allUsers.forEach(user => {
     //TODO-- Change this request to get the completed projects for which the user was the artist
-    user.artistRatingTotal = 8;
+    user.artistRatingTotal = 0;
     user.artistRating = 0;
-    user.numDoneProjects = 2;
-    UserFactory.unassignedPostings(user._id)
+    user.numDoneProjects = 0;
+    PostingFactory.getDonePostsForUser(user._id, "artist")
     .then(postings => {
+      console.log(`in all artists page ctrl, got done postings for user ${user.id}`, postings);
       postings.forEach(posting => {
         user.numDoneProjects ++;
         user.tags = _.union(user.tags, posting.tags);
-        if(posting.artistRating) {
-          user.artistRatingTotal += reviews[_.findIndex(posting.reviews, rev => {
-          return rev.type==="client";
-          })];
+        if(posting.reviews && posting.reviews.client && posting.reviews.client.stars) {
+          user.artistRatingTotal += posting.reviews.client.stars;
         }
       });
       return user;
