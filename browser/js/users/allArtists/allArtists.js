@@ -1,4 +1,4 @@
-app.config(function ($stateProvider) {
+app.config($stateProvider => {
     $stateProvider.state('allArtists', {
         url: '/users?search',
         templateUrl: 'js/users/allArtists/allArtists.html',
@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
           },
           allUsers: function(UserFactory){
             return UserFactory.getAllUsers()
-            .then(function(users){
+            .then(users => {
               return users;
             });
           }

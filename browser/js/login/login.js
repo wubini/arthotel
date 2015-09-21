@@ -30,9 +30,12 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
     };
 
-    $scope.facebookLogin = function(){
-        
+    $scope.facebookLogin = function() {
         AuthService.facebookLogin();
+    };
+
+    $scope.googleLogn = function() {
+        AuthService.googleLogn();
     };
 
 });
