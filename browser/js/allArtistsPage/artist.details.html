@@ -6,7 +6,7 @@
     <p><b>Tags:</b> <span ng-repeat="tag in artist.tags">{{tag}}<span ng-show="$index<artist.tags.length-1">, </span></span>
     <div ng-show="currentUser.isAdmin">
     	<div class="form-group col-sm-12">
-    		<input type="checkbox" ng-model="artist.isAdmin">
+    		<input type="checkbox" ng-model="artist.isAdmin" ng-change="changeAdmin()">
     		<label>Admin</label>
     	</div>
 
