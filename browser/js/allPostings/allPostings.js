@@ -24,6 +24,8 @@ app.controller('allPostingsCtrl', function ($scope, activePostings, AuthService,
 
   $scope.searchTerms = {};
   $scope.postings = activePostings;
+  $scope.currentUser = currentUser;
+  console.log(currentUser);
 
   if($stateParams.search)
   {

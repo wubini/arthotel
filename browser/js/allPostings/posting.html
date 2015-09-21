@@ -6,7 +6,7 @@
 		</div>
 		<div class="row">
 			<div class="project_info col-sm-12">
-				<i ng-show="currentUser.isAdmin" class="fa fa-3x fa-pencil-square pull-right" ng-hide="editing" ng-click="toggleEditing()"></i>
+				<i ng-show="currentUser.isAdmin && !editing" class="fa fa-3x fa-pencil-square pull-right" ng-click="toggleEditing()"></i>
 				<i class="fa fa-2x fa-floppy-o pull-right" ng-show="editing" ng-click="toggleEditing()"></i>
 
 				<h3><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></h3>
