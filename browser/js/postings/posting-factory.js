@@ -22,16 +22,28 @@ app.factory("PostingFactory", $http => {
       return $http.put(`/api/postings`)
         .then(response => response.data);
     },
+
+    getPostingsInCart: () => {
+      return $http.get(`api/cart`)
+      .then(response => response.data);
+    },
+
     // creates a new posting
     createNewPosting: postInfo => {
-      return $http.post(`/api/postings/`, {
-        postInfo
-      })
+      return $http.post(`/api/postings/`, {postInfo})
         .then(response => response.data);
     },
+    //updates a posting after it has been edited
+    updatePostingById: posting => {
+      return $http.put(`/api/postings/${posting._id}`, {
+        newPost: posting,
+        action: 'fullUpdate'
+      })
+      .then(response => response.data);
+    },
     //saves a posting to a users cart
-    savePostingToCart: id => {
-      return $http.put(`/api/postings/${id}`, {
+    savePostingToCart: postingId => {
+      return $http.put(`/api/postings/${postingId}`, {
           action: "save"
         })
         .then(response => response.data);
@@ -71,6 +83,12 @@ app.factory("PostingFactory", $http => {
       })
         .then(response => response.data);
     },
+
+    removePostingFromCart: (postingId) => {
+      return $http.delete(`/api/cart/${postingId}`)
+      .then(response => response.data);
+    },
+
     changePostingStatus: (postingId, newStatus) => {
       return $http.put(`/api/postings/${postingId}`, {
         status: newStatus
