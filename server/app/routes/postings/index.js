@@ -107,6 +107,11 @@ router.put('/:postingId', (req, res, next) => {
           req.posting.artistsWhoSaved.push(req.user);
       }
     }
+    else if(req.body.action === 'fullUpdate')
+    {
+      _.assign(req.posting, req.body.newPost);
+      console.log('after: ', req.posting);
+    }
     else if(req.body.action === 'assign' && req.user._id.toString() === req.posting.client._id.toString() || req.user.isAdmin)
     {
         req.posting.artist = req.body.accept;
