@@ -1,10 +1,10 @@
-app.directive('privateNav', function ($state, $stateParams) {
+app.directive('privateNav', ($state, $stateParams) => {
     return {
         restrict: 'E',
         templateUrl: 'js/privatePages/directives/privateNav/privateNav.html',
-        link: function(scope){
+        link: scope => {
           console.log("in link fn scope.tab", scope.tab);
-          scope.changeRole = function(tab){
+          scope.changeRole = tab => {
             var selected = angular.element(document.getElementById(tab));
             if(document.querySelector('.active-tab')){
               document.querySelector('.active-tab').classList.remove('active-tab');
@@ -16,5 +16,5 @@ app.directive('privateNav', function ($state, $stateParams) {
 
           scope.changeRole($stateParams.tab);
         }
-      }
+      };
 });

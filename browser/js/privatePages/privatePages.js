@@ -4,13 +4,10 @@
     templateUrl: 'js/privatePages/privatePage.html',
     controller: 'privatePageCtrl',
     resolve: {
-      user: function(AuthService)
+      user: AuthService =>
       {
         return AuthService.getLoggedInUser()
-        .then(function(user)
-        {
-          return user;
-        });
+        .then(user => user);
       },
       allPostings: function(PostingFactory) {
         return PostingFactory.getAllPostings();
@@ -69,7 +66,7 @@
 
 
 app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $state, user,
-  allPostings, completeArtistPostings, completeClientPostings, savedPostings, requestedPostings, unassignedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory) {
+  allPostings, completeArtistPostings, completeClientPostings, savedPostings, requestedPostings, unassignedPostings, activeArtistPostings, activeClientPostings, Session, PostingFactory, $document) {
   //this will be dynamically changed
   $scope.savedPostings = savedPostings;
   $scope.requestedPostings = requestedPostings;
@@ -84,7 +81,7 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   console.error = console.error.bind(console);
 
   console.log("in private page ctrl, user", $scope.user);
-
+  
   //$scope.amountOwed = $$$;
   var size = function(obj) {
     var size = 0, key;

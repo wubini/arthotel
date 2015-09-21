@@ -52,6 +52,11 @@ router.post('/', function(req, res, next) {
   .then(newPost => res.send(newPost));
 });
 
+router.post('/charge', (req, res, next) => {
+  console.log("we\'ve been hit captain!");
+  res.redirect('/me');
+});
+
 router.post('/add/newPost', function(req, res, next){
   console.log('adding new post', req.body);
 
@@ -111,11 +116,11 @@ router.put('/:postingId', (req, res, next) => {
     else if(req.body.action === 'fullUpdate')
     {
       _.assign(req.posting, req.body.newPost);
-      console.log('after: ', req.posting);
     }
     else if(req.body.action === 'assign' && (req.user._id.toString() === req.posting.client._id.toString() || req.user.isAdmin))
     {
         console.log("assigning project!", req.body)
+        req.posting.paid = true;
         req.posting.artist = req.body.accept;
         req.posting.status = "started";
     }

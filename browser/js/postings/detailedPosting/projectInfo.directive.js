@@ -10,8 +10,7 @@ app.directive('projectInfo', () => {
 
             _.assign($scope.beforeEdit, $scope.posting);
 
-            $scope.restoreValueToBefore = () =>
-              _.assign($scope.posting, $scope.beforeEdit);
+            $scope.restoreValueToBefore = () => _.assign($scope.posting, $scope.beforeEdit);
 
             $scope.updatePosting = () => {
               PostingFactory.updatePostingById($scope.posting);
