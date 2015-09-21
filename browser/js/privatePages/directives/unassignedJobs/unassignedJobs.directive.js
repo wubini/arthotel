@@ -8,6 +8,7 @@ app.directive('unassignedJobs', function() {
     },
     link: function(scope, elem, attr) {
       scope.show = false;
+      scope.artists = _.pluck(scope.project.artistsWhoRequested, "user");
     }
   };
 });

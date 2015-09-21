@@ -51,6 +51,7 @@ router.post('/', function(req, res, next) {
   Posting.create(req.body.postInfo)
   .then(newPost => res.send(newPost));
 });
+
 router.post('/add/newPost', function(req, res, next){
   console.log('adding new post', req.body);
 
@@ -112,8 +113,9 @@ router.put('/:postingId', (req, res, next) => {
       _.assign(req.posting, req.body.newPost);
       console.log('after: ', req.posting);
     }
-    else if(req.body.action === 'assign' && req.user._id.toString() === req.posting.client._id.toString() || req.user.isAdmin)
+    else if(req.body.action === 'assign' && (req.user._id.toString() === req.posting.client._id.toString() || req.user.isAdmin))
     {
+        console.log("assigning project!", req.body)
         req.posting.artist = req.body.accept;
         req.posting.status = "started";
     }
