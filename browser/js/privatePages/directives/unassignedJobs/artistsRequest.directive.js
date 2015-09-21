@@ -6,12 +6,7 @@ app.directive('artistsRequested', (PostingFactory, $state) => {
       artist: '=artist',
       project: '='
     },
-    link: function(scope){
-      //
-      // scope.confirmForm = (artistId, projectId) => {
-      //
-      // };
-
+    link: scope => {
       scope.acceptArtist = (artistId, projectId) => {
         PostingFactory.assignPostingToArtist(artistId, projectId)
           .then(() => {

@@ -78,9 +78,7 @@ router.post('/add/newPost', function(req, res, next){
       res.send('Already exists');
     }
   })
-
   .then(null, next);
-
 });
 
 router.get('/:postingId', function(req, res, next) {

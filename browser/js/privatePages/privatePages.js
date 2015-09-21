@@ -1,4 +1,4 @@
- app.config(function($stateProvider) {
+ app.config($stateProvider => {
   $stateProvider.state('privatePage', {
     url: '/me',
     templateUrl: 'js/privatePages/privatePage.html',
@@ -81,7 +81,7 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   console.error = console.error.bind(console);
 
   console.log("in private page ctrl, user", $scope.user);
-  
+
   //$scope.amountOwed = $$$;
   var size = function(obj) {
     var size = 0, key;
@@ -93,7 +93,6 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   $scope.requestedPostingsCount = size(requestedPostings);
   $scope.activeArtistJobsCount = size(activeArtistPostings);
   $scope.savedPostingsCount = size(savedPostings);
-
   $scope.requestForm = false;
   $scope.request = 'request';
   $scope.saved = 'saved';
