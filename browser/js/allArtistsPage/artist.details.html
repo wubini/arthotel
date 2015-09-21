@@ -15,7 +15,7 @@
     	</div>
 
     	<div class="col-sm-12 form-group" ng-show="!!artist.password">
-    		<button class="btn btn-info btn-block" ng-click="resetPassword()" disabled="{{artist.resetPassword}}">Reset password</button>
+    		<button class="btn btn-info btn-block" ng-click="resetPassword()" ng-disabled="artist.resetPassword">Reset password</button>
     	</div>
 
     </div>
