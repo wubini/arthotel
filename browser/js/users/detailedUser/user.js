@@ -28,33 +28,6 @@ app.config(function ($stateProvider) {
             })
           },
 
-          // clientRating: function(PostingFactory, $stateParams){
-          //   return PostingFactory.getDonePostsForUser($stateParams.userId, "client")
-          //   .then(function(donePostings){
-          //     var num = donePostings.length;
-          //     var total = 0;
-          //     donePostings.forEach(function(elem){
-          //       // total += elem.reviews.client.stars;
-          //     });
-          //     return total/num;
-          //   });
-          //  },
-          //
-          //  clientReviews: function(PostingFactory, $stateParams){
-          //   return PostingFactory.getDonePostsForUser($stateParams.userId, "client")
-          //   .then(function(donePostings){
-          //     return donePostings.map(function(post){
-          //       var reviews = {}
-          //       if(post.reviews) {
-          //         reviews = post.reviews;
-          //         reviews.project = post;
-          //       }
-          //       return reviews;
-          //     });
-          //   });
-          //
-          //  }
-
         }
     });
 });
