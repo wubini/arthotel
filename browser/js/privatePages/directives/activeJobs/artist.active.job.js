@@ -12,7 +12,7 @@ app.directive('artistActiveJob', function ($state, PostingFactory) {
             PostingFactory.changePostingStatus(scope.job._id, "pendingApproval")
             .then(function(posting)
             {
-              $state.go('privatePage',{tab: scope.tab}, {reload:true});
+              $state.reload();
             });
           }
         }

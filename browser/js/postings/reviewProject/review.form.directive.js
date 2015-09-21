@@ -22,7 +22,7 @@ app.directive('writeReview', function ($state, PostingFactory) {
               PostingFactory.submitReview(scope.job, "pendingApproval", 'artist', review.rating, review.text)
               .then(function(posting)
               {
-                $state.go('privatePage.artistTab', {reload:true});
+                $state.reload();
               });
             }
 
@@ -30,7 +30,7 @@ app.directive('writeReview', function ($state, PostingFactory) {
               PostingFactory.submitReview(scope.job, "complete", 'client', review.rating, review.text)
               .then(function(posting)
               {
-                $state.go('privatePage.clientTab', {reload: true});
+                $state.reload();
               });
             }
 
