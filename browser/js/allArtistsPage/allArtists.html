@@ -1,0 +1,6 @@
+<div class="container">
+  <search-artists></search-artists>
+  <div class="container row panel">
+    <artist-details ng-repeat="artist in allUsers | filter:searchTerms:strict" artist="artist"></artist-details>
+  </div>
+</div>

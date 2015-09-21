@@ -1,0 +1,28 @@
+<div class='col-sm-12' ng-class-even="'sistine-green'">
+
+	<div class="info col-sm-12">
+		<a ui-sref="detailedPosting({postingId: job._id})"><h4>{{job.title}}</h4></a>
+		<p><span class="bold">Due: </span>{{job.date}}</p>
+		<div ng-show="tab==='artist'">
+			<p><span class="bold">Client:</span>
+				<a ui-sref="userPage({userId: job.client._id})">{{job.client.displayName}}
+				</a>
+			</p>
+			<p class="btn btn-default" ng-show="job.status==='started'&&!show" ng-click="show=!show">Complete</p>
+			<p ng-show="job.status==='pendingApproval'">Pending client approval</p>
+		</div>
+		<div>
+			<p><span class="bold">Artist:</span>
+				<a ui-sref="userPage({userId: job.artist._id})">
+					{{job.artist.displayName}}
+				</a>
+			</p>
+			<p class="btn btn-default" ng-show="job.status==='pendingApproval' && !show" ng-click="show=!show">Approve</p>
+			<p ng-show="job.status==='started'">Work in progress</p>
+		</div>
+
+		<write-review ng-show="show"></write-review>
+
+	</div>
+
+</div>

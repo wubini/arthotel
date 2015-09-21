@@ -1,0 +1,65 @@
+<div class = "container panel">
+  <div class = "row">
+      <div class ="col-sm-12">
+        <h2>At A Glance</h2>
+      </div>
+  </div>
+  <div class = "row">
+      <at-glance></at-glance>
+  </div>
+</div>
+
+<div class = "container panel">
+  <div class = "row">
+    <div class = "col-sm-12">
+      <div class = "row">
+        <div class ="col-sm-12">
+          <h2>Potential Projects</h2>
+          <potential-jobs></potential-jobs>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "container panel">
+  <div class = "row">
+    <div class = "col-sm-12">
+      <div class = "row">
+        <div class = "col-sm-12">
+          <div class = "row">
+            <div class = "col-sm-12">
+              <h2>Current Projects</h2>
+            </div>
+          </div>
+          <artist-active-job ng-repeat="job in activeArtistJobs" ></artist-active-job>
+          <div class = "row">
+            <div class = "col-sm-12">
+              <div ng-hide="activeArtistJobs.length !== 0">
+                <h2>No active projects</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class = "container panel">
+  <div class = "row">
+   <div class = "col-sm-12">
+     <div class = "row">
+       <div class = "col-sm-12">
+         <h2>Completed Projects</h2>
+         <div ng-hide="doneProjects.length !== 0">
+           <h2>No completed projects</h2>
+         </div>
+       </div>
+     </div>
+     <div class = "row">
+       <completed-jobs ng-repeat='done in completeArtistPostings' done='done'></completed-jobs>
+    </div>
+   </div>
+  </div>
+ </div>

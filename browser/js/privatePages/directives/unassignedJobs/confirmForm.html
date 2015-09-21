@@ -1,0 +1,11 @@
+<form action="/charge" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_upPe9rMi1zXsNIAhzj5WfjAG"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-name="Demo Site"
+    data-description="2 widgets"
+    data-amount={{project.price*100}}
+    data-locale="auto">
+  </script>
+</form>
