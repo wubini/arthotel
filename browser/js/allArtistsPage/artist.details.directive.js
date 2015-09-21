@@ -31,7 +31,7 @@ app.directive("artistDetails", function(UserFactory, $state)
 
         UserFactory.editUser(scope.artist)
         .then(function(updatedUser){
-          $state.go('privatePage.adminTab', {}, {reload:true})          
+          $state.go('privatePage.adminTab', {}, {reload:true});
         })
       }
     }
