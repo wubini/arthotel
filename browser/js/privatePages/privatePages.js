@@ -54,13 +54,13 @@
       completeArtistPostings: function(AuthService, PostingFactory){
         return AuthService.getLoggedInUser()
         .then(function(user){
-          return PostingFactory.getDonePostsForUser(user._id)
+          return PostingFactory.getDonePostsForUser(user._id, "artist")
         })
       },
       completeClientPostings: function(AuthService, PostingFactory){
         return AuthService.getLoggedInUser()
         .then(function(user){
-          return PostingFactory.getDonePostsForUser(user._id)
+          return PostingFactory.getDonePostsForUser(user._id, "client")
         })
       }
     }
@@ -84,11 +84,6 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
   console.error = console.error.bind(console);
 
   console.log("in private page ctrl, user", $scope.user);
-
-
-  PostingFactory.getDonePostsForUser($scope.user._id)
-    .then(doneProjects => $scope.doneProjects = doneProjects)
-    .then(null, console.error);
 
   //$scope.amountOwed = $$$;
   var size = function(obj) {

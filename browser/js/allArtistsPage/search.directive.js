@@ -1,6 +1,6 @@
 app.directive('searchArtists', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/users/allArtists/search.html'
+        templateUrl: 'js/allArtistsPage/search.html'
     };
 });

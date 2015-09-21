@@ -5,6 +5,6 @@ app.directive("artistDetails", function()
     scope: {
       artist:"="
     },
-    templateUrl: 'js/users/allArtists/artist.details.html'
+    templateUrl: 'js/allArtistsPage/artist.details.html'
   }
 });

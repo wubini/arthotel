@@ -6,6 +6,6 @@
     <a ui-sref="userPage({userId: artist._id})"><h3>{{artist.displayName}}</h3></a>
     <p>Rating: {{artist.artistRating | number: 2}}</p>
     <p>Completed Projects: </p>
-    <p>Tags: </p>
+    <p>Tags: <span ng-repeat="tag in artist.tags">{{tag}}<span ng-show="$index<artist.tags.length-1">, </span></span>
   </div>
 </div>

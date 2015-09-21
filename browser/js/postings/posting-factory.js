@@ -8,8 +8,8 @@ app.factory("PostingFactory", $http => {
       return $http.get(`/api/users/${userId}/postings`)
         .then(response => response.data);
       },
-    getDonePostsForUser: userId => {
-      return $http.get(`/api/users/${userId}/postings/done`)
+    getDonePostsForUser: (userId,role) => {
+      return $http.get(`/api/users/${userId}/postings/done/${role}`)
         .then(response => response.data);
     },
     getPostingById: id => {
