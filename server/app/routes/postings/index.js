@@ -24,7 +24,7 @@ var mailTo = (recipientEmail, clientName) => {
   var mailOptions = {
     from: gmailInfo.username,
     to: recipientEmail,
-    subject: `${clientName} has accepted you request`,
+    subject: `${clientName} has accepted your request`,
     text: clientName,
     html: `<h1>${clientName} agrees to work with you</h1>
           <p>You are very lucky to be given this rare opportunity</p>
