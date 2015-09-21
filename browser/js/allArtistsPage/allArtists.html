@@ -1,6 +1,17 @@
-<div class="container">
-  <search-artists></search-artists>
-  <div class="container row panel">
-    <artist-details ng-repeat="artist in allUsers | filter:searchTerms:strict" artist="artist"></artist-details>
+<div class="container panel">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Find an Artist for Your Project</h2>
+        </div>
+      </div>
+      <search-artists></search-artists>
+      <div class="row">
+        <div class="col-sm-12">
+          <artist-details ng-repeat="artist in allUsers | filter:searchTerms:strict" artist="artist"></artist-details>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
