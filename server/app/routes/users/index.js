@@ -8,10 +8,10 @@ var _ = require('lodash');
 
 router.get('/', (req, res, next) => {
   User.find()
-  .then(users => {
-    var promisedRatedUsers = getPromisesForRatedUsers(users);
-    return Promise.all(promisedRatedUsers)
-  })
+  // .then(users => {
+  //   var promisedRatedUsers = getPromisesForRatedUsers(users);
+  //   return Promise.all(promisedRatedUsers)
+  // })
   .then(users => {res.send(users)});
 });
 
@@ -38,6 +38,14 @@ router.put('/:userId', (req, res, next) => {
   {
     res.send(user);
   });
+});
+
+router.delete('/:userId', (req, res, next) =>{
+  User.remove({_id:req.params.userId}).exec()
+  .then(function(response){
+    res.status(200).send();
+  })
+  .then(null, next);
 });
 
 router.get('/:userId/postings/done', (req, res, next) => {
@@ -82,7 +90,6 @@ router.get('/:userId/unassigned', (req, res, next) => {
   Posting.find({client:req.foundUser._id, artist: {$exists: false}})
   .populate('artistsWhoRequested')
   .then(postings => {
-    console.log(postings);
     res.send(postings);
   })
   .then(null, next);
@@ -98,6 +105,18 @@ router.get('/:userId/active/client', function(req, res, next){
   Posting.find({client: req.foundUser._id, artist: {$exists: true}, status:{$in:['started', 'pendingApproval']}})
   .populate('artist')
   .then(function(postings){
+    res.send(postings);
+  });
+});
+
+router.get('/:userId/postings/done/:role', (req, res, next) => {
+  var role = req.param.role;
+  var conditions = {
+    status: "complete"
+  };
+  conditions[role] = req.foundUser._id;
+  Posting.find(conditions)
+  .then(postings => {
     res.send(postings);
   });
 });

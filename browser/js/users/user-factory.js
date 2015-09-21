@@ -27,12 +27,12 @@ app.factory("UserFactory", function($http, PostingFactory)
       .then(response => response.data);
     },
     getActivePostingsForClient: function(userId)
-    { return $http.get('/api/users/'+userId+'/active/client')
+    { return $http.get(`/api/users/${userId}/active/client`)
       .then(response => response.data);
     },
     unassignedPostings: function(userId)
     {
-      return $http.get('/api/users/'+userId+'/unassigned')
+      return $http.get(`/api/users/${userId}/unassigned`)
       .then(response => response.data);
     },
     editUser: function(editedUser)
@@ -43,6 +43,11 @@ app.factory("UserFactory", function($http, PostingFactory)
     getSessionCart: function()
     {
       return $http.get('/api/cart')
+      .then(response => response.data);
+    },
+    deleteUser: function(userId)
+    {
+      return $http.delete(`/api/users/${userId}`)
       .then(response => response.data);
     }
   };
