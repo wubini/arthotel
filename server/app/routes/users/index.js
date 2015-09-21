@@ -82,7 +82,7 @@ router.get('/:userId/postings/done/:role', (req, res, next) => {
 // could need to wait till we can pass this information.
 router.get('/:userId/saved', (req, res, next) => {
   Posting.find()
-    .where({artistsWhoSaved: req.foundUser._id})
+    .where({artistsWhoSaved: req.foundUser._id, status: "unstarted"})
     .populate('client')
     .then(postings => res.send(postings));
 });
@@ -96,7 +96,7 @@ router.get('/:userId/postings', (req, res, next) => {
 });
 
 router.get('/:userId/requested', (req, res, next) => {
-  Posting.find()
+  Posting.find({status: 'unstarted'})
   .where('artistsWhoRequested')
   .elemMatch({user: req.params.userId})
   .populate('client')
