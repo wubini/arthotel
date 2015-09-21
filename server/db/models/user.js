@@ -37,7 +37,8 @@ var schema = new mongoose.Schema({
     },
     photoUrl: String,
     portfolioUrl: String,
-    isAdmin: {type: Boolean, default: false}
+    isAdmin: {type: Boolean, default: false},
+    resetPassword: {type: Boolean, default:false}
 });
 
 schema.methods.getRating = function(role)

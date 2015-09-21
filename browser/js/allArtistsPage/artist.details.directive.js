@@ -18,12 +18,22 @@ app.directive("artistDetails", function(UserFactory, $state)
       };
 
       scope.changeAdmin = function(){
-        console.log(scope.artist.isAdmin);
         UserFactory.editUser(scope.artist)
         .then(function(updatedUser){
           $state.go('privatePage.adminTab', {}, {reload:true})
         });
       };
+
+      scope.resetPassword = function(){
+        console.log('reset: ',scope.artist);
+        if(!scope.artist.password) return;
+        scope.artist.resetPassword = true;
+
+        UserFactory.editUser(scope.artist)
+        .then(function(updatedUser){
+          $state.go('privatePage.adminTab', {}, {reload:true})          
+        })
+      }
     }
   }
 });

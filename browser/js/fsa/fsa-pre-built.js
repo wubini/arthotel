@@ -48,10 +48,33 @@
         ]);
     });
 
-    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, PostingFactory, $window) {
+    app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, PostingFactory, $window, UserFactory) {
 
         function onSuccessfulLogin(response) {
           console.log("successful login")
+          console.log(response.data.user.resetPassword);
+          if(response.data.user.resetPassword){
+            bootbox.dialog({
+                title: "Please reset your password",
+                message: "<input id='password' type='password' class='form-control'/>",
+                buttons: {
+                    success: {
+                        label: 'Save',
+                        className: 'btn-sucess',
+                        callback: function(){
+                            var password = $('#password').val();
+                            response.data.user.password = password;
+                            response.data.user.resetPassword = false;
+                            UserFactory.editUser(response.data.user)
+                            .then(function(updatedUser){
+                                console.log('Password updated');
+                            })
+
+                        }
+                    }
+                }
+            })
+          }
           PostingFactory.saveCartPostingsToUser();
             var data = response.data;
             Session.create(data.user._id, data.user);
