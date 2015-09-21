@@ -6,7 +6,7 @@ app.directive("artistDetails", function()
       artist:"=",
       currentUser:"="
     },
-    templateUrl: 'js/users/allArtists/artist.details.html',
+    templateUrl: 'js/allArtistsPage/artist.details.html',
     link: function(scope){
       console.log('scope: ', scope);
     }
