@@ -33,9 +33,17 @@ app.factory("PostingFactory", $http => {
       return $http.post(`/api/postings/`, {postInfo})
         .then(response => response.data);
     },
+    //updates a posting after it has been edited
+    updatePostingById: posting => {
+      return $http.put(`/api/postings/${posting._id}`, {
+        newPost: posting,
+        action: 'fullUpdate'
+      })
+      .then(response => response.data);
+    },
     //saves a posting to a users cart
-    savePostingToCart: id => {
-      return $http.put(`/api/postings/${id}`, {
+    savePostingToCart: postingId => {
+      return $http.put(`/api/postings/${postingId}`, {
           action: "save"
         })
         .then(response => response.data);

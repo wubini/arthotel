@@ -7,5 +7,21 @@
     <p>Rating: {{artist.artistRating | number: 2}}</p>
     <p>Completed Projects: </p>
     <p>Tags: <span ng-repeat="tag in artist.tags">{{tag}}<span ng-show="$index<artist.tags.length-1">, </span></span>
+    <p>Tags: </p>
+    <div ng-show="currentUser.isAdmin">
+    	<div class="form-group col-sm-12">
+    		<input type="checkbox" ng-model="artist.isAdmin">
+    		<label>Admin</label>
+    	</div>
+
+    	<div class="col-sm-12 form-group">
+    		<button class="btn btn-danger btn-block">Delete user</button>
+    	</div>
+
+    	<div class="col-sm-12 form-group">
+    		<button class="btn btn-info btn-block">Reset password</button>
+    	</div>
+
+    </div>
   </div>
 </div>

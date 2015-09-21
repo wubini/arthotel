@@ -3,8 +3,11 @@ app.directive("artistDetails", function()
   return {
     restrict: 'EA',
     scope: {
-      artist:"="
+      artist:"=",
+      currentUser:"="
     },
     templateUrl: 'js/allArtistsPage/artist.details.html'
+    link: function(scope){
+    }
   }
 });
