@@ -42,7 +42,8 @@ var seedUsers = function() {
   },{
     displayName: "David Scherban",
     email: "david",
-    password: '123'
+    password: '123',
+    isAdmin: 'true'
   }];
 
   return User.createAsync(users);
