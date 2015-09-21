@@ -3,12 +3,15 @@
 		<div class="form-group">
 			<label class="col-md-3 col-sm-3 control-label">Rating: </label>
 			<div class="col-sm-9 center-block">
+
 				<div class="rating">
-					<span type="radio" name="review.reviewOption" id="5" class="star"></span>
+
+					<rating ng-model="review.rating" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" state-on="'clickedStar'" state-off="'star'" on-leave="overStar = null" titles="['one','two','three']" ></rating>
+					<!-- <span type="radio" name="review.reviewOption" id="5" class="star"></span>
 					<span type="radio" name="review.reviewOption" id="4" class="star"></span>
 					<span type="radio" name="review.reviewOption" id="3" class="star"></span>
 					<span type="radio" name="review.reviewOption" id="2" class="star"></span>
-					<span type="radio" name="review.reviewOption" id="1" class="star"></span>
+					<span type="radio" name="review.reviewOption" id="1" class="star"></span> -->
 				</div>
 					<p ng-show="hasError" class="bold text-danger">Please give this project a review</p>
 			</div>
