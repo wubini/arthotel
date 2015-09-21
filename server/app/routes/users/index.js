@@ -8,10 +8,10 @@ var _ = require('lodash');
 
 router.get('/', (req, res, next) => {
   User.find()
-  .then(users => {
-    var promisedRatedUsers = getPromisesForRatedUsers(users);
-    return Promise.all(promisedRatedUsers)
-  })
+  // .then(users => {
+  //   var promisedRatedUsers = getPromisesForRatedUsers(users);
+  //   return Promise.all(promisedRatedUsers)
+  // })
   .then(users => {res.send(users)});
 });
 
