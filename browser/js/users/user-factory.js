@@ -44,6 +44,11 @@ app.factory("UserFactory", function($http, PostingFactory)
     {
       return $http.get('/api/cart')
       .then(response => response.data);
+    },
+    deleteUser: function(userId)
+    {
+      return $http.delete(`/api/users/${userId}`)
+      .then(response => response.data);
     }
   };
 });

@@ -40,6 +40,14 @@ router.put('/:userId', (req, res, next) => {
   });
 });
 
+router.delete('/:userId', (req, res, next) =>{
+  User.remove({_id:req.params.userId}).exec()
+  .then(function(response){
+    res.status(200).send();
+  })
+  .then(null, next);
+});
+
 router.get('/:userId/postings/done', (req, res, next) => {
   Posting.find()
     .where({client: req.params.userId, status: 'complete'})

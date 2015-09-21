@@ -1,4 +1,4 @@
-app.directive("artistDetails", function()
+app.directive("artistDetails", function(UserFactory, $state)
 {
   return {
     restrict: 'EA',
@@ -8,7 +8,14 @@ app.directive("artistDetails", function()
     },
     templateUrl: 'js/allArtistsPage/artist.details.html',
     link: function(scope){
-      console.log('scope: ', scope);
+     
+      scope.deleteUser = function(){
+        UserFactory.deleteUser(scope.artist._id)
+        .then(function(returned){
+          $state.go('privatePage.adminTab', {}, {reload:true})
+        });
+
+      }
     }
   }
 });
