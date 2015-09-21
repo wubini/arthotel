@@ -11,19 +11,19 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
         var deleteRequest = (projectId, artistId) => {
           PostingFactory.rejectArtist(artistId, projectId)
             .then(() => {
-              $state.go('privatePage.artistTab', {reload: true});
+              $state.go('privatePage.artistTab', {}, {reload: true});
             });
           };
 
         var deleteSaved = (projectId, artistId) => {
           PostingFactory.removeSaveArtist(artistId, projectId)
           .then(() => {
-            $state.go('privatePage.artistTab', {reload: true});
+            $state.go('privatePage.artistTab', {}, {reload: true});
           });
         };
 
         scope.confirmDelete = (project, artistId, type) => {
-          bootbox.confirm(`Are you sure you want to remove ${type} for ${project.title}`, function(result) {
+          bootbox.confirm(`Are you sure you want to un${type} ${project.title}?`, function(result) {
               if (result) {
                 if(type === 'request')
                   deleteRequest(project._id, artistId);
@@ -31,7 +31,7 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
                   deleteSaved(project._id, artistId);
               }
             });
-      };
+        };
     }
   };
 });
