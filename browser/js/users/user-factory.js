@@ -27,12 +27,12 @@ app.factory("UserFactory", function($http, PostingFactory)
       .then(response => response.data);
     },
     getActivePostingsForClient: function(userId)
-    { return $http.get('/api/users/'+userId+'/active/client')
+    { return $http.get(`/api/users/${userId}/active/client`)
       .then(response => response.data);
     },
     unassignedPostings: function(userId)
     {
-      return $http.get('/api/users/'+userId+'/unassigned')
+      return $http.get(`/api/users/${userId}/unassigned`)
       .then(response => response.data);
     },
     editUser: function(editedUser)

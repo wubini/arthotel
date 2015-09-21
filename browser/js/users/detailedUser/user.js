@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
             return UserFactory.getUserById($stateParams.userId);
           },
           clientRating: function(PostingFactory, $stateParams){
-            return PostingFactory.getDonePostsForUser($stateParams.userId)
+            return PostingFactory.getDonePostsForUser($stateParams.userId, "client")
             .then(function(donePostings){
               var num = donePostings.length;
               var total = 0;
@@ -19,7 +19,7 @@ app.config(function ($stateProvider) {
             });
            },
            reviews: function(PostingFactory, $stateParams){
-            return PostingFactory.getDonePostsForUser($stateParams.userId)
+            return PostingFactory.getDonePostsForUser($stateParams.userId, "client")
             .then(function(donePostings){
 
               return donePostings.map(function(post){

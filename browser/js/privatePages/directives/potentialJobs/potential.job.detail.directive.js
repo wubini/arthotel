@@ -11,14 +11,14 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
         var deleteRequest = (projectId, artistId) => {
           PostingFactory.rejectArtist(artistId, projectId)
             .then(() => {
-              $state.go('privatePage.artist', {reload: true});
+              $state.go('privatePage.artistTab', {reload: true});
             });
           };
 
         var deleteSaved = (projectId, artistId) => {
           PostingFactory.removeSaveArtist(artistId, projectId)
           .then(() => {
-            $state.go('privatePage.artist', {reload: true});
+            $state.go('privatePage.artistTab', {reload: true});
           });
         };
 
