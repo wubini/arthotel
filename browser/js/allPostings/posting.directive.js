@@ -1,12 +1,39 @@
-app.directive('posting', function () {
+app.directive('posting', function (PostingFactory, $state) {
     return {
         restrict: 'E',
         templateUrl: 'js/allPostings/posting.html',
+        scope: {
+          posting: "=",
+          currentUser: "="
+        },
         link: function(scope){
 
             scope.editing = false;
             scope.changed = false;
-            scope.status = scope.posting.status;
+            scope.statuses = [
+              {
+                status: 'unstarted',
+                show: 'Unassigned'
+              },
+              {
+                status: 'started',
+                show: 'Started'
+              },
+              {
+                status: 'pendingApproval',
+                show: 'Pending Client Approval'
+              },
+              {
+                status: 'complete',
+                show: 'Complete'
+              }
+            ];
+
+            scope.statuses.forEach(function(status, i){
+              if(status.status === scope.posting.status){
+                scope.newStatus = scope.statuses[i];
+              }
+            });
 
             scope.toggleEditing = function(){
               //have current be first selected
@@ -16,9 +43,18 @@ app.directive('posting', function () {
               scope.editing=!scope.editing;
               if(scope.changed){
                 //save changes!
-                console.log(scope.status);
+                console.log(scope.newStatus);
+                scope.posting.status = scope.newStatus.status;
+                PostingFactory.updatePostingById(scope.posting)
+                .then(function(updatedPost){
+                  $state.go('privatePage.adminTab', {}, {reload:true})
+
+                });
+
               }
             }
+
+
         }
     };
 });

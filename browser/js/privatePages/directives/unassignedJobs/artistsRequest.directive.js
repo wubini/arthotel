@@ -10,15 +10,15 @@ app.directive('artistsRequested', (PostingFactory, $state) => {
       scope.acceptArtist = (artistId, projectId) => {
         PostingFactory.assignPostingToArtist(artistId, projectId)
           .then(() => {
-            console.log('trying to reroute');
-            $state.go('privatePage.clientTab', {reload: true});
+            console.log('trying to reroute')
+            $state.reload();
           });
       };
 
       scope.rejectArtist = (artistId, projectId) => {
         PostingFactory.rejectArtist(artistId, projectId)
-          .then(() => {
-            $state.go('privatePage.clientTab', {reload: true});
+          .then(function(){
+            $state.reload();
           });
       };
     }

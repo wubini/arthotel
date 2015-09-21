@@ -13,7 +13,6 @@ app.directive('privateNav', ($state, $stateParams) => {
             scope.tab = tab;
             $state.go('privatePage', {tab: tab});
           };
-
           scope.changeRole($stateParams.tab);
         }
       };
