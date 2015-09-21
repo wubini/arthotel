@@ -6,6 +6,13 @@ var Posting = mongoose.model('Posting');
 mongoose.Promise = require('bluebird');
 var _ = require('lodash');
 
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+Posting.schema.plugin(deepPopulate, {
+  whitelist: [
+    'artistsWhoRequested.user'
+  ]
+});
+
 router.get('/', (req, res, next) => {
   User.find()
   // .then(users => {
@@ -90,7 +97,7 @@ router.get('/:userId/requested', (req, res, next) => {
 
 router.get('/:userId/unassigned', (req, res, next) => {
   Posting.find({client:req.foundUser._id, artist: {$exists: false}})
-  .populate('artistsWhoRequested')
+  .populate('artistsWhoRequested.user')
   .then(postings => {
     res.send(postings);
   })

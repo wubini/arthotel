@@ -12,18 +12,19 @@ app.directive('artistsRequested', function(PostingFactory, $state) {
       //
       // };
 
-      scope.acceptArtist = (artistId, projectId) => {
+      scope.acceptArtist = function (artistId, projectId){
         console.log('clicked accept artist!');
         PostingFactory.assignPostingToArtist(artistId, projectId)
           .then(() => {
-            $state.go('privatePage', {tab: 'client'}, {reload: true});
+            console.log('trying to reroute')
+            $state.go('privatePage.clientTab', {reload: true});
           });
       };
 
       scope.rejectArtist = function(artistId, projectId){
         PostingFactory.rejectArtist(artistId, projectId)
           .then(function(){
-            $state.go('privatePage', {tab: 'client'}, {reload: true});
+            $state.go('privatePage.clientTab', {reload: true});
           });
       };
     }
