@@ -24,11 +24,11 @@
               <h2>Current Projects</h2>
             </div>
           </div>
-          <client-active-job ng-repeat="job in activeClientJobs" ></client-active-job>
+          <client-active-job ng-repeat="job in activeClientJobs" job="job"></client-active-job>
           <div class = "row">
             <div class = "col-sm-12">
               <div ng-hide="activeClientJobs.length !== 0">
-                <h2>No active projects</h2>
+                <p>No active projects</p>
               </div>
             </div>
           </div>
@@ -44,14 +44,18 @@
      <div class = "row">
        <div class = "col-sm-12">
          <h2>Completed Projects</h2>
-         <div ng-hide="doneProjects.length !== 0">
-           <h2>No completed projects</h2>
-         </div>
        </div>
      </div>
      <div class = "row">
        <artist-complete ng-repeat='done in completeClientPostings' done='done'></artist-complete>
     </div>
+    <div class = "row">
+            <div class = "col-sm-12">
+              <div ng-hide="completeClientPostings.length !== 0">
+               <p>No completed projects</p>
+             </div>
+            </div>
+          </div>
    </div>
   </div>
  </div>

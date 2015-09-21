@@ -29,7 +29,7 @@
 		<div class="panel-heading"><h3>Projects</h3></div>
 
 		<div class="panel-body">
-			<posting ng-repeat="posting in postings  | filter: filter: strict"></posting>
+			<posting ng-repeat="posting in postings  | filter: filter: strict" posting="posting" current-user="currentUser"></posting>
 		</div>
 	</div>
 

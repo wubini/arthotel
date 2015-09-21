@@ -2,10 +2,32 @@ app.directive('posting', function (PostingFactory, $state) {
     return {
         restrict: 'E',
         templateUrl: 'js/allPostings/posting.html',
+        scope: {
+          posting: "=",
+          currentUser: "="
+        },
         link: function(scope){
 
             scope.editing = false;
             scope.changed = false;
+            scope.statuses = [
+              {
+                status: 'unstarted',
+                show: 'Unassigned'
+              },
+              {
+                status: 'started',
+                show: 'Started'
+              },
+              {
+                status: 'pendingApproval',
+                show: 'Pending Client Approval'
+              },
+              {
+                status: 'complete',
+                show: 'Complete'
+              }
+            ];
 
             scope.statuses.forEach(function(status, i){
               if(status.status === scope.posting.status){
