@@ -30,8 +30,11 @@ app.controller('allArtistsCtrl', function ($scope, AuthService, UserFactory, Pos
       postings.forEach(posting => {
         user.numDoneProjects ++;
         user.tags = _.union(user.tags, posting.tags);
-        console.log("posting.artistRating", posting.artistRating)
-        if(posting.artistRating) user.artistRatingTotal += posting.artistRating;
+        if(posting.artistRating) {
+          user.artistRatingTotal += reviews[_.findIndex(posting.reviews, rev => {
+          return rev.type==="client";
+          })];
+        }
       });
       return user;
     })
