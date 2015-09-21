@@ -13,10 +13,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
     $scope.login = {};
     $scope.error = null;
 
-      $('.dropdown-menu form').click(function(e) {
-        console.log('wooorrrkkk');
-        e.stopPropagation();
-      });
+
 
     $scope.sendLogin = function (loginInfo) {
 
