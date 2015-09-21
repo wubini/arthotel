@@ -1,12 +1,12 @@
 <div class = "col-sm-4">
     <div class ="row">
       <div class = "col-sm-12">
-        <img style = "width: 100%; height:auto" src="{{done.photos[0]}}"/>
+        <img style = "width: 100%; height:auto" ng-src="{{done.photos[0]}}"/>
       </div>
     </div>
     <div class = "row">
       <div class='col-sm-12 '>
-          <h3 >{{done.title}}</h3>
+          <a ui-sref="detailedPosting({postingId: done._id})"><h3>{{done.title}}</h3></a>
           <p>{{done.description}}</p>
           <p>{{done.location}}</p>
           <p>{{done.date | date: 'medium'}}</p>
