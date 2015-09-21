@@ -13,10 +13,6 @@ app.directive('writeReview', function ($state, PostingFactory) {
               return;
             }
 
-            console.log(review);
-
-
-            // NEED A WAY TO SEND REVIEW
             if($state.current.url==="/artist"){
 
               PostingFactory.submitReview(scope.job, "pendingApproval", 'artist', review.rating, review.text)
@@ -35,18 +31,15 @@ app.directive('writeReview', function ($state, PostingFactory) {
             }
 
           }
+            scope.max = 5;
 
-          var stars = angular.element(document.querySelectorAll('span.star'));
-          stars.on('click', function(){
-            var currentStar = angular.element(this);
-            var clicked = document.querySelector('span.clickedStar');
-            if(clicked){
-              angular.element(document.querySelector('span.clickedStar')).removeClass('clickedStar');
-            }
-            currentStar.addClass('clickedStar');
-            scope.review.rating = this.id;
+            scope.hoveringOver = function(value) {
+              scope.overStar = value;
+              scope.percent = 100 * (value / scope.max);
+              console.log(scope.review.rating);
+            };
 
-          });
+
         }
     };
 });
