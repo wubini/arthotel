@@ -1,4 +1,6 @@
 <div class="already-set-rating">
 	Rating
-	<span class="star" ng-repeat="star in stars" ng-class="{clickedStar: star === 6-intRating}"></span>
+
+	<rating ng-model="intRating" max="max" readonly="true" titles="['one','two','three', 'four', 'five']" state-on="'star clickedStar'" state-off="'star'" ></rating>
+
 </div>

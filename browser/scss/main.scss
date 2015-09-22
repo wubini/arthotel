@@ -47,6 +47,11 @@ body {
   max-width:100%;
 }
 
+.photo:hover{
+  -webkit-filter: grayscale(70%);
+  filter: grayscale(70%);
+}
+
   .btn-green{
     color:#ced9a1;
   }

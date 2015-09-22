@@ -8,6 +8,8 @@ app.directive('starRatings', function () {
         link: function(scope){
           scope.intRating = parseInt(scope.number);
           scope.stars = [1, 2, 3, 4, 5];
+          scope.max = 5;
+
         }
     };
 });
