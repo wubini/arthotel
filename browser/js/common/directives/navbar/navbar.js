@@ -9,7 +9,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             // $('li').invertImgText();
             // document.querySelector('.navbar > .container').invertImgText();
             scope.items = [
-                { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
                 { label: 'Projects', state: 'allPostings({search: undefined})' },
                 { label: 'Me', state: 'privatePage.artistTab', auth: true },
