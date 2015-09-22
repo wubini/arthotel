@@ -28,5 +28,12 @@ app.config(function ($stateProvider) {
 
 app.controller('allArtistsCtrl', function ($scope, AuthService, UserFactory, RatingFactory, PostingFactory, TagFactory, $state, $stateParams, currentUser, allUsers) {
   $scope.allUsers = allUsers;
+  $scope.searchTerms = "";
+
+  $scope.containsAllTags = (artist) => {
+    $scope.searchTermsArray = $scope.searchTerms.split(" ");
+    if ($scope.searchTerms==="") return true;
+    return _.difference(_.union($scope.searchTermsArray, artist.tags), artist.tags).length===0;
+  }
 
 });
