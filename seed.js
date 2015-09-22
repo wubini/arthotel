@@ -44,7 +44,7 @@ var seedUsers = function() {
     email: 'pope.julius.ii@gmail.com',
     password: '123',
     isAdmin: 'false',
-    photoUrl: 'http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2013/7/12/1373619567435/pope-julius-II-raphael-006.jpg'
+    photoUrl: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR7WLkbi9x41ryew0LKb_2OF3JZtPFIkTNZzSGYdciRRPoNESMSa9BNBiE'
 
   },{
       displayName: "Mona Lisa",
@@ -133,7 +133,7 @@ var seedPostings = function() {
         client: users[_.findIndex(users, function(user) {
           return user.displayName==="Kathy Lu";
         })]._id,
-        title: "Paint a Huge Flower",
+        title: "Paint a Huge Up-Close Flower",
         description: "The flower is a metaphor. Women, there's nothing to be ashamed of.",
         photos: ['http://i01.i.aliimg.com/wsphoto/v0/763340093/Famous-Georgia-O-Keeffe-Bella-Donna-floral-leaves-oil-paintings-on-canvas-decorative-museum-fruits-replica.jpg'],
         tags: ["flowers", "feminism"]

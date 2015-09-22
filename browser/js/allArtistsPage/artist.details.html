@@ -1,26 +1,27 @@
-<div class="col-sm-4">
-  <div class="row">
-    <h3><user-page-link user="artist"></user-page-link></h3>
-    <p><b>Rating:</b> <star-ratings number="artist.artistRatings[0]"></star-ratings> ({{artist.artistRatings[1]}} reviews)</p>
-    <p><b>Completed Projects:</b> {{artist.artistRatings[1]}}</p>
-    <p>
-      <b>Tags:</b>
-      <tag-links tags-array="artist.tags" url="'/postings?search='" delim="', '"></tag-links>
-    </p>
-    <div ng-show="currentUser.isAdmin">
-    	<div class="form-group col-sm-12">
-    		<input type="checkbox" ng-model="artist.isAdmin" ng-change="changeAdmin()">
-    		<label>Admin</label>
-    	</div>
+  <div class="col-sm-4">
+    <div class="row">
+      <img ng-src={{artist.photoUrl}} class="thumbnail-photo"></img>
+      <h3><user-page-link user="artist"></user-page-link></h3>
+      <p><b>Rating:</b> <star-ratings number="artist.artistRatings[0]"></star-ratings> ({{artist.artistRatings[1]}} reviews)</p>
+      <p><b>Completed Projects:</b> {{artist.artistRatings[1]}}</p>
+      <p>
+        <b>Tags:</b>
+        <tag-links tags-array="artist.tags" url="'/postings?search='" delim="', '"></tag-links>
+      </p>
+      <div ng-show="currentUser.isAdmin">
+      	<div class="form-group col-sm-12">
+      		<input type="checkbox" ng-model="artist.isAdmin" ng-change="changeAdmin()">
+      		<label>Admin</label>
+      	</div>
 
-    	<div class="col-sm-12 form-group">
-    		<button class="btn btn-danger btn-block" ng-click="deleteUser()">Delete user</button>
-    	</div>
+      	<div class="col-sm-12 form-group">
+      		<button class="btn btn-danger btn-block" ng-click="deleteUser()">Delete user</button>
+      	</div>
 
-    	<div class="col-sm-12 form-group" ng-show="!!artist.password">
-    		<button class="btn btn-info btn-block" ng-click="resetPassword()" ng-disabled="artist.resetPassword">Reset password</button>
-    	</div>
+      	<div class="col-sm-12 form-group" ng-show="!!artist.password">
+      		<button class="btn btn-info btn-block" ng-click="resetPassword()" ng-disabled="artist.resetPassword">Reset password</button>
+      	</div>
 
+      </div>
     </div>
   </div>
-</div>
