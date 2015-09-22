@@ -28,7 +28,7 @@ var mailTo = (recipientEmail, clientName) => {
     text: clientName,
     html: `<h1>${clientName} agrees to work with you</h1>
           <p>You are very lucky to be given this rare opportunity</p>
-          <p>Don't mess up</p>
+          <p>Don\'t mess up</p>
           `
   };
   transporter.sendMail(mailOptions, (error, info) => {
