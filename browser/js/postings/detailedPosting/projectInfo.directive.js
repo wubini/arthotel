@@ -2,6 +2,9 @@ app.directive('projectInfo', () => {
     return {
         restrict: 'E',
         templateUrl: 'js/postings/detailedPosting/projectInfo.html',
+        scope:{
+          posting: "="
+        },
         controller: ($scope, PostingFactory) => {
             $scope.editing = false;
             $scope.beforeEdit = {};

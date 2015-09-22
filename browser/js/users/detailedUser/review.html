@@ -2,16 +2,20 @@
 	<div class="col-sm-12">
 
 		<h2>Reviews</h2>
-
+		<p ng-show="projects.length===0">This user has no reviews.</p>
 		<div ng-repeat="project in projects" ng-class-even="'sistine-green'">
 				<div class="col-sm-12">
 						<div class="row">
 							<h3>{{project.title}}</h3>
+							<p><img ng-src={{project.photos[0]}} class="thumbnail-photo"></img>
 							<p><span class="bold">Role: </span>{{project.userRole}}</p>
 						</div>
-						<div class="row">
-							<p><b>Client Review: </b></p>
-						{{project.reviews.client.stars}}
+						<div class="row" ng-show="project.userRole==='Artist'">
+							<p><b>Review from Client (<user-page-link user="project.client"></user-page-link>): </b></p>
+							<star-ratings number="project.reviews.client.stars"></star-ratings>
+						</div>
+						<div class="row" ng-show="project.userRole==='Client'">
+							<p><b>Review from Artist (<user-page-link user="project.artist"></user-page-link>): </b></p>
 							<star-ratings number="project.reviews.client.stars"></star-ratings>
 						</div>
 						<div class="row">

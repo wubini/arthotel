@@ -10,7 +10,7 @@
 				<i class="fa fa-2x fa-floppy-o pull-right" ng-show="editing" ng-click="toggleEditing()"></i>
 
 				<h3><a ui-sref="detailedPosting({postingId: posting._id})">{{posting.title}}</a></h3>
-				<p><span class="bold">Posted by: </span><a ui-sref="userPage({userId: posting.client._id})">{{posting.client.displayName}}</a></p>
+				<p><span class="bold">Client: </span><user-page-link user="posting.client"></user-page-link></p>
 				<p ng-show="currentUser.isAdmin"><span class="bold">Artist: </span>{{posting.artist.displayName || 'unassigned'}}</p>
 				<p ng-show="currentUser.isAdmin">
 					<span class="bold"> Status: </span>
@@ -20,8 +20,8 @@
 					</select>
 				</p>
 
-				<p>{{posting.description}}</p>
-				<p>{{posting.date | date: 'short'}}</p>
+				<p><span class="bold">Description: </span>{{posting.description}}</p>
+				<p><span class="bold">Posted on: </span>{{posting.date | date: 'short'}}</p>
 				<p><b>Tags: </b>
 					<tag-links tags-array="posting.tags" url="'/postings?search='" delim="', '"></tag-links>
 				</p>

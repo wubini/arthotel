@@ -52,6 +52,8 @@ posting {
 .clickedStar:before, span.clickedStar ~ span.star:before {
   content: "\f005";
   color: #e3cf7a;
+  padding-right: 5px;
+
 }
 
 .already-set-rating, .rating{
