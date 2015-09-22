@@ -8,6 +8,11 @@ app.factory('PromoFactory', $http => {
       return $http.get(`/api/promos/${promoId}`)
         .then(response => response.data);
     },
-    
+    createPromo: (promo) => {
+      return $http.post(`/api/promos`, {
+        promo: promo
+      })
+        .then(response => response.data);
+    }
   }
 })
