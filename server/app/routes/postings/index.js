@@ -91,15 +91,26 @@ router.put('/:postingId', (req, res, next) => {
   if(req.body.action === 'reject')
   {
       var combine = req.posting['artistsWho' + req.body.section];
-      var index = combine.indexOf(req.body.reject);
+      var index = -1;
+      console.log('combine: ', combine);
+      if(req.body.section === 'Requested'){
+        combine.forEach(function(requestArtist, i){
+          if(requestArtist.user.toString() === req.body.artist.toString()){
+            index = i;
+          }
+        });
+      }else if(req.body.section === 'Saved'){
+        index = combine.indexOf(req.body.artist);
+      }
       combine.splice(index,1);
   }
-  if(req.user)
+  else if(req.user)
   {
     if(req.body.action === 'update')
     {
       if(req.body.section === 'Requested')
       {
+
         if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0)
         {
           req.posting.artistsWhoRequested.push({user: req.user._id});
