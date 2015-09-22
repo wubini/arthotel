@@ -1,0 +1,18 @@
+<div class = "col-sm-4">
+	<div class="row">
+		<div class = "col-sm-12">
+		<img ng-src={{posting.photos[0]}} class="img-rounded photo" />
+		</div>
+		</div>
+		<div class="row">
+			<div class="project_info col-sm-12">
+			<p>Title: {{posting.title}}</p>
+			<p> Status: {{posting.status}} </p>
+			<p>Client Name: {{posting.client.displayName}}</p>
+			<p>Location: {{posting.location}}</p>
+			<p>Description: {{posting.description}}</p>
+			<p>Date: {{posting.date | date: 'short'}}</p>
+		</div>
+	</div>
+</div>
+

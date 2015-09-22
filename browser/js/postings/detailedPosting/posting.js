@@ -22,6 +22,7 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
 
         $scope.editing = false;
         $scope.change = false;
+        $scope.currentUser = currentUser;
 
 
         if($scope.posting.artistsWhoRequested.length > 0){
