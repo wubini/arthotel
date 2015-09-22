@@ -1,6 +1,9 @@
 <div class='col-sm-12' ng-class-even="'sistine-green'">
 
 	<div class="info col-sm-12">
+		<div class="full-size-photo">
+			<img class="photo" ng-src="{{job.photos[0]}}"/>
+		</div>
 		<a ui-sref="detailedPosting({postingId: job._id})"><h4>{{job.title}}</h4></a>
 		<p><span class="bold">Due: </span>{{job.date}}</p>
 		<div ng-show="tab==='artist'">

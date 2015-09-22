@@ -5,8 +5,8 @@
 		</a>
 		<p><a href="/users/{{artist._id}}" target="_blank">{{artist.displayName}}</a></p>
 	</div>
-	<div class="clearfix col-sm-12">
-		<button class='btn btn-danger'ng-click="rejectArtist(artist._id, project._id)">Reject</button>
+	<div class="clearfix">
+		<button class='btn btn-danger btn-block'ng-click="rejectArtist(artist._id, project._id)">Reject</button>
 		<confirm-form ng-click="acceptArtist(artist._id, project._id)"></confirm-form>
 	</div>
 </div>

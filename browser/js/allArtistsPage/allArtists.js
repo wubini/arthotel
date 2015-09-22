@@ -27,7 +27,6 @@ app.controller('allArtistsCtrl', function ($scope, AuthService, UserFactory, Pos
     user.numDoneProjects = 0;
     PostingFactory.getDonePostsForUser(user._id, "artist")
     .then(postings => {
-      console.log(`in all artists page ctrl, got done postings for user ${user.id}`, postings);
       postings.forEach(posting => {
         user.numDoneProjects ++;
         user.tags = _.union(user.tags, posting.tags);
