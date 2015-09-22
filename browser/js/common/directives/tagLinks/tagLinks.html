@@ -1,0 +1,4 @@
+<span ng-repeat="tag in tagsArray">
+  <a href={{url+tag}}>{{tag}}</a><span ng-show="$index<tagsArray.length-1">{{delim}}</span>
+</span>
+<span ng-show="tagsArray.length===0">none</span>

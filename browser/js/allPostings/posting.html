@@ -22,7 +22,9 @@
 
 				<p>{{posting.description}}</p>
 				<p>{{posting.date | date: 'short'}}</p>
-				<p>{{posting.tags}}</p>
+				<p><b>Tags: </b>
+					<tag-links tags-array="posting.tags" url="'/postings?search='" delim="', '"></tag-links>
+				</p>
 			</div>
 
 </div>
