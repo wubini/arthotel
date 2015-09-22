@@ -9,7 +9,6 @@ app.directive('starRatings', function () {
           scope.intRating = parseInt(scope.number);
           scope.stars = [1, 2, 3, 4, 5];
           scope.max = 5;
-          console.log(scope.intRating);
 
         }
     };
