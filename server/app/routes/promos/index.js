@@ -21,7 +21,7 @@ router.get('/:promoId', (req, res, next) => {
 router.post('/', (req, res, next) => {
   Promo.create(req.body.promo)
   .then(newPost => {
-    res.send(newPost)
+    res.send(newPost);
   })
   .then(null, next);
 });
