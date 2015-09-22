@@ -84,6 +84,7 @@ app.factory("PostingFactory", ($http, $q) => {
       return $http.put(`/api/postings/${postingId}`, {
         action: 'reject',
         section: 'Requested',
+        artist: artist
       })
         .then(response => response.data);
     },
@@ -91,7 +92,8 @@ app.factory("PostingFactory", ($http, $q) => {
     removeSaveArtist: (artist, postingId) => {
       return $http.put(`/api/postings/${postingId}`, {
         action: 'reject',
-        section: 'Saved'
+        section: 'Saved',
+        artist: artist
       })
         .then(response => response.data);
     },

@@ -7,8 +7,7 @@
 			<project-info posting="posting"></project-info>
 		</div>
 		<div class="col-sm-12 col-md-6">
-
-			<save-request></save-request>
+			<save-request ng-if="posting.status === 'unstarted'"></save-request>
 		</div>
 	</div>
 
