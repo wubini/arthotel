@@ -19,6 +19,10 @@ app.factory('PromoFactory', $http => {
         newPromo: newPromo
       })
         .then(response => response.data);
+    },
+    deletePromo: (promoId) => {
+      return $http.delete(`/api/promos/${promoId}`)
+        .then(response => response.data);
     }
   };
 });
