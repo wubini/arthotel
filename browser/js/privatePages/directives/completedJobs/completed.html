@@ -7,9 +7,8 @@
     <div class = "row">
       <div class='col-sm-12 '>
           <a ui-sref="detailedPosting({postingId: done._id})"><h3>{{done.title}}</h3></a>
-          <p>{{done.description}}</p>
-          <p>{{done.location}}</p>
-          <p>{{done.date | date: 'medium'}}</p>
+          <p><span class="bold">Description: </span>{{done.description}}</p>
+          <p><span class="bold">Started on: </span>{{done.date | date: 'medium'}}</p>
           <p><b>You rated {{done.artist.displayName || done.client.displayName}}:</b>
             <star-ratings number="done.artist.displayName? done.reviews.client.stars : done.reviews.artist.stars"></star-ratings>
           </p>
@@ -17,8 +16,7 @@
             <star-ratings number="done.client.displayName? done.reviews.client.stars : done.reviews.artist.stars"></star-ratings>
           </p>
           <p><b>Tags:</b> <tag-links tags-array="done.tags" url="'/postings?search='" delim="', '"></tag-links></p>
-          <p><b>You rated {{done.artist.displayName}}:</b> {{done.reviews.client.stars}}</p>
-          <p><b>{{done.artist.displayName}} rated you:</b> {{done.reviews.artist.stars}}</p>
+          
           <div ng-show='show'>
           <!-- <div> -->
             <complete-artist artist='done.artist'></complete-artist>
