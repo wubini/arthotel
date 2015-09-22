@@ -1,7 +1,6 @@
-<div class="form-group">
-  <span>Filter artists by tag</span>
-    <div class="input-group">
-      <input type="text" class"form-control" ng-model="searchTerms.tags"/>
-      {{searchTerms}}
-    </div>
-</div>
+<form role="form">
+  <div class="form-group">
+    <label for="tags">Filter artists by tag:</label>
+    <input type="text" class="form-control" id="tags" ng-model="searchTerms">
+  </div>
+</form>
