@@ -1,4 +1,4 @@
-<div class="col-lg-6 col-md-6 col-sm-12">
+<div class="col-sm-12">
 	<div ng-show="editable">
 		<button type="button" class="btn btn-info" ng-hide="editing" ng-click="toggleEditing()">Edit Post</button>
 		<button type="button" class="btn btn-success" ng-hide="!editing" ng-click="updatePosting()">Confirm Edit</button>
@@ -6,8 +6,16 @@
 	<div>
 		<div class="form-group clearfix">
 			<h2 ng-hide="editing">{{posting.title}}</h2>
-
 			<input type="text" class="form-control input-lg" ng-model="posting.title" value="{{posting.title}}" ng-change="change = true" ng-show="editing" />
+		</div>
+
+		<div class="form-group clearfix">
+			<div class="col-sm-3">
+				<label class="bold">Client:</label>
+			</div>
+			<div class="col-sm-9">
+				<span>{{posting.client.displayName || 'unspecified'}}</span>
+			</div>
 		</div>
 
 		<div class="form-group clearfix">
