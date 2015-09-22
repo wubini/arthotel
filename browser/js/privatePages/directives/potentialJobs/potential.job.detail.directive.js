@@ -11,14 +11,14 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
         var deleteRequest = (projectId, artistId) => {
           PostingFactory.rejectArtist(artistId, projectId)
             .then(() => {
-              $state.reload();
+              $state.transitionTo($state.current, $state.params, { reload: true, inherit: true, notify: true }); 
             });
           };
 
         var deleteSaved = (projectId, artistId) => {
           PostingFactory.removeSaveArtist(artistId, projectId)
           .then(() => {
-            $state.reload();
+            $state.transitionTo($state.current, $state.params, { reload: true, inherit: true, notify: true }); 
           });
         };
 
@@ -36,7 +36,7 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
         scope.request = () => {
           PostingFactory.requestPosting(scope.posting._id)
           .then((res) => {
-            $state.reload();
+            $state.transitionTo($state.current, $state.params, { reload: true, inherit: true, notify: true }); 
           });
         };
     }

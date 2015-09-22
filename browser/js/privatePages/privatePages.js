@@ -6,6 +6,7 @@
     data: {
       authenticate: true
     },
+    abstract: true,
     resolve: {
       user: AuthService =>
       {
