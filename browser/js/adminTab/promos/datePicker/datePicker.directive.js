@@ -5,7 +5,7 @@ app.directive('datePicker', () => {
     replace: true,
     scope: {
       ngModel: '=ngModel'
-    }
+    },
     controler: 'DatepickerCtrl'
   };
 });

@@ -1,5 +1,5 @@
 app.controller('promoCtrl', ($scope) => {
-  $scope.newPost;
-
-  
+  var onClick = function() {
+    console.log($scope.newPost);
+  };
 });

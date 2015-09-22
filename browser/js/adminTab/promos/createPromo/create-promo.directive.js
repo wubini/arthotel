@@ -6,6 +6,7 @@ app.directive('createPromo', PromoFactory => {
       scope.createPromo = newPromo => {
         PromoFactory.createPromo(newPromo);
       };
-    }
+    },
+    controller: 'promoCtrl'
   };
 });

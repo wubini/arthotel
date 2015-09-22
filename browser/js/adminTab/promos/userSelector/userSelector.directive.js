@@ -5,7 +5,7 @@ app.directive('userSelctor', ()=> {
     replace: true,
     scope: {
       ngModel: '=ngModel'
-    }
+    },
     controller: 'userSelectorCtrl'
   };
 });
