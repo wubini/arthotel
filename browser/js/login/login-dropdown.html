@@ -1,9 +1,10 @@
-<div class="btn-group">
-    <button type="button" class="btn dropdown-toggle sistine-green" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div class="btn-group" dropdown is-open="isopen" auto-close="disabled">
+    <button type="button" class="btn sistine-green dropdown-toggle" dropdown-toggle>
+
       Login <span class="caret"></span>
     </button>
 
-    <div class="dropdown-menu col-sm-12" ng-click="$event.stopPropogation()">
+    <div class="dropdown-menu col-sm-12" role="menu">
       <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)" class="col-sm-12">
 
         <alert type="danger" ng-show="error">

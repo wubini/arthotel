@@ -9,7 +9,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             // $('li').invertImgText();
             // document.querySelector('.navbar > .container').invertImgText();
             scope.items = [
-                { label: 'Home', state: 'home' },
                 { label: 'About', state: 'about' },
                 { label: 'Projects', state: 'allPostings({search: undefined})' },
                 { label: 'Me', state: 'privatePage.artistTab', auth: true },
@@ -23,16 +22,10 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 return AuthService.isAuthenticated();
             };
 
-            scope.logout = function () {
-                AuthService.logout().then(function () {
-                   $state.go('home');
-                });
-            };
+            scope.logout = () => AuthService.logout().then(() => $state.go('home'));
 
             var setUser = function () {
-                AuthService.getLoggedInUser().then(function (user) {
-                    scope.user = user;
-                });
+                AuthService.getLoggedInUser().then(user => scope.user = user);
             };
 
             var removeUser = function () {

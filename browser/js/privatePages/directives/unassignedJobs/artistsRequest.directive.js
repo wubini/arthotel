@@ -1,4 +1,4 @@
-app.directive('artistsRequested', function(PostingFactory, $state) {
+app.directive('artistsRequested', (PostingFactory, $state) => {
   return {
     restrict: 'E',
     templateUrl: 'js/privatePages/directives/unassignedJobs/artistsRequested.html',
@@ -6,25 +6,19 @@ app.directive('artistsRequested', function(PostingFactory, $state) {
       artist: '=artist',
       project: '='
     },
-    link: function(scope){
-      //
-      // scope.confirmForm = (artistId, projectId) => {
-      //
-      // };
-
-      scope.acceptArtist = function (artistId, projectId){
-        console.log('clicked accept artist!');
+    link: scope => {
+      scope.acceptArtist = (artistId, projectId) => {
         PostingFactory.assignPostingToArtist(artistId, projectId)
           .then(() => {
             console.log('trying to reroute')
-            $state.go('privatePage.clientTab', {reload: true});
+            $state.reload();
           });
       };
 
-      scope.rejectArtist = function(artistId, projectId){
+      scope.rejectArtist = (artistId, projectId) => {
         PostingFactory.rejectArtist(artistId, projectId)
           .then(function(){
-            $state.go('privatePage.clientTab', {reload: true});
+            $state.reload();
           });
       };
     }

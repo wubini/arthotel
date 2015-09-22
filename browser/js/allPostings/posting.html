@@ -15,16 +15,16 @@
 				<p ng-show="currentUser.isAdmin">
 					<span class="bold"> Status: </span>
 
-					<span ng-hide="editing">{{posting.status}}</span>
-
-					<select ng-show="editing" ng-change="changed=true" class="form-control" data-ng-model="status">
-						<option ng-repeat="status in statuses" value="{{status.status}}">{{status.show}}</option>
+					<span ng-hide="editing">{{newStatus.show}}</span>
+					<select ng-show="editing" ng-change="changed=true" class="form-control" ng-init="newStatus = statuses[0]" ng-model="newStatus" ng-options="status.show for status in statuses">
 					</select>
 				</p>
 
-				<p>{{posting.description}}</p>
-				<p>{{posting.date | date: 'short'}}</p>
-				<p>{{posting.tags}}</p>
+				<p><span class="bold">Description: </span>{{posting.description}}</p>
+				<p><span class="bold">Posted on: </span>{{posting.date | date: 'short'}}</p>
+				<p><b>Tags: </b>
+					<tag-links tags-array="posting.tags" url="'/postings?search='" delim="', '"></tag-links>
+				</p>
 			</div>
 
 </div>

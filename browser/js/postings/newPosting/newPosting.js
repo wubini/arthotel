@@ -3,6 +3,9 @@ app.config(function ($stateProvider) {
         url: '/postings/add/newPost',
         templateUrl: 'js/postings/newPosting/newposting.html',
         controller: 'newPostingCtrl',
+        data: {
+          authenticate: true
+        },
         resolve: {
           currentUser: function(AuthService){
             return AuthService.getLoggedInUser();
@@ -16,17 +19,17 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
     $scope.range = [0, 100, 200, 300];
     $scope.writing = true;
 
-    if(!currentUser) $state.go('home');
-
     $scope.newPost = {
       client: currentUser._id,
+      tags: []
     };
 
     $scope.titleIssue = false;
 
+
+
     $scope.sendPost = function(postInfo){
-      if(!currentUser) return;
-      if(postInfo.tags) postInfo.tags = postInfo.tags.toLowerCase().split(',');
+      console.log("postInfo.tags being sent", postInfo.tags);
       $scope.titleIssue = false;
 
       PostingFactory.createNewPosting(postInfo)

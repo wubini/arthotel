@@ -7,7 +7,7 @@ app.directive('unassignedJobs', function() {
       artists: '=artists'
     },
     link: function(scope, elem, attr) {
-      scope.show = false;
+      scope.isCollapsed = true;
       scope.artists = _.pluck(scope.project.artistsWhoRequested, "user");
     }
   };

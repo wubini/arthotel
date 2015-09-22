@@ -47,6 +47,11 @@ body {
   max-width:100%;
 }
 
+.photo:hover{
+  -webkit-filter: grayscale(70%);
+  filter: grayscale(70%);
+}
+
   .btn-green{
     color:#ced9a1;
   }
@@ -54,6 +59,11 @@ body {
 .inline{
   display:inline-block;
   vertical-align:middle;
+}
+
+.padded{
+  padding-top:1%;
+  padding-bottom:1%;
 }
 
 @import 'directives/main';
@@ -66,3 +76,4 @@ body {
 @import 'allPosts/main';
 @import 'privatePages/main';
 @import 'cart/main';
+@import 'isteven/main'

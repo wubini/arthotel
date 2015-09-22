@@ -1,9 +1,8 @@
-
 <div class="form-group col-sm-10 pull-right">
 	<div class="center-block" style="text-align:center">
 		<button type="submit" ng-show="writing" class="btn btn-success">Save</button>
 		<div type="button" ng-show="writing" ng-click="preview(newpost)" class="btn btn-info">Preview</div>
-		<div type="button" ng-hide="writing" ng-click="preview(newpost)" class="btn btn-info">Edit</div>
+		<div type="button" ng-hide="writing" ng-click="writing = !writing" class="btn btn-info">Edit</div>
 		<div type="button" ng-show="writing" ng-click="cancel()" class="btn btn-danger">Cancel</div>
 	</div>
 </div>

@@ -1,17 +1,25 @@
 <div class = "col-sm-4">
     <div class ="row">
       <div class = "col-sm-12">
-        <img style = "width: 100%; height:auto" src="{{done.photos[0]}}"/>
+        <img style = "width: 100%; height:auto" ng-src="{{done.photos[0]}}"/>
       </div>
     </div>
     <div class = "row">
       <div class='col-sm-12 '>
-          <h3 >{{done.title}}</h3>
-          <p>{{done.description}}</p>
-          <p>{{done.location}}</p>
-          <p>{{done.date | date: 'medium'}}</p>
+          <a ui-sref="detailedPosting({postingId: done._id})"><h3>{{done.title}}</h3></a>
+          <p><span class="bold">Description: </span>{{done.description}}</p>
+          <p><span class="bold">Started on: </span>{{done.date | date: 'medium'}}</p>
+          <p><b>You rated {{done.artist.displayName || done.client.displayName}}:</b>
+            <star-ratings number="done.artist.displayName? done.reviews.client.stars : done.reviews.artist.stars"></star-ratings>
+          </p>
+          <p><b>{{done.artist.displayName || done.client.displayName}} rated you:</b>
+            <star-ratings number="done.client.displayName? done.reviews.client.stars : done.reviews.artist.stars"></star-ratings>
+          </p>
+          <p><b>Tags:</b> <tag-links tags-array="done.tags" url="'/postings?search='" delim="', '"></tag-links></p>
+          
           <div ng-show='show'>
-            <complete-artist ng-repeat="artist in done.artist" artist='artist'></complete-artist>
+          <!-- <div> -->
+            <complete-artist artist='done.artist'></complete-artist>
           </div>
       </div>
     </div>

@@ -4,6 +4,9 @@ app.config(function ($stateProvider) {
         url: '/admin',
         templateUrl: 'js/adminTab/adminTab.html',
         controller: 'adminCtrl',
+        data: {
+          adminOnly: true
+        },
         resolve: {
           currentUser: function(AuthService){
             return AuthService.getLoggedInUser();

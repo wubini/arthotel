@@ -11,14 +11,14 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
         var deleteRequest = (projectId, artistId) => {
           PostingFactory.rejectArtist(artistId, projectId)
             .then(() => {
-              $state.go('privatePage.artistTab', {}, {reload: true});
+              $state.reload();
             });
           };
 
         var deleteSaved = (projectId, artistId) => {
           PostingFactory.removeSaveArtist(artistId, projectId)
           .then(() => {
-            $state.go('privatePage.artistTab', {}, {reload: true});
+            $state.reload();
           });
         };
 
@@ -32,6 +32,15 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
               }
             });
         };
+
+        scope.request = () => {
+          PostingFactory.requestPosting(scope.posting._id)
+          .then((res) => {
+            $state.reload();
+          });
+        };
     }
+
+
   };
 });

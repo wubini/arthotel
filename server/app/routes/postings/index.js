@@ -2,8 +2,43 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var Posting = mongoose.model('Posting');
+var User = mongoose.model('User');
 var _ = require('lodash');
 mongoose.Promise = require('bluebird');
+var Path = require('path');
+var gmailInfo = require(Path.join(__dirname,'../../../gmailinfo')).gmail;
+var nodemailer = require('nodemailer');
+
+var directTransport = require('nodemailer-direct-transport');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: gmailInfo.username,
+        pass: gmailInfo.password
+    }
+});
+
+var mailTo = (recipientEmail, clientName) => {
+  console.log('we be emailin');
+  console.log(recipientEmail);
+  var mailOptions = {
+    from: gmailInfo.username,
+    to: recipientEmail,
+    subject: `${clientName} has accepted your request`,
+    text: clientName,
+    html: `<h1>${clientName} agrees to work with you</h1>
+          <p>You are very lucky to be given this rare opportunity</p>
+          <p>Don't mess up</p>
+          `
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if(error) {
+      console.log(error);
+    } else {
+      console.log('Message sent: ' + info.response);
+    }
+  });
+};
 
 
 router.use(function(req, res, next){
@@ -52,6 +87,11 @@ router.post('/', function(req, res, next) {
   .then(newPost => res.send(newPost));
 });
 
+router.post('/charge', (req, res, next) => {
+  console.log("we\'ve been hit captain!");
+  res.redirect('/me');
+});
+
 router.post('/add/newPost', function(req, res, next){
   console.log('adding new post', req.body);
 
@@ -73,12 +113,10 @@ router.post('/add/newPost', function(req, res, next){
       res.send('Already exists');
     }
   })
-
   .then(null, next);
-
 });
 
-router.get('/:postingId', function(req, res, next) {
+router.get('/:postingId', (req, res, next) => {
   res.send(req.posting);
 });
 
@@ -111,13 +149,19 @@ router.put('/:postingId', (req, res, next) => {
     else if(req.body.action === 'fullUpdate')
     {
       _.assign(req.posting, req.body.newPost);
-      console.log('after: ', req.posting);
     }
     else if(req.body.action === 'assign' && (req.user._id.toString() === req.posting.client._id.toString() || req.user.isAdmin))
     {
         console.log("assigning project!", req.body)
+
+        req.posting.paid = true;
         req.posting.artist = req.body.accept;
         req.posting.status = "started";
+        User.findById(req.posting.artist)
+        .then(user => {
+          console.log('user, ', user);
+          mailTo(user.email, req.posting.client.displayName);
+        });
     }
     else if(req.body.action === 'save')
     {
@@ -126,8 +170,9 @@ router.put('/:postingId', (req, res, next) => {
         req.posting.artistsWhoSaved.push(req.user);
       }
     }
-    else
+    else if(req.user._id.toString() === req.posting.client._id.toString()|| req.user._id.toString()=== req.posting.artist._id.toString()|| req.user.isAdmin)
     {
+
       _.assign(req.posting, req.body);
     }
   }

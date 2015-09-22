@@ -36,26 +36,28 @@ posting {
 
 }
 
-span.star {
+.star, .clickedStar {
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
   display: inline-block;
 }
 
-span.star:before {
+.star:before {
   content: "\f006";
   padding-right: 5px;
   color: #777777;
 }
 
-span.clickedStar:before, span.clickedStar ~ span.star:before {
+.clickedStar:before, span.clickedStar ~ span.star:before {
   content: "\f005";
   color: #e3cf7a;
+  padding-right: 5px;
+
 }
 
 .already-set-rating, .rating{
   unicode-bidi: bidi-override;
-  direction: rtl;
   font-size: x-large;
 }
+

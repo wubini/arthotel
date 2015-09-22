@@ -1,5 +1,5 @@
-<div class="col-lg-5 col-md-5 col-sm-12">
-	<div class="panel request">
+<div class="col-sm-12 container">
+	<div class="row">
 		<div ng-show="(!user && cachedCart.indexOf(posting._id)===-1)|| (user && posting.artistsWhoSaved.indexOf(user._id)===-1)">
 			<button class="btn btn-lg btn-block" ng-click="savePostingToCart(posting._id)">Save for later</button>
 		</div>
