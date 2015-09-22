@@ -24,11 +24,12 @@ var mailTo = (recipientEmail, clientName) => {
   var mailOptions = {
     from: gmailInfo.username,
     to: recipientEmail,
-    subject: `${clientName} has accepted your request`,
+    subject: `${clientName} has accepted your request!`,
     text: clientName,
-    html: `<h1>${clientName} agrees to work with you</h1>
-          <p>You are very lucky to be given this rare opportunity</p>
+    html: `<h1>${clientName} has agreed to work with you!</h1>
+          <p>You are very lucky to be given this rare opportunity to use the right side of your brain.</p>
           <p>Don\'t mess up</p>
+          <p>Best of luck.</p>
           `
   };
   transporter.sendMail(mailOptions, (error, info) => {
@@ -146,14 +147,14 @@ router.put('/:postingId', (req, res, next) => {
       if(req.body.section === 'Requested')
       {
 
-        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0)
+        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0 && req.posting.client._id.toString() !== req.user._id)
         {
           req.posting.artistsWhoRequested.push({user: req.user._id});
         }
       }
       else if(req.body.section === 'Saved')
       {
-        if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
+        if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0 && req.posting.client._id.toString() !== req.user._id)
           req.posting.artistsWhoSaved.push(req.user);
       }
     }

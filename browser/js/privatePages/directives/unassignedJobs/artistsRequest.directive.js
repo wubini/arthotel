@@ -11,14 +11,14 @@ app.directive('artistsRequested', (PostingFactory, $state, PromoFactory) => {
         PostingFactory.assignPostingToArtist(artistId, projectId)
           .then(() => {
             console.log('trying to reroute')
-            $state.reload();
+              $state.transitionTo('privatePage.clientTab', $state.params, { reload: true, inherit: true, notify: true }); 
           });
       };
 
       scope.rejectArtist = (artistId, projectId) => {
         PostingFactory.rejectArtist(artistId, projectId)
           .then(function(){
-            $state.reload();
+              $state.transitionTo($state.current, $state.params, { reload: true, inherit: true, notify: true }); 
           });
       };
     }

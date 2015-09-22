@@ -10,9 +10,9 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             // document.querySelector('.navbar > .container').invertImgText();
             scope.items = [
                 { label: 'Projects', state: 'allPostings({search: undefined})', loggedOut: false },
-                { label: 'Me', state: 'privatePage.artistTab', auth: true , loggedOut: false},
                 { label: 'Find an Artist', state: 'allArtists', loggedOut: false},
-                { label: 'Cart', state: 'loggedOutCart', auth:false, loggedOut: true }
+                { label: 'Me', state: 'privatePage.artistTab', auth: true , loggedOut: false},
+                { label: 'Me', state: 'loggedOutCart', auth:false, loggedOut: true }
             ];
 
             scope.user = null;

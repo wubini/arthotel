@@ -4,9 +4,8 @@ app.factory("TagFactory", () => {
       var tags = [];
 
       projects.forEach(project => {
-        _.union(tags, project.tags);
+        tags = _.union(tags, project.tags);
       });
-
       return tags;
     }
   }
