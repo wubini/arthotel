@@ -13,6 +13,12 @@ app.factory('PromoFactory', $http => {
         promo: promo
       })
         .then(response => response.data);
+    },
+    updatePromo: (promoId, newPromo) => {
+      return $http.put(`/api/promos/${promoId}`,{
+        newPromo: newPromo
+      })
+        .then(response => response.data);
     }
-  }
-})
+  };
+});
