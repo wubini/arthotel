@@ -21,12 +21,14 @@ app.controller('newPostingCtrl', function ($scope, currentUser, AuthService, $st
 
     $scope.newPost = {
       client: currentUser._id,
+      tags: []
     };
 
     $scope.titleIssue = false;
 
+
+
     $scope.sendPost = function(postInfo){
-      if(postInfo.tags) postInfo.tags = postInfo.tags.toLowerCase().split(',');
       console.log("postInfo.tags being sent", postInfo.tags);
       $scope.titleIssue = false;
 

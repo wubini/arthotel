@@ -9,6 +9,11 @@ app.directive('newPosting', function () {
             confirmKeys: [13, 44, 32]
           });
 
+          $('#tagsDiv input').on('itemAdded', function(event) {
+            scope.newPost.tags.push(event.item);
+            scope.$digest();
+          });
+
         }
     };
 });
