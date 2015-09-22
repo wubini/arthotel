@@ -10,9 +10,7 @@ app.directive('newPosting', function () {
           });
 
           $('#tagsDiv input').on('itemAdded', function(event) {
-            console.log('before: ', scope.newPost.tags)
             scope.newPost.tags.push(event.item);
-            console.log(scope.newPost.tags);
             scope.$digest();
           });
 
