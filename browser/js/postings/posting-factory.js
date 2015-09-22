@@ -28,16 +28,13 @@ app.factory("PostingFactory", ($http, $q) => {
         returnArr.push($http.get(`/api/postings/`+data[i]));
       }
       return Promise.all(returnArr).then(function(tempCart){
-          var hold = tempCart.map(function(tempThing){
-          console.log("tempCart",tempThing.data);
+          var hold = tempCart.map(function(tempThing){       
           return tempThing.data;
         });
-          console.log("hodl",hold);
           return hold;
        })
       },
     getPostingsInCart: () => {
-      console.log("heysdfafsdadfs");
       return $http.get(`/api/cart`)
       .then(response => response.data);
     },

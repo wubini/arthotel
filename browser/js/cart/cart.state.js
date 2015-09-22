@@ -6,7 +6,6 @@ app.config(function($stateProvider){
 		controller :'cartCtrl',
 		resolve : {
 			sessionPostings: function(PostingFactory){
-				console.log("hola");
 				return PostingFactory.getPostingsInCart().then(function(data){
 					return PostingFactory.getLoggedOutCart(data);
 					
