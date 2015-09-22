@@ -147,14 +147,14 @@ router.put('/:postingId', (req, res, next) => {
       if(req.body.section === 'Requested')
       {
 
-        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0)
+        if (_.findIndex(req.posting.artistsWhoRequested, {user: req.user._id}) < 0 && req.posting.client._id.toString() !== req.user._id)
         {
           req.posting.artistsWhoRequested.push({user: req.user._id});
         }
       }
       else if(req.body.section === 'Saved')
       {
-        if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0)
+        if (req.posting.artistsWhoSaved.indexOf(req.user._id) < 0 && req.posting.client._id.toString() !== req.user._id)
           req.posting.artistsWhoSaved.push(req.user);
       }
     }
