@@ -32,8 +32,9 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('userPageCtrl', function ($scope, AuthService, user, clientProjects, artistProjects) {
+app.controller('userPageCtrl', function ($scope, AuthService, user, clientProjects, artistProjects, RatingFactory) {
   $scope.user = user;
   $scope.artistProjects = artistProjects;
   $scope.clientProjects = clientProjects;
+  $scope.stars = RatingFactory.getRatingFromProjects($scope.artistProjects, "artist");
 });
