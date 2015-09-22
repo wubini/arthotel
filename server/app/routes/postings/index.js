@@ -24,11 +24,12 @@ var mailTo = (recipientEmail, clientName) => {
   var mailOptions = {
     from: gmailInfo.username,
     to: recipientEmail,
-    subject: `${clientName} has accepted your request`,
+    subject: `${clientName} has accepted your request!`,
     text: clientName,
-    html: `<h1>${clientName} agrees to work with you</h1>
-          <p>You are very lucky to be given this rare opportunity</p>
+    html: `<h1>${clientName} has agreed to work with you!</h1>
+          <p>You are very lucky to be given this rare opportunity to use the right side of your brain.</p>
           <p>Don\'t mess up</p>
+          <p>Best of luck.</p>
           `
   };
   transporter.sendMail(mailOptions, (error, info) => {
