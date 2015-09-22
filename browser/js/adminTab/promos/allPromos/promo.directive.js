@@ -8,9 +8,10 @@ app.directive('promo', (PromoFactory, $state) => {
           scope.promos = promos;
           scope.allUsers = [];
           if(scope.promos.length) {
-            scope.promos.user.forEach(user => {
-              console.log(user);
-              scope.allUsers.push(user.displayName);
+            scope.promos.forEach(promo => {
+              promo.user.forEach(proUser => {
+                scope.allUsers.push(proUser.displayName);
+              });
             });
           }
         });

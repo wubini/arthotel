@@ -1,5 +1,5 @@
 <h3>All Active Promos</h3>
-<div class='panel-body col-md-3' ng-repeat='promo in promos'>
+<div class='panel-body col-md-3' ng-repeat='promo in promos track by $index'>
   <p>Promo code: {{promo.code}}<p>
   <p>Start Date: {{promo.start | date: 'medium'}}</p>
   <p>Expiration Date: {{promo.end || 'none' | date: medium}}</p>
