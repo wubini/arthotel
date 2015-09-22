@@ -1,6 +1,6 @@
 <div class="col-sm-4">
   <div class="row">
-    <a ui-sref="userPage({userId: artist._id})"><h3>{{artist.displayName}}</h3></a>
+    <h3><user-page-link user="artist"></user-page-link></h3>
     <p><b>Rating:</b> <star-ratings number="artist.artistRatings[0]"></star-ratings> ({{artist.artistRatings[1]}} reviews)</p>
     <p><b>Completed Projects:</b> {{artist.artistRatings[1]}}</p>
     <p>

@@ -36,5 +36,7 @@ app.controller('userPageCtrl', function ($scope, AuthService, user, clientProjec
   $scope.user = user;
   $scope.artistProjects = artistProjects;
   $scope.clientProjects = clientProjects;
-  $scope.stars = RatingFactory.getRatingFromProjects($scope.artistProjects, "artist");
+  $scope.allProjects = _.union(artistProjects, clientProjects);
+  $scope.artistStars = RatingFactory.getRatingFromProjects($scope.artistProjects, "artist");
+  $scope.clientStars = RatingFactory.getRatingFromProjects($scope.artistProjects, "client");
 });
