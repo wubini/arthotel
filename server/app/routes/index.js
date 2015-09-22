@@ -6,6 +6,7 @@ router.use('/members', require('./members'));
 
 router.use('/postings', require('./postings'));
 router.use('/users', require('./users'));
+router.use('/promos', require('./promos'));
 
 router.get('/cart', (req, res, next) => {
   res.send(req.session.cart);

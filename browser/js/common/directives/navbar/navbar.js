@@ -12,7 +12,8 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'About', state: 'about' },
                 { label: 'Projects', state: 'allPostings({search: undefined})' },
                 { label: 'Me', state: 'privatePage.artistTab', auth: true },
-                { label: 'Find an Artist', state: 'allArtists'}
+                { label: 'Find an Artist', state: 'allArtists'},
+                { label: 'Cart', state: 'loggedOutCart'}
             ];
 
             scope.user = null;

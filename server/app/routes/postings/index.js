@@ -2,8 +2,43 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var Posting = mongoose.model('Posting');
+var User = mongoose.model('User');
 var _ = require('lodash');
 mongoose.Promise = require('bluebird');
+var Path = require('path');
+var gmailInfo = require(Path.join(__dirname,'../../../gmailinfo')).gmail;
+var nodemailer = require('nodemailer');
+
+var directTransport = require('nodemailer-direct-transport');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: gmailInfo.username,
+        pass: gmailInfo.password
+    }
+});
+
+var mailTo = (recipientEmail, clientName) => {
+  console.log('we be emailin');
+  console.log(recipientEmail);
+  var mailOptions = {
+    from: gmailInfo.username,
+    to: recipientEmail,
+    subject: `${clientName} has accepted your request`,
+    text: clientName,
+    html: `<h1>${clientName} agrees to work with you</h1>
+          <p>You are very lucky to be given this rare opportunity</p>
+          <p>Don't mess up</p>
+          `
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if(error) {
+      console.log(error);
+    } else {
+      console.log('Message sent: ' + info.response);
+    }
+  });
+};
 
 
 router.use(function(req, res, next){
@@ -81,7 +116,7 @@ router.post('/add/newPost', function(req, res, next){
   .then(null, next);
 });
 
-router.get('/:postingId', function(req, res, next) {
+router.get('/:postingId', (req, res, next) => {
   res.send(req.posting);
 });
 
@@ -129,9 +164,15 @@ router.put('/:postingId', (req, res, next) => {
     else if(req.body.action === 'assign' && (req.user._id.toString() === req.posting.client._id.toString() || req.user.isAdmin))
     {
         console.log("assigning project!", req.body)
+
         req.posting.paid = true;
         req.posting.artist = req.body.accept;
         req.posting.status = "started";
+        User.findById(req.posting.artist)
+        .then(user => {
+          console.log('user, ', user);
+          mailTo(user.email, req.posting.client.displayName);
+        });
     }
     else if(req.body.action === 'save')
     {
