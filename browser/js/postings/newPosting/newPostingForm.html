@@ -41,11 +41,10 @@
 		<div class="form-group" id="tagsDiv">
 			<label class="col-sm-2 control-label">Tags: </label>
 			<div class="col-sm-10">
-				<input class="form-control" type="text" ng-model="newPost.tags" name="tags" data-role="tagsinput" ng-keypress="tagify($event)"/>
+				<input class="form-control" type="text" value="" name="tags" data-role="tagsinput" ng-keypress="tagify($event)"/>
 			</div>
 		</div>
-			{{newPost.tags}}
-			{{newPost}}
+
 		<div class="form-group" >
 			<label class="col-sm-2 control-label">Size: </label>
 			<div class="col-sm-10">
