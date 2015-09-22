@@ -14,12 +14,23 @@ app.config(function ($stateProvider) {
           allPostings: function(PostingFactory){
             return PostingFactory.getAllPostings();
           },
-          allUsers: function(UserFactory){
+          allUsers: function(UserFactory, PostingFactory, RatingFactory, TagFactory){
             return UserFactory.getAllUsers()
             .then(function(users){
-              return users;
+              var allPromisedUsers = users.map(user => {
+                return PostingFactory.getDonePostsForUser(user._id, "artist")
+                .then(postings => {
+                  user.artistRatings = RatingFactory.getRatingFromProjects(postings, "artist");
+                  console.log("artistRatings", user.artistRatings);
+                  user.tags = TagFactory.getTagsFromProjects(postings);
+                  return user;
+                })
+              });
+
+              return Promise.all(allPromisedUsers);
             });
           }
         }
+        
     });
 });
