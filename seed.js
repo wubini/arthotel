@@ -44,7 +44,7 @@ var seedUsers = function() {
     email: 'pope.julius.ii@gmail.com',
     password: '123',
     isAdmin: 'false',
-    photoUrl: 'http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2013/7/12/1373619567435/pope-julius-II-raphael-006.jpg'
+    photoUrl: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR7WLkbi9x41ryew0LKb_2OF3JZtPFIkTNZzSGYdciRRPoNESMSa9BNBiE'
 
   },{
       displayName: "Mona Lisa",
