@@ -2,6 +2,9 @@ app.directive('projectInfo', () => {
     return {
         restrict: 'E',
         templateUrl: 'js/postings/detailedPosting/projectInfo.html',
+        scope:{
+          posting: "="
+        },
         controller: ($scope, PostingFactory) => {
             $scope.editing = false;
             $scope.beforeEdit = {};
@@ -12,7 +15,16 @@ app.directive('projectInfo', () => {
 
             _.assign($scope.beforeEdit, $scope.posting);
 
-            $scope.restoreValueToBefore = () => _.assign($scope.posting, $scope.beforeEdit);
+            $scope.restoreValueToBefore = () => {
+              console.log('before: ', $scope.beforeEdit);
+              console.log('current: ', $scope.posting);
+              // _.assign($scope.posting, $scope.beforeEdit);
+              $scope.posting = _.clone($scope.beforeEdit, true);
+              // $scope.posting = $scope.beforeEdit;
+
+              $scope.toggleEditing();
+              console.log('after: ', $scope.posting);
+            }
 
             $scope.updatePosting = () => {
               $scope.posting.tags = $scope.tags;

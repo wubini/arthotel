@@ -17,30 +17,15 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('allArtistsCtrl', function ($scope, AuthService, UserFactory, PostingFactory, $state, $stateParams, currentUser, allUsers) {
+app.controller('allArtistsCtrl', function ($scope, AuthService, UserFactory, RatingFactory, PostingFactory, TagFactory, $state, $stateParams, currentUser, allUsers) {
   $scope.allUsers = allUsers;
 
   $scope.allUsers.forEach(user => {
-    //TODO-- Change this request to get the completed projects for which the user was the artist
-    user.artistRatingTotal = 0;
-    user.artistRating = 0;
-    user.numDoneProjects = 0;
     PostingFactory.getDonePostsForUser(user._id, "artist")
     .then(postings => {
-      postings.forEach(posting => {
-        user.numDoneProjects ++;
-        user.tags = _.union(user.tags, posting.tags);
-        if(posting.reviews && posting.reviews.client && posting.reviews.client.stars) {
-          user.artistRatingTotal += posting.reviews.client.stars;
-        }
-      });
-      return user;
+      user.artistRatings = RatingFactory.getRatingFromProjects(postings, "artist");
+      console.log("artistRatings", user.artistRatings);
+      user.tags = TagFactory.getTagsFromProjects(postings);
     })
-    .then(user => {
-      if(user.numDoneProjects)
-      {
-        user.artistRating = user.artistRatingTotal/user.numDoneProjects;
-      }
-    });
   });
 });

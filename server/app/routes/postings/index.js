@@ -129,7 +129,7 @@ router.put('/:postingId', (req, res, next) => {
       var index = combine.indexOf(req.body.reject);
       combine.splice(index,1);
   }
-  if(req.user._id.toString() === req.posting.client._id.toString()|| req.user._id.toString()=== req.posting.artist._id.toString()|| req.user.isAdmin)
+  if(req.user)
   {
     if(req.body.action === 'update')
     {
@@ -170,7 +170,7 @@ router.put('/:postingId', (req, res, next) => {
         req.posting.artistsWhoSaved.push(req.user);
       }
     }
-    else
+    else if(req.user._id.toString() === req.posting.client._id.toString()|| req.user._id.toString()=== req.posting.artist._id.toString()|| req.user.isAdmin)
     {
 
       _.assign(req.posting, req.body);

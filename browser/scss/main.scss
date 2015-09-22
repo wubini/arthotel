@@ -61,6 +61,11 @@ body {
   vertical-align:middle;
 }
 
+.padded{
+  padding-top:1%;
+  padding-bottom:1%;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
