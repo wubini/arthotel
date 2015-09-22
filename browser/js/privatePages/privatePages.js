@@ -42,7 +42,7 @@
       {
         return AuthService.getLoggedInUser()
         .then(function(user){
-          return UserFactory.getActivePostingsForClient(user._id);
+          return UserFactory.getActivePostingsForClient(user._id, 'client');
         });
       },
       unassignedPostings: function(AuthService, UserFactory){

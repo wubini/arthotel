@@ -3,14 +3,19 @@
 			<img class='photo' ng-src="{{project.photos[0]}}"/>
 		</div>
 
-	  <div ng-click='show = !show' class='row'>
-	    <h3>{{project.title}}</h3>
+	    <a ui-sref="detailedPosting({postingId: project._id})"><h3>{{project.title}}</h3></a>
+	  <div class='row'>
+
 	    <p>{{project.description}}</p>
 	    <p>{{project.location}}</p>
 	    <p>{{project.date | date: 'medium'}}</p>
-		</div>
 
-    <div ng-show='show' class="row">
+	    <div ng-click='isCollapsed = !isCollapsed'>
+		    <p><span class="glyphicon" ng-class="isCollapsed? 'glyphicon-triangle-right' : 'glyphicon-triangle-bottom' "></span> Potential artists: </p>
+		</div>
+	</div>
+
+    <div collapse="isCollapsed" class="row">
         <artists-requested ng-repeat='artist in artists' artist='artist' project='project'></artists-requested>
     </div>
 </div>
