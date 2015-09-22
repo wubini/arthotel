@@ -1,8 +1,10 @@
 <div class="col-sm-4">
 	<div class="clearfix">
-		<a ui-sref="userPage({userId: artist._id})">
-			<img class='col-sm-12' ng-src={{artist.photoUrl}}>
-		</a>
+		<div class="photo-thumbnail">
+			<a ui-sref="userPage({userId: artist._id})">
+				<img class='photo' ng-src={{artist.photoUrl}}>
+			</a>
+		</div>
 		<p><a href="/user/{{artist._id}}">{{artist.displayName}}</a></p>
 		<p><b>Email: </b>{{artist.email}}</p>
 	</div>
