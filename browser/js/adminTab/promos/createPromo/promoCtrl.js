@@ -1,4 +1,4 @@
-app.controller('promoCtrl', ($scope, UserFactory, PromoFactory) => {
+app.controller('promoCtrl', ($scope, UserFactory, PromoFactory, $state) => {
   $scope.createdPromo = {};
   $scope.createNewPromo = newPromo =>
     PromoFactory.createPromo(newPromo);
@@ -44,11 +44,10 @@ app.controller('promoCtrl', ($scope, UserFactory, PromoFactory) => {
         alert('you must select some users first')
         return;
       }
-      console.log($scope.createdPromo);
       PromoFactory.createPromo($scope.createdPromo)
         .then(response => {
-          $scope.resetForm
-          alert('you created a new promo');
+          $scope.resetForm();
+          $state.reload();
         });
     };
 
