@@ -133,7 +133,7 @@ var seedPostings = function() {
         client: users[_.findIndex(users, function(user) {
           return user.displayName==="Kathy Lu";
         })]._id,
-        title: "Paint a Huge Flower",
+        title: "Paint a Huge Up-Close Flower",
         description: "The flower is a metaphor. Women, there's nothing to be ashamed of.",
         photos: ['http://i01.i.aliimg.com/wsphoto/v0/763340093/Famous-Georgia-O-Keeffe-Bella-Donna-floral-leaves-oil-paintings-on-canvas-decorative-museum-fruits-replica.jpg'],
         tags: ["flowers", "feminism"]
