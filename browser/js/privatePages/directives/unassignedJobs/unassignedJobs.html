@@ -8,13 +8,15 @@
 
 	    <p>{{project.description}}</p>
 	    <p>{{project.location}}</p>
+			<p>{{project.price}}</p>
 	    <p>{{project.date | date: 'medium'}}</p>
+			<input type='text' ng-model='code'>
+			<button class='btn btn-info' ng-click='checkCode(project.client)'>Check Code</button>
 
 	    <div ng-click='isCollapsed = !isCollapsed'>
 		    <p><span class="glyphicon" ng-class="isCollapsed? 'glyphicon-triangle-right' : 'glyphicon-triangle-bottom' "></span> Potential artists: </p>
 		</div>
 	</div>
-
     <div collapse="isCollapsed" class="row">
         <artists-requested ng-repeat='artist in artists' artist='artist' project='project'></artists-requested>
     </div>
