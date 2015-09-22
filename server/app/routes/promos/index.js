@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 router.get('/:promoId', (req, res, next) => {
   res.send(req.posting);
 });
-
+// create new promo
 router.post('/', (req, res, next) => {
   Promo.create(req.body.promo)
   .then(newPost => {
@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
   })
   .then(null, next);
 });
-
+// edit existing promo
 router.put('/:promoId', (req, res, next) => {
   _.assign(req.promo, req.body.newPromo);
   req.promo.save()
@@ -33,6 +33,14 @@ router.put('/:promoId', (req, res, next) => {
       res.status(201).send(updatedPromo);
     })
     .then(null, next);
+});
+
+router.delete('/:promoId', (req, res, next) => {
+  Promo.remove({_id: req.promo._id}).exec()
+  .then(response => {
+    res.status(200).send();
+  })
+  .then(null, next);
 });
 
 router.param('promoId',(req, res, next, promoId) => {
