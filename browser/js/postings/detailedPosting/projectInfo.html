@@ -73,7 +73,6 @@
 			<div class="col-sm-9">
 				<span ng-hide="editing" ng-repeat="tag in posting.tags">{{tag}} </span>
 				<div id="tagsDiv" ng-show="editing">
-					{{showTags}}
 					<input class="form-control" type="text" ng-model="showTags" ng-change="change = true" name="tags" data-role="tagsinput" ng-keypress="tagify($event)" />
 				</div>
 			</div>
