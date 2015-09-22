@@ -9,7 +9,7 @@
 		</div>
 		<br>
 		<div ng-show="showRequest">
-			<button type="submit" class="btn btn-success btn-lg btn-block" ng-click="requestPosting(posting._id)">Request</button>
+			<span tooltip="{{toolTip}}"> <button type="submit" class="btn btn-success btn-lg btn-block" ng-click="currentUser &&requestPosting(posting._id) || popup()" >Request</button></span>
 		</div>
 		<div ng-hide="showRequest">
 			<p>You've requested this project.</p>
