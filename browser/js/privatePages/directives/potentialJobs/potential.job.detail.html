@@ -21,7 +21,9 @@
 	</div>
 	<div class = "row">
 		<div class="col-sm-4">
-			<i class="fa fa-lg fa-times-circle-o text-danger" ng-click="confirmDelete(posting, artist._id, type)">Remove</i>
+			<i class="fa fa-lg fa-times-circle-o text-danger inline" ng-click="confirmDelete(posting, artist._id, type)">Remove</i>
+
+			<i ng-show="type==='saved'" class="fa fa-lg fa-times-circle-o text-success inline" ng-click="request()">Request</i>
 		</div>
 	</div>
 </div>

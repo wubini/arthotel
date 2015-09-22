@@ -32,6 +32,15 @@ app.directive('potentialJobDetail', (PostingFactory, $state) => {
               }
             });
         };
+
+        scope.request = () => {
+          PostingFactory.requestPosting(scope.posting._id)
+          .then((res) => {
+            $state.reload();
+          });
+        };
     }
+
+
   };
 });
