@@ -1,5 +1,5 @@
 <div class="col-sm-12">
-	<div class="container padded" ng-show="posting._id">
+	<div class="container padded" ng-show="posting._id && posting.artistsWhoRequested.length === 0">
 		<div class="row">
 			<button type="button" class="btn btn-info" ng-hide="editing" ng-click="toggleEditing()">Edit Post</button>
 			<button type="button" class="btn btn-success" ng-show="editing" ng-click="updatePosting()">Confirm Edit</button>
