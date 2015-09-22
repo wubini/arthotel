@@ -1,17 +1,16 @@
-<div ng-controller="DatepickerCtrl">
-    <div class="row col-md-12">
-        <div class="col-md-8">
-          <h4>Start Date</h4>
-            <p class="input-group">
-              <input type="date" class="form-control" ng-model="start" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
-            </p>
-        </div>
-
-        <div class="col-md-8">
-           <h4>End Date</h4>
-            <p class="input-group">
-              <input type="date" class="form-control" ng-model="end" is-open="status.opened" min-date='minDate' max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="false" close-text="Close"/>
-            </p>
-        </div>
-    </div>
+<div class='panel'>
+<h4>Start</h4>
+  <div class="form-horizontal">
+      <p>
+          <input type="text" datepicker-popup="{{format}}" ng-model="createdPromo.start" is-open="startOpened" min="minStartDate" max="maxStartDate" datepicker-options="dateOptions" close-text="Close" />
+          <button class="btn" ng-click="openStart()"><i class="fa fa-calendar"></i></button>
+      </p>
+  </div>
+  <h4>End</h4>
+  <div class="form-horizontal">
+      <p>
+          <input type="text" datepicker-popup="{{format}}" ng-model="createdPromo.end" is-open="endOpened" min="minEndDate" max="maxEndDate" datepicker-options="dateOptions" close-text="Close" />
+          <button class="btn" ng-click="openEnd();"><i class="fa fa-calendar"></i></button>
+      </p>
+  </div>
 </div>

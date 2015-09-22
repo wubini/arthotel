@@ -1,11 +1,6 @@
-app.directive('userSelctor', ()=> {
+app.directive('userSelector', ()=> {
   return {
     restrict: 'E',
-    templateUrl: 'js/adminTab/promos/userSelector/userSelector.html',
-    replace: true,
-    scope: {
-      ngModel: '=ngModel'
-    },
-    controller: 'userSelectorCtrl'
+    templateUrl: 'js/adminTab/promos/userSelector/userSelector.html'
   };
 });

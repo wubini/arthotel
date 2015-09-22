@@ -2,7 +2,7 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-var Promos = mongoose.model('Promo');
+var Promo = mongoose.model('Promo');
 var _ = require('lodash');
 
 // get all promos
