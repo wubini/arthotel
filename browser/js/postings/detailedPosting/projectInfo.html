@@ -1,5 +1,5 @@
 <div class="col-sm-12">
-	<div class="container padded">
+	<div class="container padded" ng-show="posting._id">
 		<div class="row">
 			<button type="button" class="btn btn-info" ng-hide="editing" ng-click="toggleEditing()">Edit Post</button>
 			<button type="button" class="btn btn-success" ng-show="editing" ng-click="updatePosting()">Confirm Edit</button>
@@ -73,7 +73,6 @@
 			<div class="col-sm-9">
 				<span ng-hide="editing" ng-repeat="tag in posting.tags">{{tag}} </span>
 				<div id="tagsDiv" ng-show="editing">
-					{{showTags}}
 					<input class="form-control" type="text" ng-model="showTags" ng-change="change = true" name="tags" data-role="tagsinput" ng-keypress="tagify($event)" />
 				</div>
 			</div>
