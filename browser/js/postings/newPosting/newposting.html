@@ -1,6 +1,6 @@
 <div class="col-sm-12">
 	<div class="panel padded">
-		<new-posting ng-show="writing"></new-posting>
-		<preview-post ng-hide="writing"></preview-post>
+		<new-posting ng-show="writing" new-post="newPost" writing="writing"></new-posting>
+		<preview-post ng-hide="writing" writing="writing" new-post="newPost"></preview-post>
 	</div>
 </div>
