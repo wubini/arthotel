@@ -35,7 +35,7 @@ var schema = new mongoose.Schema({
       work: String,
       mobile: String
     },
-    photoUrl: String,
+    photoUrl: {type: String, default: 'js/common/photos/default-user.jpg'},
     portfolioUrl: String,
     isAdmin: {type: Boolean, default: false},
     resetPassword: {type: Boolean, default:false}
