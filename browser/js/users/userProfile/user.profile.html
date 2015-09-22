@@ -20,6 +20,10 @@
         </div>
         <p><b>Name: </b><span>{{user.displayName}}</span><p>
         <p><b>Bio: </b><span>{{user.bio}}</span><p>
+        <p ng-if="user.email"><b>Email: </b>{{user.email}} </p>
+        <div ng-if="user.email" class="center-block">
+          <button type="button"class="btn btn-success" ng-click="resetPassword()">Reset Password</button>
+        </div>
       </div>
     </div>
   </div>
@@ -41,6 +45,10 @@
         <div class="form-group">
           <label for="bio">Bio:</label>
           <textarea class="form-control" rows="4" id="bio" ng-model="user.bio"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="bio">Email:</label>
+          <input class="form-control" rows="4" id="email" ng-model="user.email"/>
         </div>
         <div class="form-group">
           <div class="btn btn-default" type="submit" ng-show="editing" ng-click='saveProfile(); toggleEditing()'>Save <i class="fa fa-2x fa-floppy-o"></i></div>

@@ -6,7 +6,7 @@ app.directive("userProfile", function()
       user: '='
     },
     templateUrl: 'js/users/userProfile/user.profile.html',
-    controller: function($scope, UserFactory)
+    controller: function($scope, UserFactory, $state)
     {
       $scope.userCopy = {};
 
@@ -31,6 +31,16 @@ app.directive("userProfile", function()
       $scope.saveProfile = function()
       {
         UserFactory.editUser($scope.user);
+      };
+
+      $scope.resetPassword = function()
+      {
+        $scope.user.resetPassword = true;
+
+        UserFactory.editUser($scope.user)
+        .then(function(updatedUser){
+          $state.reload('privatePage.profileTab');
+        })
       };
     }
   }
