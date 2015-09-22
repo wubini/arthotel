@@ -32,16 +32,12 @@ app.controller('adminCtrl', function($scope, $stateParams, currentUser, $state, 
   $scope.strict = false;
   $scope.allUsers = allUsers;
 
-  $scope.filterStatus = function(){
+  $scope.filterStatus = () => {
       if($scope.filter !== ''){
         $scope.strict = true;
       }else{
         $scope.strict = false;
       }
   }
-
-
-
-
 
 });
