@@ -10,8 +10,8 @@
           <p>{{done.description}}</p>
           <p>{{done.location}}</p>
           <p>{{done.date | date: 'medium'}}</p>
-          <p><b>You rated {{done.artist.displayName}}:</b> {{done.reviews.client.stars}}</p>
-          <p><b>{{done.artist.displayName}} rated you:</b> {{done.reviews.artist.stars}}</p>
+          <p><b>You rated {{done.artist.displayName || done.client.displayName}}:</b> {{done.reviews.client.stars}}</p>
+          <p><b>{{done.artist.displayName || done.client.displayName}} rated you:</b> {{done.reviews.artist.stars}}</p>
           <div ng-show='show'>
           <!-- <div> -->
             <complete-artist artist='done.artist'></complete-artist>
