@@ -1,8 +1,8 @@
 <h3>All Active Promos</h3>
 <div class='panel-body col-md-3' ng-repeat='promo in promos'>
   <p>Promo code: {{promo.code}}<p>
-  <p>Creation Date: {{promo.start}}</p>
-  <p>Expiration Date: {{promo.end || 'none'}}</p>
+  <p>Start Date: {{promo.start | date: 'medium'}}</p>
+  <p>Expiration Date: {{promo.end || 'none' | date: medium}}</p>
   <p>Artists activated for: {{allUsers}}</p>
   <p>Percent discount {{promo.discount}}</p>
   <div class="col-sm-12 form-group">

@@ -21,7 +21,6 @@ app.config(function ($stateProvider) {
                 return PostingFactory.getDonePostsForUser(user._id, "artist")
                 .then(postings => {
                   user.artistRatings = RatingFactory.getRatingFromProjects(postings, "artist");
-                  console.log("artistRatings", user.artistRatings);
                   user.tags = TagFactory.getTagsFromProjects(postings);
                   return user;
                 })
@@ -31,6 +30,6 @@ app.config(function ($stateProvider) {
             });
           }
         }
-        
+
     });
 });

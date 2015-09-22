@@ -17,10 +17,10 @@ app.controller('promoCtrl', ($scope, UserFactory, PromoFactory, $state) => {
     $scope.selected = [];
     $scope.createdPromo.user = [];
     $scope.addUsers = () => {
+      console.log(selected);
       $scope.selected.forEach(obj => {
           $scope.createdPromo.user.push(obj._id);
       });
-    };
 
     $scope.resetForm = () => {
       document.getElementById("newPromoForm").reset();
