@@ -15,11 +15,11 @@ app.controller('promoCtrl', ($scope, UserFactory, PromoFactory) => {
     });
 
     $scope.selected = [];
-
+    $scope.createdPromo.user = [];
     $scope.addUsers = () => {
-      if($scope.selected.length > 0) {
-        $scope.createdPromo.users = $scope.selected;
-      }
+      $scope.selected.forEach(obj => {
+          $scope.createdPromo.user.push(obj._id);
+      });
     };
 
     $scope.resetForm = () => {
@@ -40,12 +40,14 @@ app.controller('promoCtrl', ($scope, UserFactory, PromoFactory) => {
         alert('start date must be before end date');
         return;
       }
-      if($scope.createdPromo.users.length < 1) {
+      if($scope.createdPromo.user.length < 1) {
         alert('you must select some users first')
         return;
       }
+      console.log($scope.createdPromo);
       PromoFactory.createPromo($scope.createdPromo)
         .then(response => {
+          $scope.resetForm
           alert('you created a new promo');
         });
     };
