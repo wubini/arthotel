@@ -10,6 +10,7 @@
           <p>{{done.description}}</p>
           <p>{{done.location}}</p>
           <p>{{done.date | date: 'medium'}}</p>
+          <p><b>Tags:</b> <tag-links tags-array="done.tags" url="'/postings?search='" delim="', '"></tag-links></p>
           <p><b>You rated {{done.artist.displayName}}:</b> {{done.reviews.client.stars}}</p>
           <p><b>{{done.artist.displayName}} rated you:</b> {{done.reviews.artist.stars}}</p>
           <div ng-show='show'>
