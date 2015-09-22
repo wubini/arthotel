@@ -20,8 +20,8 @@
 					</select>
 				</p>
 
-				<p>{{posting.description}}</p>
-				<p>{{posting.date | date: 'short'}}</p>
+				<p><span class="bold">Description: </span>{{posting.description}}</p>
+				<p><span class="bold">Posted on: </span>{{posting.date | date: 'short'}}</p>
 				<p><b>Tags: </b>
 					<tag-links tags-array="posting.tags" url="'/postings?search='" delim="', '"></tag-links>
 				</p>
