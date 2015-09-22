@@ -6,7 +6,7 @@
 			<img class="photo" ng-src="{{job.photos[0]}}"/>
 		</div>
 		<a ui-sref="detailedPosting({postingId: job._id})"><h4>{{job.title}}</h4></a>
-		<p><span class="bold">Due: </span>{{job.date | date: medium}}</p>
+		<p><span class="bold">Started on: </span>{{job.date | date: medium}}</p>
 		<div>
 			<p><span class="bold">Client:</span>
 				<a ui-sref="userPage({userId: job.client._id})">{{job.client.displayName}}
