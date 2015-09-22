@@ -1,4 +1,4 @@
-app.factory("PostingFactory", $http => {
+app.factory("PostingFactory", ($http, $q) => {
   return {
     getAllPostings: () => {
       return $http.get(`/api/postings`)
@@ -22,9 +22,23 @@ app.factory("PostingFactory", $http => {
       return $http.put(`/api/postings`)
         .then(response => response.data);
     },
-
+    getLoggedOutCart: (data) => {
+      var returnArr=[];
+      for(var i=0; i<data.length; i++){
+        returnArr.push($http.get(`/api/postings/`+data[i]));
+      }
+      return Promise.all(returnArr).then(function(tempCart){
+          var hold = tempCart.map(function(tempThing){
+          console.log("tempCart",tempThing.data);
+          return tempThing.data;
+        });
+          console.log("hodl",hold);
+          return hold;
+       })
+      },
     getPostingsInCart: () => {
-      return $http.get(`api/cart`)
+      console.log("heysdfafsdadfs");
+      return $http.get(`/api/cart`)
       .then(response => response.data);
     },
 

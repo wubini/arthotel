@@ -1,14 +1,17 @@
 app.config(function($stateProvider){
-	$stateProvider.state('loggedOutCart',{
+	$stateProvider
+	.state('loggedOutCart',{
 		url: '/cart',
 		templateUrl: '/js/cart/cart.html',
 		controller :'cartCtrl',
-		resolve :{
+		resolve : {
 			sessionPostings: function(PostingFactory){
-				return PostingFactory.getPostingsInCart();
+				console.log("hola");
+				return PostingFactory.getPostingsInCart().then(function(data){
+					return PostingFactory.getLoggedOutCart(data);
+					
+				})
 			}
 		}
-
-
 	})
 })
