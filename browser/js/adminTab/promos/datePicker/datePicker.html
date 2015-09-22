@@ -1,0 +1,17 @@
+<div ng-controller="DatepickerCtrl">
+    <div class="row col-md-12">
+        <div class="col-md-8">
+          <h4>Start Date</h4>
+            <p class="input-group">
+              <input type="date" class="form-control" ng-model="start" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+            </p>
+        </div>
+
+        <div class="col-md-8">
+           <h4>End Date</h4>
+            <p class="input-group">
+              <input type="date" class="form-control" ng-model="end" is-open="status.opened" min-date='minDate' max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="false" close-text="Close"/>
+            </p>
+        </div>
+    </div>
+</div>
