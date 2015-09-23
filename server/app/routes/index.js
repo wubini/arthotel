@@ -12,6 +12,7 @@ router.get('/cart', (req, res, next) => {
   res.send(req.session.cart);
 })
 
+
 router.delete('/cart/:postingId', (req, res, next) => {
   var postingId = req.params.postingId;
   if(req.session.cart.indexOf(postingId.toString())>-1)
