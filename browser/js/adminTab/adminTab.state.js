@@ -26,6 +26,7 @@ app.config(function ($stateProvider) {
                 })
               });
 
+              console.log('all users:', allPromisedUsers);
               return Promise.all(allPromisedUsers);
             });
           }
