@@ -57,24 +57,24 @@ router.delete('/:userId', (req, res, next) =>{
   .then(null, next);
 });
 
-router.get('/:userId/postings/done/:role', (req, res, next) => {
-  var role = req.params.role;
-  var otherRole = role==="artist"? "client" : "artist";
-  var conditions = {};
-  conditions[role] = req.params.userId;
-  conditions.status = 'complete';
+// router.get('/:userId/postings/done/:role', (req, res, next) => {
+//   var role = req.params.role;
+//   var otherRole = role==="artist"? "client" : "artist";
+//   var conditions = {};
+//   conditions[role] = req.params.userId;
+//   conditions.status = 'complete';
 
-  Posting.find()
-    .where({client: req.params.userId, status: 'complete'})
-    .populate(otherRole)
-    .then(postings => {
-      res.send(postings);
-    })
-    .then(null, () => {
+//   Posting.find()
+//     .where({client: req.params.userId, status: 'complete'})
+//     .populate(otherRole)
+//     .then(postings => {
+//       res.send(postings);
+//     })
+//     .then(null, () => {
 
-      next();
-    });
-});
+//       next();
+//     });
+// });
 
 //TODO -- check if these need to use the userId that is passed in.
 // could need to wait till we can pass this information.
@@ -125,7 +125,7 @@ router.get('/:userId/active/client', function(req, res, next){
 });
 
 router.get('/:userId/postings/done/:role', (req, res, next) => {
-  var role = req.param.role;
+  var role = req.params.role;
   var conditions = {
     status: "complete"
   };
