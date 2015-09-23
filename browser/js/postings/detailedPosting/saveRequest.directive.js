@@ -5,7 +5,6 @@ app.directive('saveRequest', function () {
         link: function(scope){
           scope.show=true;
 
-          console.log(scope.currentUser._id);
           if(scope.currentUser._id === scope.posting.client._id || scope.posting.status !== 'unstarted'){
             scope.show=false;
           }

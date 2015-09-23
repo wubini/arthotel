@@ -36,7 +36,6 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
         $scope.updateCachedCart = function(){
           PostingFactory.getPostingsInCart()
           .then((postings) => {
-            console.log("updated cached cart", postings)
             $scope.cachedCart = postings;
           })
         }
@@ -81,9 +80,7 @@ app.controller('postingCtrl', function ($scope, AuthService, currentUser, $state
         });
 
         $scope.checkRequestedArray = () => {
-          console.log("checking array");
             if(_.findIndex($scope.posting.artistsWhoRequested, {user: $scope.user._id}) < 0) {
-              console.log("user has not requested this posting")
               $scope.showRequest = true;
             } else {
               $scope.showRequest = false;

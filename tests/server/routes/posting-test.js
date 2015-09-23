@@ -40,7 +40,7 @@ describe("Postings' Routes",function(){
 	});
 
 	beforeEach('Postings', function(done){
-		
+
 		var postings = [
 			{
 				client: createdUsers[0]._id,
@@ -93,7 +93,7 @@ describe("Postings' Routes",function(){
 	});
 
 	describe('post /:postingId',function(){
-		
+
 		it('allows artist to save a posting',function(done){
 			postAgent.post(`/api/postings/${createdPosts[0]._id}`).send({action: 'save'}).end(function(err,response){
 				if(err) return done(err);
@@ -114,7 +114,7 @@ describe("Postings' Routes",function(){
 	});
 
 	describe('put /:postingId',function(){
-		
+
 		it('allows client to add an artist to a project',function(done){
 			postAgent.put('/api/postings/'+createdPosts[0]._id).send({accept: createdUsers[0]._id}).end(function(err,response){
 				if(err) return done(err);
@@ -150,12 +150,11 @@ describe("Postings' Routes",function(){
 
 		});
 
-		
+
 		it('should successfully hit user route for saved posts to compare in next test',function(done){
 			postAgent.get('/api/users/'+createdUsers[0]._id+'/saved').expect(200).end(function(err, response){
 				if(err) return done(err);
 				var holdPostTitle = response.body;
-				console.log(" I am the body", holdPostTitle);
 				done();
 			});
 		});
@@ -163,7 +162,6 @@ describe("Postings' Routes",function(){
 		it('should ensure cart status integrity',function(done){
 			loggedInAgent.put('/api/postings').expect(200).end(function(err,response){
 				if(err) return done(err);
-				console.log("yo I'm the next body", response.body[0]);
 				expect(response.body[0]).to.equal(holdPostTitle);
 				done();
 			});

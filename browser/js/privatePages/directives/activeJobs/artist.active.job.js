@@ -11,8 +11,8 @@ app.directive('artistActiveJob', function ($state, PostingFactory) {
           // });
 
           scope.artistCompleted = function(){
-
-            PostingFactory.changePostingStatus(scope.job._id, "pendingApproval")
+            console.log(scope.job);
+            PostingFactory.submitReview(scope.job)
             .then(function(posting)
             {
               $state.transitionTo($state.current, $state.params, { reload: true, inherit: true, notify: true }); 

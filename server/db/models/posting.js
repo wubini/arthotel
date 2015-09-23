@@ -12,7 +12,7 @@ var schema = new mongoose.Schema({
   title: {type: String, required: true},
   description: String,
   photos: [{type: String, default: 'js/common/directives/navbar/michelangelo-hands.jpg'}],
-  price: Number,
+  price: {type: Number, default: 786528901},
   status: {type: String, default: "unstarted", match: /(unstarted|started|pendingApproval|complete)/},
   paid: {type: Boolean , default: false},
   date: { type: Date, default: Date.now },
