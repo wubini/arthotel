@@ -11,6 +11,6 @@
 		</div>
 	</div>
 	<div class="row">
-		<posting ng-repeat="posting in postings" posting="posting" current-user="currentUser"></posting>
+		<posting ng-repeat="posting in postings" posting="posting" current-user="currentUser" ng-class="{clearfix: $index%3===2}"></posting>
 	</div>
 </div>
