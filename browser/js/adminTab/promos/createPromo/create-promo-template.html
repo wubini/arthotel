@@ -1,36 +1,36 @@
-<div>
-	<form id='newPromoForm' name="newPromoForm" class="form-horizontal" novalidate>
-		<div class="form-group col-md-8" >
-			<label class="col-md-4 control-label">Code: </label>
-			<div class="col-md-6">
-				<input class="form-control" type="text" name="code" ng-model="createdPromo.code"  required/>
-			</div>
-		</div>
-		<div class="form-group col-md-8" ng-class="">
-			<label class="col-sm-4 control-label">Discount Percentage: </label>
-			<div class="col-sm-6">
-				<div class="input-group">
-				  <span class="input-group-addon">%</span>
-				  <input type="number" class="form-control" name="discount" ng-model="createdPromo.discount" required/>
+<div class="panel-body">
+	<div class="container col-sm-12">
+		<form id='newPromoForm' name="newPromoForm" class="form-horizontal" novalidate>
+			<div class="form-group col-md-8 col-sm-12" >
+				<label class="col-sm-4 control-label">Code: </label>
+				<div class="col-sm-6">
+					<input class="form-control" type="text" name="code" ng-model="createdPromo.code"  required/>
 				</div>
 			</div>
-		</div>
+			<div class="form-group col-md-8 col-sm-12">
+				<label class="col-sm-4 control-label">Discount Percentage: </label>
+				<div class="col-sm-6">
+					<div class="input-group">
+					  <span class="input-group-addon">%</span>
+					  <input type="number" class="form-control" name="discount" ng-model="createdPromo.discount" required/>
+					</div>
+				</div>
+			</div>
 
-    <div class="form-group col-md-8 col-md-offset-4">
-      <date-picker></date-picker>
-    </div>
+	      	<date-picker></date-picker>
 
 
-  	<div class="form-group col-md-8">
-  		<label class="col-sm-2 control-label">Users: </label>
-  		<div class="col-sm-6">
-  		<user-selector></user-selector>
-  		</div>
-  	</div>
+	  	<div class="form-group col-md-8 col-sm-12">
+	  		<label class="col-sm-4 control-label">Users: </label>
+	  		<div class="col-sm-6">
+	  		<user-selector></user-selector>
+	  		</div>
+	  	</div>
 
-    <div class='col-md-7'>
-      <button type="button" class="btn btn-danger" ng-click='reset()'>Cancel</button>
-      <button type="button" class="btn btn-success" ng-click='verify()'>Submit</button>
-    </div>
-	</form>
+	    <div class='form-group col-md-8 col-sm-12 text-center center-block'>
+	      <button type="button" class="btn btn-danger inline" ng-click='reset()'>Cancel</button>
+	      <button type="button" class="btn btn-success inline" ng-click='verify()'>Submit</button>
+	    </div>
+		</form>
+	</div>
 </div>
