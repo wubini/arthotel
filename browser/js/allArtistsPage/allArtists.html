@@ -9,7 +9,7 @@
       <search-artists></search-artists>
       <div class="row">
         <div class="col-sm-12">
-          <artist-details ng-repeat="artist in allUsers" artist="artist" ng-show="containsAllTags(artist)"></artist-details>
+          <artist-details ng-repeat="artist in allUsers" artist="artist" ng-show="containsAllTags(artist)" ng-class="{clearfix: $index===2}"></artist-details>
         </div>
       </div>
     </div>

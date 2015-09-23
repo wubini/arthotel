@@ -1,4 +1,4 @@
-app.directive('artistsRequested', (PostingFactory, $state) => {
+app.directive('artistsRequested', (PostingFactory, $state, PromoFactory) => {
   return {
     restrict: 'E',
     templateUrl: 'js/privatePages/directives/unassignedJobs/artistsRequested.html',

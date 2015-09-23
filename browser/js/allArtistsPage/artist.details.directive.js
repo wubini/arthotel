@@ -4,11 +4,12 @@ app.directive("artistDetails", function(UserFactory, $state)
     restrict: 'EA',
     scope: {
       artist:"=",
-      currentUser:"="
+      currentUser:"=",
+      index: '='
     },
     templateUrl: 'js/allArtistsPage/artist.details.html',
     link: function(scope){
-     
+
       scope.deleteUser = function(){
         UserFactory.deleteUser(scope.artist._id)
         .then(function(){
