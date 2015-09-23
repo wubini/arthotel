@@ -1,27 +1,48 @@
 <nav class="navbar navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <logo></logo>
-        </div>
-        <form role="form" class="form-inline">
-          <input type="text" class="form-control" ng-model="searchTerms">
-          <div class="btn btn-default" ui-sref='allPostings({search:searchTerms})' ui-sref-opts="{reload: true}">Search</div>
-        </form>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="(!item.auth && !item.loggedOut) ||  (item.loggedOut && !isLoggedIn()) || ( !item.loggedOut && isLoggedIn())">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul>
 
-        <div ng-show="!user" class="pull-right">
-            <login class="inline"></login>
-            <fb class="inline"></fb>
-            <gl class='inline'></gl>
+            <button type="button" class="navbar-toggle collapsed btn-lg pull-left" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+             </button>
         </div>
 
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.displayName }}!</span>
-            <a ng-click="logout()">Logout</a>
+
+        
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <div class="col-sm-12 col-md-4">
+                <div class="input-group">
+                         
+                  <input type="text" class="form-control" ng-model="searchTerms">
+                    <span class="input-group-btn">
+                      <div class="btn btn-default" ui-sref='allPostings({search:searchTerms})' ui-sref-opts="{reload: true}">Search</div>
+                    </span>
+
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+            <ul class="nav navbar-nav">
+                    <li ng-repeat="item in items" ng-show="(!item.auth && !item.loggedOut) ||  (item.loggedOut && !isLoggedIn()) || ( !item.loggedOut && isLoggedIn())">
+                        <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <div ng-show="!user" class="pull-right">
+                    <login class="inline"></login>
+                    <fb class="inline"></fb>
+                    <gl class='inline'></gl>
+                </div>
+
+                <div ng-show="user" class="welcome">
+                    <span>Welcome, {{ user.displayName }}!</span>
+                    <a ng-click="logout()">Logout</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </nav>
