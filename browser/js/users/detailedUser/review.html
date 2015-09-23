@@ -11,15 +11,21 @@
 							<p><span class="bold">Role: </span>{{project.userRole}}</p>
 						</div>
 						<div class="row" ng-show="project.userRole==='Artist'">
-							<p><b>Review from Client (<user-page-link user="project.client"></user-page-link>): </b></p>
+							<p><b>Review from Client: </b></p>
 							<star-ratings number="project.reviews.client.stars"></star-ratings>
+
+							<div class="row">
+							<p>{{project.reviews.client.text}}</p>
+						</div>
 						</div>
 						<div class="row" ng-show="project.userRole==='Client'">
-							<p><b>Review from Artist (<user-page-link user="project.artist"></user-page-link>): </b></p>
+							<p><b>Review from Artist: </b></p>
 							<star-ratings number="project.reviews.client.stars"></star-ratings>
-						</div>
+						
 						<div class="row">
-							<p>{{project.reviews.client.text}}</p>
+							<p>{{project.reviews.artist.text}}</p>
+						</div>
+
 						</div>
 				</div>
 		</div>
