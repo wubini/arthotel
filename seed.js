@@ -118,7 +118,21 @@ var seedPostings = function() {
         title: "Paint a Small Star-lit Town at Night",
         description: "Make sure it's really windy",
         photos: ['http://karmel.hr/wp-content/uploads/2015/03/van-gogh-starry-night-vincent-van-gogh.jpg'],
-        tags: ["swirly", "town", "starry", "night", "painting"]
+        tags: ["swirly", "town", "starry", "night", "painting"],
+        status: 'complete',
+        artist: users[_.findIndex(users, function(user) {
+          return user.displayName==="Vincent Van Gogh";
+        })]._id,
+        reviews: {
+          client: {
+            stars: 5,
+            text: "Vincent was a pleasure to work with."
+          },
+          artist: {
+            stars: 5,
+            text: "A bit crazy but I like that ;)"
+          }
+        }
       };
       var strawHut = {
         client: users[_.findIndex(users, function(user) {
