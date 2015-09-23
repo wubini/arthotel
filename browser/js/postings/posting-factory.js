@@ -110,7 +110,7 @@ app.factory("PostingFactory", ($http, $q) => {
       .then(response => response.data);
     },
     submitReview: (posting, newStatus, role, stars, text) => {
-      var body = {};
+      var body = posting;
       body.status = newStatus;
       body.reviews = posting.reviews || {};
       body.reviews[role] = {

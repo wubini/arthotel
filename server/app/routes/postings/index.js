@@ -171,7 +171,7 @@ router.put('/:postingId', (req, res, next) => {
         req.posting.artistsWhoSaved.push(req.user);
       }
     }
-    else if(req.user._id.toString() === req.posting.client._id.toString()|| req.user._id.toString()=== req.posting.artist._id.toString()|| req.user.isAdmin)
+    else if(req.user._id.toString() === req.posting.client._id.toString()|| req.user._id.toString()=== req.posting.artist.toString()|| req.user.isAdmin)
     {
 
       _.assign(req.posting, req.body);
