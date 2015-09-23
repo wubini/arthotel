@@ -43,7 +43,6 @@ app.directive('posting', function (PostingFactory, $state) {
               scope.editing=!scope.editing;
               if(scope.changed){
                 //save changes!
-                console.log(scope.newStatus);
                 scope.posting.status = scope.newStatus.status;
                 PostingFactory.updatePostingById(scope.posting)
                 .then(function(updatedPost){

@@ -31,7 +31,6 @@ app.controller('adminCtrl', function($scope, $stateParams, currentUser, $state, 
   $scope.filter = '',
   $scope.strict = false;
   $scope.allUsersAdmin = allUsers;
-  console.log('in controller: ', $scope.allUsers);
 
   $scope.filterStatus = () => {
       if($scope.filter !== ''){

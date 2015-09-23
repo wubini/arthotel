@@ -20,7 +20,6 @@ app.controller('promoCtrl', ($scope, UserFactory, PromoFactory, $state) => {
       $scope.selected.forEach(obj => {
           $scope.createdPromo.user.push(obj._id);
       });
-      console.log('after transfer', $scope.createdPromo.user)
     };
     $scope.resetForm = () => {
       document.getElementById("newPromoForm").reset();

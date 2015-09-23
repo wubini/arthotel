@@ -60,8 +60,6 @@ router.delete('/:userId', (req, res, next) =>{
 router.get('/:userId/postings/done/:role', (req, res, next) => {
   var role = req.params.role;
   var otherRole = role==="artist"? "client" : "artist";
-
-  console.log("looking for done postings ")
   var conditions = {};
   conditions[role] = req.params.userId;
   conditions.status = 'complete';
@@ -73,7 +71,7 @@ router.get('/:userId/postings/done/:role', (req, res, next) => {
       res.send(postings);
     })
     .then(null, () => {
-      console.log('could not find any!');
+
       next();
     });
 });

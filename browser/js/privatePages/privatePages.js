@@ -8,8 +8,7 @@
     },
     abstract: true,
     resolve: {
-      user: AuthService =>
-      {
+      user: AuthService => {
         return AuthService.getLoggedInUser()
         .then(user => user);
       },
@@ -83,8 +82,6 @@ app.controller('privatePageCtrl', function($scope, $stateParams, AuthService, $s
 
   //we need this to make sure that console.error works
   console.error = console.error.bind(console);
-
-  console.log("in private page ctrl, user", $scope.user);
 
   //$scope.amountOwed = $$$;
   var size = function(obj) {

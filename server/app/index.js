@@ -36,7 +36,6 @@ app.get('/*', function (req, res) {
 });
 
 app.post("/charge", function(req, res){
-  console.log(req.body);
   var stripeToken = req.body.stripeToken;
 
   var charge = stripe.charges.create({
