@@ -1,22 +1,26 @@
-<div class="form-control">
-	<div class="col-sm-12">
-		<div class="form-group col-sm-6">
 
-			<div class="input-group">
-		      <select class="form-control" ng-model="filter" ng-change="filterStatus()">
-					<option ng-repeat="status in statuses" value="{{status.status}}">{{status.show}}</option>
-				</select>
-		      <span class="input-group-btn">
-		        <button class="btn btn-default" type="button">Filter by status</button>
-		      </span>
-		    </div>
+<div class="">
+	<div class = "container panel padded">
 
+		<div class="col-sm-12">
+			<div class="form-group col-sm-6">
+
+				<div class="input-group">
+			      <select class="form-control" ng-model="filter" ng-change="filterStatus()">
+						<option ng-repeat="status in statuses" value="{{status.status}}">{{status.show}}</option>
+					</select>
+			      <span class="input-group-btn">
+			        <button class="btn btn-default" type="button">Filter by status</button>
+			      </span>
+			    </div>
+
+			</div>
+
+			<search></search>
 		</div>
-
-		<search></search>
 	</div>
 
-	<div class="panel">
+	<div class="panel container">
 		<div class="panel-heading"><h3>Projects</h3></div>
 
 		<div class="panel-body">
@@ -24,16 +28,16 @@
 		</div>
 	</div>
 
-	<div class="panel">
+	<div class="panel container">
 		<div class="panel-heading"><h3>Users</h3></div>
 
 		<div class="panel-body">
-			<div class="container row panel">
+			<div class="row panel">
 			    <artist-details ng-repeat="artist in allUsersAdmin track by $index" artist="artist" current-user="currentUser" ng-class="{clearfix: $index%3===2}"></artist-details>
 			  </div>
 		</div>
 	</div>
-	<div class='panel'>
+	<div class='panel container'>
 		<div class="panel-heading">  
 			<h3>All Active Promos</h3>
 		</div>
@@ -41,7 +45,7 @@
 			<promo></promo>
 		</div>
 	</div>
-	<div class='panel'>
+	<div class='panel container'>
 		<div class="panel-heading">  
 			<h3>Create a new Promo</h3>
 		</div>
