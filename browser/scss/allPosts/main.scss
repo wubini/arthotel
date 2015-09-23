@@ -26,6 +26,8 @@ posting {
 	span.star:hover:before, span.star:hover ~ span.star:before {
 	  content: "\f005";
 	  color: #e3cf7a;
+	  -webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: black;
 	}
 
 	span.star:hover {
@@ -53,6 +55,8 @@ posting {
   content: "\f005";
   color: #e3cf7a;
   padding-right: 5px;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: #777777;
 
 }
 
