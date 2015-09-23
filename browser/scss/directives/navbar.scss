@@ -25,7 +25,9 @@ navbar {
   }
 
   a {
-    color: black;
+    color:white;
+    text-shadow: 2px 2px black;
+
     font-size: 16px;
   }
 
@@ -34,11 +36,14 @@ navbar {
     cursor: pointer;
     transition: color 0.2s;
     &.active {
-      color: white;
+      color: black;
+      text-shadow: 2px 2px white;
+
     }
     &:hover {
       background: none;
-      color: white;
+      color: black;
+      text-shadow: 1px 1px white;
     }
     &:focus {
       background: none;
