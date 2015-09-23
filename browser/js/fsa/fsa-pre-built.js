@@ -51,8 +51,6 @@
     app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q, PostingFactory, $window, UserFactory) {
 
         function onSuccessfulLogin(response) {
-          console.log("successful login")
-          console.log(response.data.user.resetPassword);
           if(response.data.user.resetPassword){
             bootbox.dialog({
                 title: "Please reset your password",

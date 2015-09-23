@@ -3,7 +3,7 @@
   <p><b>Start Date:</b> {{promo.start | date: 'medium'}}</p>
   <p><b>Expiration Date:</b> {{promo.end || 'none' | date: medium}}</p>
   <p><b>Artists activated for:</b>
-   	<p ng-repeat="user in allUsers" class="col-md-offset-1">{{user}}</p>
+   	<p ng-repeat="user in allUsers track by $index" class="col-md-offset-1">{{user}}</p>
   </p>
   <p><b>Percent discount {{promo.discount}}</b></p>
   <div class="col-sm-12 form-group">

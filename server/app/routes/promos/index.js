@@ -18,15 +18,6 @@ router.get('/:promoId', (req, res, next) => {
   res.send(req.posting);
 });
 
-// router.get(`/code`, (req, res, next) => {
-//   console.log('HIT!');
-//   Promo.find()
-//   .where({code: req.body.code,
-//     user: {$contains: req.body.client}
-//   })
-//   .then(promos => res.send(promos));
-// });
-// create new promo
 router.post('/', (req, res, next) => {
   Promo.create(req.body.promo)
   .then(newPost => {

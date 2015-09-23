@@ -36,7 +36,6 @@ app.directive('writeReview', function ($state, PostingFactory) {
             scope.hoveringOver = function(value) {
               scope.overStar = value;
               scope.percent = 100 * (value / scope.max);
-              console.log(scope.review.rating);
             };
 
 

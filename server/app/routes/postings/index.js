@@ -19,8 +19,6 @@ var transporter = nodemailer.createTransport({
 });
 
 var mailTo = (recipientEmail, clientName) => {
-  console.log('we be emailin');
-  console.log(recipientEmail);
   var mailOptions = {
     from: gmailInfo.username,
     to: recipientEmail,
@@ -74,7 +72,6 @@ router.put('/', function(req, res, next) {
       });
       return savePromises;
     }).then((savePromises) => {
-      console.log("savedPromises", savePromises);
         Promise.all(savePromises)
           .then(savedPostings => {
             req.session.cart = [];
@@ -89,12 +86,10 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/charge', (req, res, next) => {
-  console.log("we\'ve been hit captain!");
   res.redirect('/me');
 });
 
 router.post('/add/newPost', function(req, res, next){
-  console.log('adding new post', req.body);
 
   Posting.find({
     client: req.user._id,
@@ -106,7 +101,6 @@ router.post('/add/newPost', function(req, res, next){
     if(post.length === 0){
       Posting.create(req.body.postInfo)
       .then(function(newPost){
-        console.log('successfully created');
         res.send(newPost);
       })
       .then(null, next);
@@ -123,12 +117,10 @@ router.get('/:postingId', (req, res, next) => {
 
 
 router.put('/:postingId', (req, res, next) => {
-  console.log('updating post: ', req.body);
   if(req.body.action === 'reject')
   {
       var combine = req.posting['artistsWho' + req.body.section];
       var index = -1;
-      console.log('combine: ', combine);
       if(req.body.section === 'Requested'){
         combine.forEach(function(requestArtist, i){
           if(requestArtist.user.toString() === req.body.artist.toString()){
@@ -164,14 +156,11 @@ router.put('/:postingId', (req, res, next) => {
     }
     else if(req.body.action === 'assign' && (req.user._id.toString() === req.posting.client._id.toString() || req.user.isAdmin))
     {
-        console.log("assigning project!", req.body)
-
         req.posting.paid = true;
         req.posting.artist = req.body.accept;
         req.posting.status = "started";
         User.findById(req.posting.artist)
         .then(user => {
-          console.log('user, ', user);
           mailTo(user.email, req.posting.client.displayName);
         });
     }
